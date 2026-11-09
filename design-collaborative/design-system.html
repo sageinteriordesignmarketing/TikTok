@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Collaborative · Visual System</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dc-ivory:#F5F0E8;--dc-paper:#EDE6DA;--dc-stone:#D6CBBB;--dc-sand:#BCA98F;--dc-clay:#9A7657;--dc-clay-deep:#7A5A40;
+  --dc-olive:#6F6B56;--dc-muted:#5E544B;--dc-espresso:#2E2621;--dc-ink:#1F1A17;
+  --dc-serif:"Cormorant Garamond",Georgia,serif;--dc-sans:"Jost","Avenir Next",Arial,sans-serif;
+  --dc-gutter:clamp(1rem,4.2vw,4.5rem);--dc-ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--dc-ivory);color:var(--dc-espresso);font:300 1.05rem/1.7 var(--dc-sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1500px;margin:auto;padding:0 var(--dc-gutter)}
+.label{font:500 .7rem/1.5 var(--dc-sans);letter-spacing:.2em;text-transform:uppercase}
+.muted{color:var(--dc-muted)}
+.serif{font-family:var(--dc-serif);font-weight:300;letter-spacing:-.012em}
+.i{font-style:italic}
+header.cover{padding:clamp(5rem,10vw,9rem) 0 clamp(3rem,6vw,5rem);border-bottom:1px solid rgba(46,38,33,.14)}
+header.cover h1{font:300 clamp(3rem,1rem + 7vw,8.5rem)/.95 var(--dc-serif);letter-spacing:-.02em;margin-top:1.4rem}
+header.cover p{max-width:46rem;margin-top:2rem;color:var(--dc-muted)}
+section{padding:clamp(4rem,7vw,7rem) 0;border-bottom:1px solid rgba(46,38,33,.14)}
+.sec-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:2rem;margin-bottom:3rem}
+.sec-h h2{font:300 clamp(2rem,1rem + 2.4vw,3.4rem)/1.05 var(--dc-serif)}
+.sec-h p{color:var(--dc-muted);max-width:40rem}
+@media(max-width:800px){.sec-h{grid-template-columns:1fr}}
+
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:rgba(46,38,33,.12);border:1px solid rgba(46,38,33,.12)}
+.sw{background:var(--dc-ivory);padding:0 0 1rem}
+.sw i{display:block;height:140px;background:var(--c)}
+.sw b{display:block;font:400 1.35rem/1.2 var(--dc-serif);margin:1rem 1rem .2rem}
+.sw span{display:block;margin:0 1rem;font-size:.82rem;color:var(--dc-muted);line-height:1.5}
+
+.type-row{display:grid;grid-template-columns:200px 1fr;gap:2rem;padding:2rem 0;border-top:1px solid rgba(46,38,33,.12);align-items:baseline}
+.type-row:first-child{border-top:0}
+@media(max-width:800px){.type-row{grid-template-columns:1fr;gap:.8rem}}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(1.5rem,3vw,3rem)}
+.card{background:var(--dc-paper);padding:2rem}
+.card.dark{background:var(--dc-espresso);color:var(--dc-ivory)}
+.card h3{font:400 1.5rem/1.2 var(--dc-serif);margin:.9rem 0 .6rem}
+.card p{color:var(--dc-muted);font-size:.95rem}
+.card.dark p{color:rgba(245,240,232,.75)}
+
+.dc-btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;gap:.9em;padding:1.2em 2.15em;background:var(--dc-espresso);color:var(--dc-ivory);font:500 .74rem/1 var(--dc-sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border:1px solid var(--dc-espresso)}
+.dc-btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--dc-clay);transform:translateY(101%);transition:transform .6s var(--dc-ease)}
+.dc-btn:hover::before{transform:none}
+.dc-btn--ghost{background:transparent;color:var(--dc-espresso)}
+.dc-btn--ghost:hover{color:var(--dc-ivory)}
+.dc-btn__arrow{width:1.6em;height:1px;background:currentColor;position:relative;transition:width .5s var(--dc-ease)}
+.dc-btn__arrow::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.dc-btn:hover .dc-btn__arrow{width:2.4em}
+.dc-link{display:inline-flex;font:500 .74rem/1.4 var(--dc-sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:inherit;padding-bottom:.55em;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .6s var(--dc-ease),color .4s}
+.dc-link:hover{background-size:0 1px;color:var(--dc-clay)}
+.demo{display:flex;flex-wrap:wrap;gap:1.6rem 2.4rem;align-items:center;margin-top:1.4rem}
+
+.motif{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem}
+.motif figure{margin:0}
+.motif .shape{height:260px;background:linear-gradient(160deg,#e5dacb,#c9b9a2)}
+.arch{border-radius:999px 999px 0 0;width:70%}
+.motif figcaption{margin-top:1rem}
+.motif figcaption b{display:block;font:400 1.3rem var(--dc-serif)}
+.motif figcaption span{font-size:.9rem;color:var(--dc-muted)}
+.rule-demo{height:260px;display:flex;flex-direction:column;justify-content:center;gap:1.6rem}
+.rule-demo div{display:flex;align-items:baseline;gap:1rem}
+.rule-demo em{font:italic 300 1rem var(--dc-serif);color:var(--dc-clay-deep)}
+.rule-demo hr{flex:1;border:0;height:1px;background:rgba(46,38,33,.18);margin:0}
+
+.cols{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(.5rem,2vw,2rem);height:140px}
+.cols i{background:rgba(154,118,87,.14);border-left:1px solid rgba(154,118,87,.3);border-right:1px solid rgba(154,118,87,.3)}
+@media(max-width:700px){.cols{grid-template-columns:repeat(4,1fr)}.cols i:nth-child(n+5){display:none}}
+
+ul.rules{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 3rem}
+ul.rules li{padding:1.1rem 0;border-top:1px solid rgba(46,38,33,.12)}
+ul.rules b{font-weight:500}
+footer{padding:3rem 0;color:var(--dc-muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="wrap">
+    <p class="label muted">Design Collaborative · Visual identity v1 · Concept</p>
+    <h1>A quiet <span class="i">architecture</span><br>of type, light &amp; line</h1>
+    <p>The site behaves like a monograph, not a brochure. Photography carries the emotion; type is large, light and unhurried; structure comes from hairlines and generous margins. A drawn line, borrowed from the firm's construction sets, appears wherever we talk about how the work gets built.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h"><h2>Palette</h2><p>Warm, mineral, and low-chroma, so photography always leads. Ivory is the page, Paper the alternate surface, and Espresso the dark chapter. Clay is the single accent: it is reserved for numerals, hover states, and ornament. Use Clay Deep when the accent sits on small text.</p></div>
+    <div class="swatches">
+      <div class="sw"><i style="--c:#F5F0E8"></i><b>Ivory</b><span>#F5F0E8<br>Page background</span></div>
+      <div class="sw"><i style="--c:#EDE6DA"></i><b>Paper</b><span>#EDE6DA<br>Alternate sections</span></div>
+      <div class="sw"><i style="--c:#D6CBBB"></i><b>Stone</b><span>#D6CBBB<br>Image loading fill</span></div>
+      <div class="sw"><i style="--c:#BCA98F"></i><b>Sand</b><span>#BCA98F<br>Line work on dark</span></div>
+      <div class="sw"><i style="--c:#9A7657"></i><b>Clay</b><span>#9A7657<br>Accent, large only</span></div>
+      <div class="sw"><i style="--c:#7A5A40"></i><b>Clay Deep</b><span>#7A5A40<br>Accent, small text 5.5:1</span></div>
+      <div class="sw"><i style="--c:#5E544B"></i><b>Umber</b><span>#5E544B<br>Body copy 7:1</span></div>
+      <div class="sw"><i style="--c:#2E2621"></i><b>Espresso</b><span>#2E2621<br>Headings, dark chapter</span></div>
+      <div class="sw"><i style="--c:#1F1A17"></i><b>Ink</b><span>#1F1A17<br>Footer</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h"><h2>Typography</h2><p>Cormorant Garamond Light for display: high-contrast, couture, and best at large sizes. Jost for reading and wayfinding: geometric, calm, and legible on phones. Italic is the only emphasis, used once per heading, on the place or idea that matters.</p></div>
+    <div class="type-row"><span class="label muted">H1 · 46–106px<br>Cormorant 300 · lh .98</span><p class="serif" style="font-size:clamp(2.8rem,1rem + 5vw,6.6rem);line-height:.98">Luxury Interior Designers in <span class="i">San Luis Obispo</span></p></div>
+    <div class="type-row"><span class="label muted">H2 display · 38–90px</span><p class="serif" style="font-size:clamp(2.4rem,1rem + 4vw,5.6rem);line-height:1.02">From the First Drawings to the <span class="i">Final Detail</span></p></div>
+    <div class="type-row"><span class="label muted">H2 · 33–64px</span><p class="serif" style="font-size:clamp(2rem,1.1rem + 2.6vw,4rem);line-height:1.06">What happens after you <span class="i">reach out</span></p></div>
+    <div class="type-row"><span class="label muted">H3 · 25–34px<br>Cormorant 400</span><p class="serif" style="font-size:clamp(1.55rem,1.2rem + .9vw,2.15rem);font-weight:400">Gold Coast Spanish</p></div>
+    <div class="type-row"><span class="label muted">Lede · 22–30px</span><p class="serif" style="font-size:clamp(1.35rem,1.1rem + .8vw,1.85rem);line-height:1.42;max-width:38ch">Design Collaborative is a boutique, full service interior design firm based in San Luis Obispo.</p></div>
+    <div class="type-row"><span class="label muted">Body · 16–18px<br>Jost 300 · lh 1.75</span><p class="muted" style="max-width:36rem">We work alongside your architect and contractor from the early stages, then draw out every decision in a complete set of construction plans.</p></div>
+    <div class="type-row"><span class="label muted">Label · 11.5px<br>Jost 500 · +.2em caps</span><p class="label">NCIDQ-certified designers · Shell Beach · See Our Work</p></div>
+    <div class="type-row"><span class="label muted">Index numeral</span><p class="serif i" style="color:var(--dc-clay-deep)">(01) &nbsp; i. &nbsp; ii. &nbsp; iii.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h"><h2>Signature motifs</h2><p>Four devices make the site recognisable on every page. Use them sparingly. Each one earns its place by meaning something.</p></div>
+    <div class="motif">
+      <figure><div class="shape arch"></div><figcaption><b>The Arch</b><span>One arched crop per section at most, always on a detail or intimate image. It echoes the firm's Spanish and Mediterranean Central Coast work.</span></figcaption></figure>
+      <figure><div class="rule-demo"><div><em>(01)</em><hr></div><div><em>(02)</em><hr></div><div><em>(03)</em><hr></div></div><figcaption><b>Folio rule</b><span>A small italic numeral and a hairline open each chapter, the way a monograph would. It is decorative and hidden from screen readers.</span></figcaption></figure>
+      <figure><svg viewBox="0 0 300 260" style="width:100%;height:260px;background:var(--dc-espresso)"><g fill="none" stroke="#BCA98F" stroke-width="1"><rect x="40" y="60" width="100" height="60"/><line x1="90" y1="60" x2="90" y2="120"/><path d="M180 60h40l10 40h-60z"/><rect x="30" y="150" width="240" height="70"/><line x1="110" y1="150" x2="110" y2="220"/><line x1="190" y1="150" x2="190" y2="220"/><line x1="30" y1="36" x2="270" y2="36" stroke-opacity=".5"/></g></svg><figcaption><b>The drawn line</b><span>Fine Sand line work on Espresso, drawn in on scroll. It is the visual proof of the construction set, and only appears where that story is told.</span></figcaption></figure>
+      <figure><div class="shape" style="display:flex;align-items:flex-end;padding:1rem;background:radial-gradient(120% 80% at 72% 18%,rgba(255,247,230,.8),transparent 60%),linear-gradient(180deg,#dbcbb4 0%,#cdb89d 63%,#a98d6f 63.2%,#8b7056 100%)"><span class="label" style="color:var(--dc-ivory)">Bluff Estate — Shell Beach</span></div><figcaption><b>The overlap</b><span>Text panels and detail images slip across the edge of a larger photograph, like a magazine layout. It breaks the Squarespace "stacked bands" look.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h"><h2>Components</h2><p>Few, consistent, and quiet. Every link names its destination ("Residential Interior Design", not "Learn more"), which serves both visitors and search.</p></div>
+    <div class="grid2">
+      <div class="card"><span class="label muted">Primary button</span><div class="demo"><a class="dc-btn" href="#">Start a Conversation <span class="dc-btn__arrow"></span></a></div><p style="margin-top:1.4rem">One primary button per screen. Clay rises from below on hover.</p></div>
+      <div class="card"><span class="label muted">Secondary</span><div class="demo"><a class="dc-btn dc-btn--ghost" href="#">View All Projects <span class="dc-btn__arrow"></span></a><a class="dc-link" href="#">See Our Work</a></div><p style="margin-top:1.4rem">An outlined button, or a text link whose hairline withdraws on hover.</p></div>
+      <div class="card dark"><span class="label" style="color:var(--dc-sand)">On Espresso</span><div class="demo"><a class="dc-link" href="#" style="color:var(--dc-ivory)">See Our Construction Documents</a></div><p style="margin-top:1.4rem">On dark surfaces, links stay ivory and turn Sand on hover.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h"><h2>Grid &amp; rhythm</h2><p>A 12-column grid with 4.2vw outer margins, collapsing to a single column under 960px. Sections breathe at 96–200px vertically. Compositions are deliberately off-centre: text holds 5–6 columns while images take 6–7 and bleed to the edge.</p></div>
+    <div class="cols"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-h"><h2>Principles</h2><p>The rules that keep every page in the same world, whoever builds it next.</p></div>
+    <ul class="rules">
+      <li><b>Photography leads.</b> Shoot in natural light. Alternate wide rooms with close details (joinery, stone, tile, hardware). Never use stock imagery.</li>
+      <li><b>Copy is never trimmed for looks.</b> Layout makes long text feel light, through ledes, measure, and pacing, rather than hiding it.</li>
+      <li><b>One H1, logical H2/H3.</b> Decorative numerals and captions are hidden from assistive tech, and every heading is real text.</li>
+      <li><b>Motion is slow and single.</b> Reveal once, ease out over 1.2–1.5s, never loop. Everything is visible without JavaScript and with reduced motion.</li>
+      <li><b>Images are sized and described.</b> Use descriptive file names and alt text, explicit dimensions, and lazy-load anything below the fold.</li>
+      <li><b>No cards, no icons, no carousels.</b> Use lists, hairlines, and composition instead.</li>
+    </ul>
+  </div>
+</section>
+<footer><div class="wrap">Concept board for review · Not indexed</div></footer>
+</body>
+</html>
