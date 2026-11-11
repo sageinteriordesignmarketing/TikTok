@@ -1,17 +1,19 @@
-# Design Collaborative: Homepage Concept (Round 2)
+# Design Collaborative: Homepage Concept (Round 4)
 
-**v2 direction (current):** gallery-like and image-led, in the spirit of Kelly Wearstler's studio site.
-Everything is sans-serif in the brand typeface, with no arches, italics or ornaments, and real Design Collaborative photography.
+**v4 (current) follows Studio Krista's client sites.** I studied cocomaisondesign.com, fullhousegroup.uk, michaellondon.com,
+stephenyoungdesign.com, dartstudio.ca, opa.space and greyinteriors.co.uk. The patterns carried over:
+- a filmic full-screen hero under a warm tint, with a centred statement and a scroll cue
+- a MENU button that opens a full-screen overlay (Squarespace: force the native mobile menu on at all widths)
+- Didot-style serif headings with italic accents, mixed with tracked uppercase sans
+- overlapping photo collages beside centred text
+- a row of tall portrait service panels
+- warm taupe, cream and olive grounds, with a black gallery chapter for projects
+- links that start with a short horizontal rule
+- an olive footer with italic serif column labels
 
-- **Photography:** 20 photos pulled from the live designcollaborative.design project pages and saved in `images/`
-  under SEO file names. A light CSS grade (`saturate(.88)`) calms the bright real-estate look so it reads more editorial.
-  It's easy to remove. Confirm the photographer's licence allows web reuse (it's already on the live site).
-- **Fonts:** the live site uses **Proxima Nova** (Adobe Fonts) for headings, body and navigation, and Helvetica Neue for meta.
-  No separate brand guide was found in Drive. Squarespace serves Proxima Nova natively. The local preview substitutes
-  **Figtree** because the Adobe kit is locked to the client's domain.
-- **Logo:** the real DC logo, white over the hero and inverted to black once the header turns solid.
-- **Palette:** Bone `#F3F0EA`, Plaster `#E8E3DA`, Black `#151413`, Grey `#5A554F`, Stone `#A39C90`, and one accent, Bronze `#7D5F45`.
-- `homepage-concept-v1.html` and `design-system-v1.html` are the earlier serif/arch direction, kept for reference.
+**Fonts:** Bodoni Moda for headings (Google Fonts, added via Code Injection), and DC's existing Proxima Nova for text.
+The preview substitutes Figtree for Proxima. Photography comes from the live DC site.
+Earlier rounds are kept as `homepage-concept-v1/v2/v3.html`.
 
 A working visual preview of the new homepage, built from the approved copy in
 *DRAFT 1 - Design Collaborative SEO Website Copywriting* (Home tab). This round is for **review only**.

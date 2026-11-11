@@ -9,12 +9,12 @@
 <link rel="preload" as="image" href="images/bluff-estate-shell-beach-ocean-view-living.jpg" fetchpriority="high">
 
 <!-- Fonts
-     Display: Bodoni Moda (Google Fonts). Squarespace: load via Settings > Advanced > Code Injection > Header.
-     Text/labels: Proxima Nova, the brand font already on the live site (Adobe Fonts in Squarespace).
-     Proxima can't load in a local file, so this preview falls back to Figtree. -->
+     Serif (headings + italic accents): Bodoni Moda, Google Fonts. Squarespace: Code Injection > Header.
+     Sans (labels, body): Proxima Nova, DC's existing brand font (Adobe Fonts in Squarespace).
+     Proxima can't load in a local file, so the preview falls back to Figtree. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Figtree:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Figtree:wght@300;400;500&display=swap" rel="stylesheet">
 
 <!-- Structured data. Squarespace: Home > Settings > Advanced > Page Header Code Injection -->
 <script type="application/ld+json">
@@ -38,322 +38,316 @@
 
 <style>
 /* =====================================================================
-   DESIGN COLLABORATIVE · v3 TOKENS
+   DESIGN COLLABORATIVE · v4 TOKENS
    Squarespace: Website > Pages > Custom Code > Custom CSS
    ===================================================================== */
 :root{
-  --dc-bone:#F4F1EB;
-  --dc-stone:#E7E1D7;
-  --dc-ink:#14110F;
-  --dc-umber:#221D19;
-  --dc-text:#5C554E;      /* body on light, 7:1 */
-  --dc-sand:#CBBBA2;      /* accent on dark */
-  --dc-bronze:#7A5C42;    /* accent on light, small text safe */
-  --dc-rule:rgba(20,17,15,.14);
-  --dc-rule-d:rgba(244,241,235,.16);
+  --dc-cream:#F3EEE6;       /* page */
+  --dc-taupe:#E2D8CB;       /* warm alternate */
+  --dc-olive:#3E3F35;       /* deep accent chapter */
+  --dc-ink:#141312;         /* gallery black */
+  --dc-text:#5A534B;        /* body on light, 6.9:1 on cream */
+  --dc-soft:#B9AC98;        /* accent on dark */
+  --dc-rule:rgba(20,19,18,.16);
+  --dc-rule-d:rgba(243,238,230,.18);
 
-  --dc-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --dc-serif:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
   --dc-sans:"proxima-nova","Figtree","Helvetica Neue",Arial,sans-serif;
 
-  --dc-fs-h1: clamp(2.7rem, 1.1rem + 5vw, 6.75rem);
-  --dc-fs-h2: clamp(2.1rem, 1.1rem + 3vw, 4.4rem);
-  --dc-fs-h3xl: clamp(2rem, 1.1rem + 2.8vw, 4rem);
-  --dc-fs-h3: clamp(1.45rem, 1.2rem + .8vw, 2rem);
-  --dc-fs-lede: clamp(1.15rem, 1rem + .55vw, 1.5rem);
-  --dc-fs-body: clamp(.98rem, .95rem + .15vw, 1.0625rem);
+  --dc-fs-h1: clamp(2.3rem, 1rem + 3.8vw, 5rem);
+  --dc-fs-h2: clamp(1.85rem, 1.1rem + 2vw, 3.2rem);
+  --dc-fs-h3: clamp(1.3rem, 1.12rem + .5vw, 1.7rem);
+  --dc-fs-lede: clamp(1.15rem, 1rem + .45vw, 1.45rem);
+  --dc-fs-body: clamp(.95rem, .93rem + .12vw, 1.03rem);
   --dc-fs-label: .6875rem;
 
   --dc-gutter: clamp(1.1rem, 3.8vw, 4rem);
   --dc-colgap: clamp(.9rem, 1.6vw, 1.75rem);
-  --dc-section: clamp(6rem, 11vw, 12rem);
+  --dc-section: clamp(6.5rem, 13vw, 14rem);
   --dc-ease: cubic-bezier(.22,.61,.12,1);
 }
 
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--dc-bone);color:var(--dc-ink);font:300 var(--dc-fs-body)/1.75 var(--dc-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:var(--dc-cream);color:var(--dc-ink);font:300 var(--dc-fs-body)/1.8 var(--dc-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3,p,ul,ol,figure{margin:0;padding:0}
 ul,ol{list-style:none}
 .dc-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.dc-skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--dc-ink);color:var(--dc-bone);padding:.8rem 1.2rem;font:500 .75rem var(--dc-sans);text-decoration:none}
+.dc-skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--dc-ink);color:var(--dc-cream);padding:.8rem 1.2rem;font:500 .75rem var(--dc-sans);text-decoration:none}
 .dc-skip:focus{top:1rem}
 :focus-visible{outline:1px solid currentColor;outline-offset:5px}
 
 .dc-wrap{width:100%;padding-inline:var(--dc-gutter)}
 .dc-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--dc-colgap)}
 .dc-section{padding-block:var(--dc-section)}
-.dc-stone{background:var(--dc-stone)}
-.dc-dark{background:var(--dc-umber);color:var(--dc-bone)}
+.dc-taupe{background:var(--dc-taupe)}
+.dc-olive{background:var(--dc-olive);color:var(--dc-cream)}
+.dc-black{background:var(--dc-ink);color:var(--dc-cream)}
 
-/* Type */
-.dc-h1,.dc-h2,.dc-h3xl,.dc-h3{font-family:var(--dc-display);font-weight:400;letter-spacing:-.015em;font-optical-sizing:auto}
-.dc-h1{font-size:var(--dc-fs-h1);line-height:1}
-.dc-h2{font-size:var(--dc-fs-h2);line-height:1.06}
-.dc-h3xl{font-size:var(--dc-fs-h3xl);line-height:1.02}
-.dc-h3{font-size:var(--dc-fs-h3);line-height:1.15}
-.dc-lede{font-size:var(--dc-fs-lede);line-height:1.6;font-weight:300}
-.dc-label{font:500 var(--dc-fs-label)/1.6 var(--dc-sans);letter-spacing:.24em;text-transform:uppercase}
-.dc-prose{color:var(--dc-text);max-width:34rem}
+/* Type: serif headlines at modest sizes, italic accents, tracked caps sans */
+.dc-h1,.dc-h2,.dc-h3{font-family:var(--dc-serif);font-weight:400;letter-spacing:-.01em;font-optical-sizing:auto}
+.dc-h1{font-size:var(--dc-fs-h1);line-height:1.08}
+.dc-h2{font-size:var(--dc-fs-h2);line-height:1.15}
+.dc-h3{font-size:var(--dc-fs-h3);line-height:1.2}
+.dc-i{font-style:italic}
+.dc-caps{font-family:var(--dc-sans);font-style:normal;font-weight:400;text-transform:uppercase;letter-spacing:.14em;font-size:.82em}
+.dc-lede{font:400 var(--dc-fs-lede)/1.55 var(--dc-serif)}
+.dc-label{font:500 var(--dc-fs-label)/1.6 var(--dc-sans);letter-spacing:.28em;text-transform:uppercase}
+.dc-prose{color:var(--dc-text);max-width:32rem}
 .dc-prose p+p{margin-top:1.3em}
-.dc-dark .dc-prose{color:rgba(244,241,235,.72)}
+.dc-olive .dc-prose,.dc-black .dc-prose{color:rgba(243,238,230,.74)}
 .dc-center{text-align:center;margin-inline:auto}
 
-/* Actions */
-.dc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:3.4rem;padding:0 2.4rem;border:1px solid currentColor;font:500 var(--dc-fs-label)/1 var(--dc-sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:inherit;background:transparent;transition:background-color .45s var(--dc-ease),color .45s var(--dc-ease),border-color .45s}
-.dc-btn:hover{background:var(--dc-ink);border-color:var(--dc-ink);color:var(--dc-bone)}
-.dc-btn--light:hover,.dc-dark .dc-btn:hover{background:var(--dc-bone);border-color:var(--dc-bone);color:var(--dc-ink)}
-.dc-btn--solid{background:var(--dc-ink);border-color:var(--dc-ink);color:var(--dc-bone)}
-.dc-btn--solid:hover{background:transparent;color:var(--dc-ink)}
-.dc-link{display:inline-block;font:500 var(--dc-fs-label)/1.6 var(--dc-sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;padding-bottom:.45em;background:linear-gradient(currentColor,currentColor) 0 100%/100% 1px no-repeat;transition:background-size .6s var(--dc-ease),opacity .3s}
-.dc-link:hover{background-size:35% 1px}
+/* Actions: leading-rule links + one quiet outlined button style */
+.dc-link{display:inline-flex;align-items:center;gap:1.1rem;font:500 var(--dc-fs-label)/1.6 var(--dc-sans);letter-spacing:.28em;text-transform:uppercase;text-decoration:none}
+.dc-link::before{content:"";width:3.2rem;height:1px;background:currentColor;transition:width .6s var(--dc-ease)}
+.dc-link:hover::before{width:4.6rem}
+.dc-btn{display:inline-flex;align-items:center;justify-content:center;min-height:3.3rem;padding:0 2.4rem;border:1px solid currentColor;font:500 var(--dc-fs-label)/1 var(--dc-sans);letter-spacing:.28em;text-transform:uppercase;text-decoration:none;color:inherit;transition:background-color .45s var(--dc-ease),color .45s var(--dc-ease)}
+.dc-btn:hover{background:var(--dc-ink);color:var(--dc-cream);border-color:var(--dc-ink)}
+.dc-btn--light:hover,.dc-olive .dc-btn:hover,.dc-black .dc-btn:hover{background:var(--dc-cream);color:var(--dc-ink);border-color:var(--dc-cream)}
 
 /* Photography */
-.dc-media{position:relative;overflow:hidden;background:#cfc7bb}
-.dc-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.86) contrast(1.04);transition:transform 1.8s var(--dc-ease)}
+.dc-media{position:relative;overflow:hidden;background:#cfc5b7}
+.dc-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.84) contrast(1.04);transition:transform 1.8s var(--dc-ease)}
 
 /* Reveals */
 .dc-js [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity 1.3s var(--dc-ease),transform 1.3s var(--dc-ease);transition-delay:var(--d,0s)}
 .dc-js [data-reveal].is-in{opacity:1;transform:none}
-.dc-js [data-reveal="img"]{opacity:1;transform:none;clip-path:inset(0 0 12% 0);transition:clip-path 1.7s var(--dc-ease);transition-delay:var(--d,0s)}
-.dc-js [data-reveal="img"] img{transform:scale(1.1);transition:transform 2.4s var(--dc-ease)}
-.dc-js [data-reveal="img"].is-in{clip-path:inset(0)}
-.dc-js [data-reveal="img"].is-in img{transform:none}
+.dc-js [data-reveal="img"]{opacity:0;transform:translateY(40px);transition:opacity 1.5s var(--dc-ease),transform 1.5s var(--dc-ease);transition-delay:var(--d,0s)}
+.dc-js [data-reveal="img"].is-in{opacity:1;transform:none}
 
 /* =====================================================================
-   HEADER — centred logo, split navigation (native 7.1 header layout)
+   HEADER — logo left, MENU right, full-screen overlay menu
+   Squarespace: native header with the mobile (burger) menu forced on at all widths via CSS
    ===================================================================== */
-.dc-header{position:fixed;inset:0 0 auto 0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.5rem var(--dc-gutter);color:var(--dc-bone);transition:background-color .5s var(--dc-ease),color .5s,padding .5s var(--dc-ease)}
-.dc-header.is-solid{background:var(--dc-bone);color:var(--dc-ink);padding-block:.9rem;box-shadow:0 1px 0 var(--dc-rule)}
-.dc-logo{grid-column:2;display:block;width:clamp(150px,12vw,184px)}
+.dc-header{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:1.6rem var(--dc-gutter);color:var(--dc-cream);transition:background-color .5s var(--dc-ease),color .5s,padding .5s var(--dc-ease)}
+.dc-header.is-solid{background:var(--dc-cream);color:var(--dc-ink);padding-block:1rem;box-shadow:0 1px 0 var(--dc-rule)}
+.dc-logo{display:block;width:clamp(140px,11vw,176px)}
 .dc-logo img{width:100%;height:auto;transition:filter .5s}
-.dc-header.is-solid .dc-logo img{filter:invert(1)}
-.dc-nav{display:contents}
-.dc-nav ul{display:flex;align-items:center;gap:clamp(1.4rem,2.6vw,2.8rem)}
-.dc-nav__l{grid-column:1;grid-row:1}
-.dc-nav__r{grid-column:3;grid-row:1;justify-content:flex-end}
-.dc-nav a{font:500 var(--dc-fs-label)/1 var(--dc-sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;padding:.6rem 0;display:block}
-.dc-nav a:hover,.dc-nav [aria-current="page"]{text-decoration:underline;text-underline-offset:.7em;text-decoration-thickness:1px}
-.dc-has-sub{position:relative}
-.dc-sub{position:absolute;left:-1.6rem;top:100%;min-width:16rem;padding:1.1rem 1.6rem 1.3rem;background:var(--dc-bone);color:var(--dc-ink);display:block!important;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .3s,transform .4s var(--dc-ease),visibility .3s}
-.dc-has-sub:hover .dc-sub,.dc-has-sub:focus-within .dc-sub{opacity:1;visibility:visible;transform:none}
-.dc-sub a{padding:.65rem 0;letter-spacing:.18em}
-.dc-menu-btn{display:none}
+.dc-header.is-solid .dc-logo img,.dc-header.is-open .dc-logo img{filter:invert(1)}
+.dc-header__r{display:flex;align-items:center;gap:2.4rem}
+.dc-header__cta{font:500 var(--dc-fs-label)/1 var(--dc-sans);letter-spacing:.28em;text-transform:uppercase;text-decoration:none}
+.dc-menu-btn{display:flex;align-items:center;gap:.9rem;background:none;border:0;color:inherit;font:500 var(--dc-fs-label)/1 var(--dc-sans);letter-spacing:.28em;text-transform:uppercase;cursor:pointer;padding:.8rem 0}
+.dc-menu-btn i{position:relative;width:26px;height:9px;border-top:1px solid currentColor;border-bottom:1px solid currentColor;transition:transform .5s var(--dc-ease)}
+.dc-header.is-open{color:var(--dc-ink);background:transparent;box-shadow:none}
+.dc-header.is-open .dc-menu-btn i{transform:scaleX(.6)}
+.dc-overlay{position:fixed;inset:0;z-index:55;background:var(--dc-cream);color:var(--dc-ink);display:grid;grid-template-columns:1.1fr 1fr;opacity:0;visibility:hidden;transition:opacity .6s var(--dc-ease),visibility .6s}
+.dc-overlay.is-open{opacity:1;visibility:visible}
+.dc-overlay__img{position:relative}
+.dc-overlay__img .dc-media{position:absolute;inset:0}
+.dc-overlay__nav{padding:clamp(7rem,14vh,10rem) var(--dc-gutter) 3rem clamp(2rem,6vw,6rem);display:flex;flex-direction:column;justify-content:space-between;overflow:auto}
+.dc-overlay__nav > ul > li > a{display:inline-block;font:400 clamp(2rem,1rem + 2.6vw,3.4rem)/1.25 var(--dc-serif);text-decoration:none;transition:font-style .2s,opacity .3s}
+.dc-overlay__nav > ul > li > a:hover{font-style:italic}
+.dc-overlay__sub{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;margin:.4rem 0 1rem}
+.dc-overlay__sub a{font:500 var(--dc-fs-label)/1.8 var(--dc-sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--dc-text)}
+.dc-overlay__sub a:hover{color:var(--dc-ink)}
+.dc-overlay__offices{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;font-size:.85rem;color:var(--dc-text)}
+.dc-overlay__offices .dc-label{display:block;color:var(--dc-ink);margin-bottom:.5rem}
+.dc-js .dc-overlay__nav > ul > li{opacity:0;transform:translateY(16px);transition:opacity .8s var(--dc-ease),transform .8s var(--dc-ease)}
+.dc-overlay.is-open .dc-overlay__nav > ul > li{opacity:1;transform:none}
+.dc-overlay.is-open .dc-overlay__nav > ul > li:nth-child(2){transition-delay:.06s}
+.dc-overlay.is-open .dc-overlay__nav > ul > li:nth-child(3){transition-delay:.12s}
+.dc-overlay.is-open .dc-overlay__nav > ul > li:nth-child(4){transition-delay:.18s}
+.dc-overlay.is-open .dc-overlay__nav > ul > li:nth-child(5){transition-delay:.24s}
 @media (max-width:960px){
-  .dc-header{grid-template-columns:auto 1fr;padding:1.1rem var(--dc-gutter)}
-  .dc-logo{grid-column:1}
-  .dc-menu-btn{display:block;grid-column:2;justify-self:end;background:none;border:0;color:inherit;font:500 var(--dc-fs-label)/1 var(--dc-sans);letter-spacing:.24em;text-transform:uppercase;padding:.8rem 0;cursor:pointer}
-  .dc-nav{display:block;position:fixed;inset:0;z-index:-1;background:var(--dc-bone);color:var(--dc-ink);padding:6.5rem var(--dc-gutter) 3rem;overflow:auto;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
-  .dc-nav.is-open{opacity:1;visibility:visible}
-  .dc-header.is-open{color:var(--dc-ink)}
-  .dc-header.is-open .dc-logo img{filter:invert(1)}
-  .dc-nav ul{flex-direction:column;align-items:flex-start;gap:0}
-  .dc-nav > ul > li > a{font:400 2.2rem/1.2 var(--dc-display);letter-spacing:-.01em;text-transform:none;padding:.3rem 0}
-  .dc-sub{position:static;opacity:1;visibility:visible;transform:none;background:none;padding:.2rem 0 .8rem}
+  .dc-header{padding:1.1rem var(--dc-gutter)}
+  .dc-header__cta{display:none}
+  .dc-overlay{grid-template-columns:1fr}
+  .dc-overlay__img{display:none}
+  .dc-overlay__nav{padding-left:var(--dc-gutter)}
+  .dc-overlay__offices{grid-template-columns:1fr}
 }
 
 /* =====================================================================
-   01 · HERO — cinematic crossfade (pure CSS)
+   01 · HERO — filmic crossfade under a warm tint, centred statement
+   Squarespace: a native section background video can replace the slides
    ===================================================================== */
-.dc-hero{position:relative;height:100svh;min-height:640px;color:var(--dc-bone);overflow:hidden;background:var(--dc-ink)}
+.dc-hero{position:relative;height:100svh;min-height:640px;color:var(--dc-cream);overflow:hidden;background:var(--dc-ink);display:grid;place-items:center;text-align:center}
 .dc-slides{position:absolute;inset:0}
 .dc-slide{position:absolute;inset:0;opacity:0;animation:dcFade 28s linear infinite}
-.dc-slide img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05);animation:dcDrift 28s linear infinite}
+.dc-slide img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.02);animation:dcDrift 28s linear infinite}
 .dc-slide:nth-child(1){animation-delay:-1s;opacity:1}
 .dc-slide:nth-child(1) img{animation-delay:-1s}
 .dc-slide:nth-child(2),.dc-slide:nth-child(2) img{animation-delay:6s}
 .dc-slide:nth-child(3),.dc-slide:nth-child(3) img{animation-delay:13s}
 .dc-slide:nth-child(4),.dc-slide:nth-child(4) img{animation-delay:20s}
 @keyframes dcFade{0%{opacity:0}4%{opacity:1}25%{opacity:1}29%{opacity:0}100%{opacity:0}}
-@keyframes dcDrift{0%{transform:scale(1.08)}29%{transform:scale(1)}100%{transform:scale(1)}}
-.dc-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,10,9,.45) 0%,rgba(12,10,9,.18) 25%,rgba(12,10,9,.38) 55%,rgba(12,10,9,.75) 100%)}
-.dc-hero__body{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 var(--dc-gutter) clamp(2.6rem,7vh,5rem);text-align:center}
-.dc-hero .dc-h1{max-width:13.5ch;margin:0 auto}
-.dc-hero__intro{max-width:34rem;margin:1.8rem auto 0;font-size:.98rem;line-height:1.7;color:rgba(244,241,235,.86)}
-.dc-hero__actions{margin-top:2.2rem;display:flex;justify-content:center;flex-wrap:wrap;gap:1rem 2.2rem;align-items:center}
-.dc-js .dc-hero__body > *{opacity:0;transform:translateY(18px);transition:opacity 1.4s var(--dc-ease),transform 1.4s var(--dc-ease)}
-.dc-js .dc-hero__body > :nth-child(2){transition-delay:.2s}
-.dc-js .dc-hero__body > :nth-child(3){transition-delay:.35s}
+@keyframes dcDrift{0%{transform:scale(1.07)}29%{transform:scale(1)}100%{transform:scale(1)}}
+.dc-hero::after{content:"";position:absolute;inset:0;background:rgba(28,24,20,.5)}
+.dc-hero__body{position:relative;z-index:2;padding:6rem var(--dc-gutter) 7rem;max-width:62rem}
+.dc-hero .dc-h1 .dc-caps{display:block;font-size:max(.95rem,.26em);letter-spacing:.34em;margin-bottom:1.6rem;opacity:.9}
+.dc-hero__intro{max-width:34rem;margin:2rem auto 0;font-size:.95rem;line-height:1.75;color:rgba(243,238,230,.84)}
+.dc-hero__actions{margin-top:2.4rem;display:flex;justify-content:center;flex-wrap:wrap;gap:1.2rem 2.6rem;align-items:center}
+.dc-scroll{position:absolute;z-index:2;left:50%;bottom:1.6rem;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.9rem;color:rgba(243,238,230,.75)}
+.dc-scroll i{display:block;width:1px;height:3.4rem;background:linear-gradient(currentColor,currentColor) 0 0/1px 40% no-repeat;opacity:.9;animation:dcLine 2.6s var(--dc-ease) infinite}
+@keyframes dcLine{0%{background-position:0 -100%}100%{background-position:0 250%}}
+.dc-js .dc-hero__body > *{opacity:0;transform:translateY(18px);transition:opacity 1.5s var(--dc-ease),transform 1.5s var(--dc-ease)}
+.dc-js .dc-hero__body > :nth-child(2){transition-delay:.25s}
+.dc-js .dc-hero__body > :nth-child(3){transition-delay:.4s}
 .dc-js .dc-hero.is-in .dc-hero__body > *{opacity:1;transform:none}
-@media (max-width:960px){
-  .dc-hero{height:92svh;min-height:560px}
-  .dc-hero__body{text-align:left}
-  .dc-hero .dc-h1,.dc-hero__intro{margin-left:0}
-  .dc-hero__actions{justify-content:flex-start}
-}
 
 /* =====================================================================
-   02 · CREDENTIALS — quiet dark band directly under the hero
+   02 · CREDENTIALS
    ===================================================================== */
-.dc-creds{background:var(--dc-ink);color:rgba(244,241,235,.7)}
-.dc-creds ul{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem 0;padding-block:1.5rem}
-.dc-creds li{padding:0 1.6rem;border-left:1px solid var(--dc-rule-d)}
+.dc-creds ul{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem 0;padding-block:1.8rem;color:var(--dc-text);border-bottom:1px solid var(--dc-rule)}
+.dc-creds li{padding:0 1.7rem;border-left:1px solid var(--dc-rule)}
 .dc-creds li:first-child{border-left:0}
-@media (max-width:960px){.dc-creds ul{display:block;padding-block:.6rem}.dc-creds li{padding:.85rem 0;border-left:0;border-top:1px solid var(--dc-rule-d)}.dc-creds li:first-child{border-top:0}}
+@media (max-width:960px){.dc-creds ul{display:block;padding-block:.6rem}.dc-creds li{padding:.85rem 0;border-left:0;border-top:1px solid var(--dc-rule)}.dc-creds li:first-child{border-top:0}}
 
 /* =====================================================================
-   03 · INTRODUCTION — centred statement, then a wide image pair
+   03 · INTRODUCTION — overlapping collage + centred text
    ===================================================================== */
-.dc-intro__head{max-width:20ch}
-.dc-intro__cols{margin-top:clamp(2.5rem,5vw,4.5rem)}
-.dc-intro__cols .dc-lede{grid-column:2 / span 5;color:var(--dc-ink)}
-.dc-intro__cols .dc-prose{grid-column:8 / span 4}
-.dc-intro__imgs{margin-top:clamp(4rem,8vw,8rem);align-items:end}
-.dc-intro__imgs .a{grid-column:1 / span 7}
-.dc-intro__imgs .a .dc-media{aspect-ratio:4/3}
-.dc-intro__imgs .b{grid-column:9 / span 4}
-.dc-intro__imgs .b .dc-media{aspect-ratio:2/3}
-.dc-cap{margin-top:.9rem;color:var(--dc-text)}
+.dc-collage{position:relative;grid-column:1 / span 6;height:clamp(520px,58vw,860px)}
+.dc-collage .dc-media{position:absolute}
+.dc-collage .c1{left:0;top:0;width:62%;height:78%}
+.dc-collage .c2{right:4%;bottom:0;width:42%;height:56%;box-shadow:0 0 0 clamp(8px,1vw,14px) var(--dc-cream)}
+.dc-collage .c3{right:0;top:8%;width:22%;height:26%}
+.dc-intro__text{grid-column:8 / span 4;align-self:center;text-align:center}
+.dc-intro__text .dc-lede{margin-top:2.4rem}
+.dc-intro__text .dc-prose{margin:1.8rem auto 0}
 @media (max-width:960px){
-  .dc-intro__cols,.dc-intro__imgs{display:block}
-  .dc-intro__cols .dc-prose{margin-top:1.6rem}
-  .dc-intro__imgs .b{width:62%;margin:2rem 0 0 auto}
+  .dc-intro .dc-grid{display:block}
+  .dc-collage{height:118vw;margin-top:3.5rem}
 }
 
 /* =====================================================================
-   04 · WHAT WE DESIGN — sticky image, scrolling list
+   04 · WHAT WE DESIGN — row of tall portrait panels
    ===================================================================== */
-.dc-svc__head{grid-column:1 / span 6;margin-bottom:clamp(3rem,6vw,6rem)}
-.dc-svc__stage{grid-column:1 / span 6;position:relative}
-.dc-svc__sticky{position:sticky;top:12vh;height:76vh}
-.dc-svc__sticky .dc-media{position:absolute;inset:0;opacity:0;transition:opacity .9s var(--dc-ease)}
-.dc-svc__sticky .dc-media.is-active{opacity:1}
-.dc-svc__sticky .dc-media img{transform:scale(1.04);transition:transform 2.4s var(--dc-ease)}
-.dc-svc__sticky .dc-media.is-active img{transform:none}
-.dc-svc__list{grid-column:8 / -1}
-.dc-svc__item{min-height:76vh;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--dc-rule);padding-block:3rem;opacity:.35;transition:opacity .7s var(--dc-ease)}
-.dc-svc__item.is-active{opacity:1}
-.dc-svc__item:last-child{border-bottom:1px solid var(--dc-rule)}
-.dc-svc__num{color:var(--dc-bronze);margin-bottom:1.6rem}
-.dc-svc__item p{margin-top:1.4rem;color:var(--dc-text);max-width:28rem}
-.dc-svc__item .dc-link{margin-top:2rem;align-self:flex-start}
-.dc-svc__thumb{display:none}
-@media (max-width:960px){
-  .dc-svc .dc-grid{display:block}
-  .dc-svc__stage{display:none}
-  .dc-svc__item{min-height:0;opacity:1;padding-block:2.6rem}
-  .dc-svc__thumb{display:block;aspect-ratio:4/3;margin-bottom:1.8rem}
-}
+.dc-svc__head{text-align:center;max-width:42rem;margin:0 auto clamp(3.5rem,6vw,6rem)}
+.dc-svc__row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--dc-colgap)}
+.dc-svc__card{position:relative;display:flex;flex-direction:column}
+.dc-svc__card .dc-media{aspect-ratio:3/4.4}
+.dc-svc__card:hover img{transform:scale(1.04)}
+.dc-svc__card .dc-label{margin-top:1.5rem;color:var(--dc-text)}
+.dc-svc__card .dc-h3{margin-top:.5rem}
+.dc-svc__card p{margin-top:.9rem;color:var(--dc-text);font-size:.93rem}
+.dc-svc__card .dc-link{margin-top:1.4rem;gap:.8rem}
+.dc-svc__card .dc-link::before{width:1.6rem;flex:none}
+.dc-svc__card .dc-link::after{content:"";position:absolute;inset:0}
+.dc-svc__card:nth-child(even){margin-top:clamp(2rem,5vw,5rem)}
+@media (max-width:1100px){.dc-svc__row{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:3.5rem}}
+@media (max-width:640px){.dc-svc__row{grid-template-columns:1fr}.dc-svc__card:nth-child(even){margin-top:0}}
 
 /* =====================================================================
    05 · THE CONSTRUCTION SET — drawn / built
    ===================================================================== */
 .dc-cset__text{grid-column:1 / span 4;align-self:center}
 .dc-cset__text .dc-prose{margin-top:2rem}
-.dc-cset__text .dc-link{margin-top:2.4rem;color:var(--dc-bone)}
+.dc-cset__text .dc-link{margin-top:2.6rem}
 .dc-cset__pair{grid-column:6 / -1;display:grid;grid-template-columns:1fr 1fr;gap:var(--dc-colgap)}
 .dc-sheet{aspect-ratio:4/5;border:1px solid var(--dc-rule-d);display:flex;align-items:center;padding:7%}
-.dc-sheet svg{width:100%;height:auto;color:var(--dc-sand)}
-.dc-sheet .t{font:500 9px var(--dc-sans);letter-spacing:.2em;fill:var(--dc-sand)}
+.dc-sheet svg{width:100%;height:auto;color:var(--dc-soft)}
+.dc-sheet .t{font:500 9px var(--dc-sans);letter-spacing:.2em;fill:var(--dc-soft)}
 .dc-draw *{fill:none;stroke:currentColor;stroke-width:1.1}
 .dc-draw .fine{stroke-opacity:.45}
 .dc-js .dc-draw [pathLength]{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s var(--dc-ease);transition-delay:var(--d,0s)}
 .dc-js .is-in .dc-draw [pathLength]{stroke-dashoffset:0}
 .dc-cset__built .dc-media{aspect-ratio:4/5}
-.dc-figcap{margin-top:.9rem;display:flex;justify-content:space-between;color:rgba(244,241,235,.55)}
+.dc-figcap{margin-top:1rem;display:flex;justify-content:space-between;color:rgba(243,238,230,.55)}
 @media (max-width:960px){.dc-cset .dc-grid{display:block}.dc-cset__pair{margin-top:3.5rem}.dc-draw *{stroke-width:2}}
 
 /* =====================================================================
-   06 · WHO WE WORK WITH
+   06 · WHO WE WORK WITH — text left, overlapping pair right
    ===================================================================== */
-.dc-who{padding-top:0}
-.dc-who__img{height:88vh;min-height:520px}
-.dc-who__img img{object-position:50% 60%}
-.dc-who__head{grid-column:1 / span 5;margin-top:clamp(3.5rem,7vw,6.5rem)}
-.dc-who__body{grid-column:7 / -1;margin-top:clamp(3.5rem,7vw,6.5rem)}
-.dc-who__note{margin-top:2.4rem;padding-top:2rem;border-top:1px solid var(--dc-rule);font:400 var(--dc-fs-h3)/1.3 var(--dc-display);letter-spacing:-.01em;max-width:30rem}
-@media (max-width:960px){.dc-who__img{height:70svh}.dc-who .dc-grid{display:block}.dc-who__body{margin-top:2rem}}
+.dc-who__text{grid-column:2 / span 4;align-self:center}
+.dc-who__text .dc-prose{margin-top:2rem}
+.dc-who__note{margin-top:2.2rem;font:italic 400 var(--dc-fs-h3)/1.35 var(--dc-serif);max-width:28rem}
+.dc-who__imgs{grid-column:7 / -1;position:relative;height:clamp(520px,52vw,800px)}
+.dc-who__imgs .dc-media{position:absolute}
+.dc-who__imgs .w1{right:0;top:0;width:78%;height:68%}
+.dc-who__imgs .w2{left:0;bottom:0;width:40%;height:55%;box-shadow:0 0 0 clamp(8px,1vw,14px) var(--dc-taupe)}
+@media (max-width:960px){.dc-who .dc-grid{display:block}.dc-who__imgs{height:112vw;margin-top:3.5rem}}
 
 /* =====================================================================
    07 · ONE FIRM, TWO HOMES — edge-to-edge diptych
    ===================================================================== */
-.dc-homes__head{max-width:46rem;text-align:center;margin:0 auto clamp(3.5rem,6vw,6rem)}
-.dc-homes__head .dc-prose{margin:1.8rem auto 0;max-width:36rem}
-.dc-homes__pair{display:grid;grid-template-columns:1fr 1fr;gap:4px}
-.dc-place{position:relative;height:92vh;min-height:560px;color:var(--dc-bone)}
+.dc-homes{padding-bottom:0}
+.dc-homes__head{max-width:44rem;text-align:center;margin:0 auto clamp(3.5rem,6vw,6rem)}
+.dc-homes__head .dc-prose{margin:1.8rem auto 0;max-width:34rem}
+.dc-homes__pair{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.dc-place{position:relative;height:90vh;min-height:560px;color:var(--dc-cream);display:flex;align-items:flex-end;justify-content:center;text-align:center}
 .dc-place .dc-media{position:absolute;inset:0}
-.dc-place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,10,9,0) 50%,rgba(12,10,9,.7) 100%);pointer-events:none}
-.dc-place__body{position:absolute;z-index:2;left:clamp(1.4rem,3vw,3rem);right:clamp(1.4rem,3vw,3rem);bottom:clamp(1.6rem,3.5vw,3rem)}
-.dc-place__body .dc-label{display:block;opacity:.8;margin-bottom:.9rem}
-.dc-place__body .dc-h3{margin-bottom:1.4rem}
+.dc-place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,14,.05) 40%,rgba(20,17,14,.62) 100%);pointer-events:none}
+.dc-place__body{position:relative;z-index:2;padding:0 2rem clamp(2.4rem,5vw,4.5rem)}
+.dc-place__body .dc-h3{font-size:clamp(1.8rem,1.2rem + 1.5vw,2.8rem);margin-bottom:1.6rem}
 .dc-place:hover img{transform:scale(1.03)}
 @media (max-width:960px){.dc-homes__pair{grid-template-columns:1fr}.dc-place{height:78svh}}
 
 /* =====================================================================
-   08 · HOW IT STARTS
+   08 · HOW IT STARTS — olive chapter
    ===================================================================== */
-.dc-steps__head{grid-column:1 / span 5}
-.dc-steps__list{grid-column:7 / -1}
-.dc-step{display:grid;grid-template-columns:5.5rem 1fr;padding-block:2.2rem;border-top:1px solid var(--dc-rule-d)}
-.dc-step:last-child{border-bottom:1px solid var(--dc-rule-d)}
-.dc-step__n{font:400 2.6rem/1 var(--dc-display);color:var(--dc-sand)}
-.dc-step p{margin-top:.7rem;color:rgba(244,241,235,.7);max-width:28rem}
-@media (max-width:960px){.dc-steps .dc-grid{display:block}.dc-steps__list{margin-top:2.6rem}.dc-step{grid-template-columns:3.6rem 1fr}}
+.dc-steps__head{text-align:center;margin-bottom:clamp(3.5rem,6vw,5.5rem)}
+.dc-steps__list{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--dc-colgap)}
+.dc-step{text-align:center;padding:0 clamp(.5rem,2vw,2.5rem);border-left:1px solid var(--dc-rule-d)}
+.dc-step:first-child{border-left:0}
+.dc-step__n{display:block;font:italic 400 2.6rem/1 var(--dc-serif);color:var(--dc-soft);margin-bottom:1.6rem}
+.dc-step p{margin:.9rem auto 0;color:rgba(243,238,230,.72);max-width:21rem}
+@media (max-width:960px){.dc-steps__list{grid-template-columns:1fr;gap:0}.dc-step{border-left:0;border-top:1px solid var(--dc-rule-d);padding:2.4rem 0}.dc-step:first-child{border-top:0}}
 
 /* =====================================================================
-   09 · RECENT PROJECTS — horizontal, swipeable rail (CSS scroll-snap)
+   09 · RECENT PROJECTS — dark gallery, tall images, swipeable
    ===================================================================== */
 .dc-works{overflow:hidden}
-.dc-works__top{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin-bottom:clamp(2.5rem,5vw,4.5rem)}
-.dc-rail-nav{display:flex;gap:.6rem}
-.dc-rail-nav button{width:3.2rem;height:3.2rem;border:1px solid var(--dc-ink);background:none;color:var(--dc-ink);cursor:pointer;display:grid;place-items:center;transition:background .35s,color .35s}
-.dc-rail-nav button:hover{background:var(--dc-ink);color:var(--dc-bone)}
+.dc-works__grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:var(--dc-colgap);align-items:center}
+.dc-works__intro{padding-left:var(--dc-gutter);padding-right:1rem}
+.dc-works__intro .dc-btn{margin-top:2.6rem}
+.dc-rail-nav{display:flex;gap:.6rem;margin-top:2.2rem}
+.dc-rail-nav button{width:3.2rem;height:3.2rem;border:1px solid var(--dc-rule-d);background:none;color:var(--dc-cream);cursor:pointer;display:grid;place-items:center;transition:background .35s,color .35s}
+.dc-rail-nav button:hover{background:var(--dc-cream);color:var(--dc-ink)}
 .dc-rail-nav svg{width:16px;height:16px}
-.dc-rail{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:min(56vw,860px);gap:clamp(1rem,2vw,2rem);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--dc-gutter);padding-inline:var(--dc-gutter);scrollbar-width:none;cursor:grab}
+.dc-rail{position:relative;display:grid;grid-auto-flow:column;grid-auto-columns:clamp(260px,26vw,420px);gap:clamp(1rem,1.6vw,1.6rem);overflow-x:auto;scroll-snap-type:x mandatory;padding-right:var(--dc-gutter);scrollbar-width:none;cursor:grab}
 .dc-rail::-webkit-scrollbar{display:none}
 .dc-rail.is-drag{cursor:grabbing;scroll-snap-type:none}
 .dc-card{position:relative;scroll-snap-align:start}
-.dc-card .dc-media{aspect-ratio:4/3}
-.dc-card:nth-child(even) .dc-media{aspect-ratio:4/3}
-.dc-card a.dc-card__img:hover img{transform:scale(1.035)}
-.dc-card__meta{display:grid;grid-template-columns:3rem 1fr;gap:.2rem 1rem;margin-top:1.4rem}
-.dc-card__n{grid-row:span 3;color:var(--dc-bronze)}
-.dc-card__loc{color:var(--dc-text)}
+.dc-card .dc-media{aspect-ratio:3/4.3}
+.dc-card a.dc-card__img:hover img{transform:scale(1.04)}
+.dc-card .dc-label{display:block;margin-top:1.4rem;color:var(--dc-soft)}
+.dc-card .dc-h3{margin-top:.45rem}
 .dc-card .dc-h3 a{text-decoration:none}
-.dc-card p{color:var(--dc-text);font-size:.95rem;max-width:34rem}
-.dc-rail__end{display:flex;align-items:center}
-.dc-works__all{margin-top:clamp(3rem,5vw,4.5rem)}
-@media (max-width:960px){.dc-rail{grid-auto-columns:84vw}.dc-rail-nav{display:none}}
+.dc-card .dc-h3 a:hover{font-style:italic}
+.dc-card p{margin-top:.7rem;color:rgba(243,238,230,.66);font-size:.92rem}
+@media (max-width:960px){.dc-works__grid{display:block}.dc-works__intro{padding-right:var(--dc-gutter);margin-bottom:3rem}.dc-rail{grid-auto-columns:72vw;padding-left:var(--dc-gutter)}.dc-rail-nav{display:none}}
 
 /* =====================================================================
-   10 · CLOSING — invitation over photograph
+   10 · CLOSING
    ===================================================================== */
-.dc-close{position:relative;min-height:92vh;display:grid;place-items:center;color:var(--dc-bone);text-align:center;overflow:hidden}
+.dc-close{position:relative;min-height:88vh;display:grid;place-items:center;color:var(--dc-cream);text-align:center;overflow:hidden}
 .dc-close .dc-media{position:absolute;inset:0}
-.dc-close::after{content:"";position:absolute;inset:0;background:rgba(14,12,10,.52)}
-.dc-close__body{position:relative;z-index:2;padding:6rem var(--dc-gutter);max-width:46rem}
-.dc-close__body p{margin-top:1.6rem;color:rgba(244,241,235,.86)}
+.dc-close::after{content:"";position:absolute;inset:0;background:rgba(28,24,20,.55)}
+.dc-close__body{position:relative;z-index:2;padding:6rem var(--dc-gutter);max-width:44rem}
+.dc-close__body .dc-h2 .dc-caps{display:block;margin-top:.4rem}
+.dc-close__body p{margin-top:1.8rem;color:rgba(243,238,230,.86)}
 .dc-close__body .dc-btn{margin-top:2.6rem}
 
 /* =====================================================================
-   FOOTER
+   FOOTER — olive, italic serif column labels, centred mark
    ===================================================================== */
-.dc-footer{background:var(--dc-ink);color:rgba(244,241,235,.7);padding:clamp(5rem,9vw,8rem) 0 2.2rem;font-size:.92rem}
+.dc-footer{background:var(--dc-olive);color:rgba(243,238,230,.74);padding:clamp(5rem,9vw,8rem) 0 2rem;font-size:.9rem}
 .dc-footer a{text-decoration:none}
-.dc-footer__logo{grid-column:1 / span 3;width:min(210px,80%);height:auto;align-self:start}
-.dc-footer__col{grid-column:span 2}
-.dc-footer__col:nth-of-type(1){grid-column:5 / span 2}
-.dc-footer__col:nth-of-type(4){grid-column:11 / span 2}
-.dc-footer .dc-label{display:block;color:var(--dc-sand);margin-bottom:1.1rem}
-.dc-footer address{font-style:normal;line-height:1.8}
-.dc-footer a:hover{color:var(--dc-bone)}
-.dc-footer .dc-link{margin-top:1.2rem;color:var(--dc-bone)}
-.dc-footer__nav li{margin-bottom:.3rem}
-.dc-footer__col a[href^="mailto"]{overflow-wrap:anywhere}
-.dc-footer__base{grid-column:1 / -1;margin-top:clamp(4rem,8vw,7rem);padding-top:1.4rem;border-top:1px solid var(--dc-rule-d);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.75rem}
-@media (max-width:960px){.dc-footer__logo,.dc-footer__col,.dc-footer__col:nth-of-type(n){grid-column:1 / -1;margin-bottom:2.6rem}}
+.dc-footer__logo{display:block;height:auto;width:min(220px,60%);margin:0 auto clamp(3.5rem,6vw,5.5rem)}
+.dc-footer__cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem}
+.dc-footer__h{font:italic 400 1.35rem/1.2 var(--dc-serif);color:var(--dc-cream);margin-bottom:1.2rem}
+.dc-footer address{font-style:normal;line-height:1.85}
+.dc-footer a:hover{color:var(--dc-cream)}
+.dc-footer .dc-link{margin-top:1.2rem;color:var(--dc-cream);gap:.8rem}
+.dc-footer .dc-link::before{width:1.6rem}
+.dc-footer__nav a{font:500 var(--dc-fs-label)/2.6 var(--dc-sans);letter-spacing:.28em;text-transform:uppercase}
+.dc-footer__cols a[href^="mailto"]{overflow-wrap:anywhere}
+.dc-footer__base{margin-top:clamp(4rem,7vw,6rem);padding-top:1.4rem;border-top:1px solid var(--dc-rule-d);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.75rem}
+@media (max-width:960px){.dc-footer__cols{grid-template-columns:1fr 1fr;row-gap:2.8rem}}
+@media (max-width:560px){.dc-footer__cols{grid-template-columns:1fr}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;transition-delay:0s!important}
-  .dc-slide,.dc-slide img{animation:none!important}
+  .dc-slide,.dc-slide img,.dc-scroll i{animation:none!important}
   .dc-slide:not(:first-child){display:none}
-  .dc-js [data-reveal],.dc-js .dc-hero__body > *{opacity:1!important;transform:none!important;clip-path:none!important}
-  .dc-js [data-reveal] img{transform:none!important}
+  .dc-js [data-reveal],.dc-js .dc-hero__body > *,.dc-js .dc-overlay__nav > ul > li{opacity:1!important;transform:none!important}
   .dc-js .dc-draw [pathLength]{stroke-dashoffset:0!important}
 }
 
-.pv-toast{position:fixed;left:50%;bottom:1.4rem;transform:translate(-50%,20px);z-index:95;background:var(--dc-ink);color:var(--dc-bone);padding:.8rem 1.2rem;font:400 .8rem var(--dc-sans);opacity:0;transition:opacity .3s,transform .3s;pointer-events:none}
+.pv-toast{position:fixed;left:50%;bottom:1.4rem;transform:translate(-50%,20px);z-index:95;background:var(--dc-ink);color:var(--dc-cream);padding:.8rem 1.2rem;font:400 .8rem var(--dc-sans);opacity:0;transition:opacity .3s,transform .3s;pointer-events:none}
 .pv-toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
@@ -362,27 +356,35 @@ ul,ol{list-style:none}
 
 <header class="dc-header" id="dcHeader">
   <a class="dc-logo" href="/"><img src="images/design-collaborative-logo.png" width="750" height="211" alt="Design Collaborative"></a>
-  <button class="dc-menu-btn" id="dcMenuBtn" aria-expanded="false" aria-controls="dcNav">Menu</button>
-  <nav class="dc-nav" id="dcNav" aria-label="Main">
-    <ul class="dc-nav__l">
+  <div class="dc-header__r">
+    <a class="dc-header__cta" href="/inquire">Inquire</a>
+    <button class="dc-menu-btn" id="dcMenuBtn" aria-expanded="false" aria-controls="dcOverlay"><span>Menu</span><i aria-hidden="true"></i></button>
+  </div>
+</header>
+
+<div class="dc-overlay" id="dcOverlay">
+  <div class="dc-overlay__img" aria-hidden="true"><div class="dc-media"><img src="images/bluff-estate-shell-beach-floating-staircase.jpg" alt="" loading="lazy" decoding="async"></div></div>
+  <nav class="dc-overlay__nav" aria-label="Main">
+    <ul>
       <li><a href="/" aria-current="page">Home</a></li>
       <li><a href="/about">About</a></li>
-      <li class="dc-has-sub">
-        <a href="/interior-design-services">Services</a>
-        <ul class="dc-sub">
+      <li><a href="/interior-design-services">Services</a>
+        <ul class="dc-overlay__sub">
           <li><a href="/residential-interior-design-services">Residential</a></li>
           <li><a href="/commercial-interior-design-services">Commercial</a></li>
           <li><a href="/hospitality-interior-design">Hospitality</a></li>
           <li><a href="/new-construction-interior-design">Construction Documents</a></li>
         </ul>
       </li>
-    </ul>
-    <ul class="dc-nav__r">
       <li><a href="/selected-works">Selected Works</a></li>
       <li><a href="/inquire">Inquire</a></li>
     </ul>
+    <div class="dc-overlay__offices">
+      <div><span class="dc-label">San Luis Obispo</span>863A Pacific St.<br>(805) 781-3550</div>
+      <div><span class="dc-label">Boise area</span>9233 W. State St., Garden City<br>(208) 781-9093</div>
+    </div>
   </nav>
-</header>
+</div>
 
 <main id="main">
 
@@ -395,89 +397,73 @@ ul,ol{list-style:none}
     <div class="dc-slide" aria-hidden="true"><img src="images/montana-ranch-exterior-night.jpg" width="2000" height="1331" decoding="async" alt=""></div>
   </div>
   <div class="dc-hero__body">
-    <h1 class="dc-h1" id="dc-h1">Luxury Interior Designers in San Luis Obispo and Boise</h1>
+    <h1 class="dc-h1" id="dc-h1"><span class="dc-caps">Luxury Interior Designers</span> in <span class="dc-i">San Luis Obispo</span> and <span class="dc-i">Boise</span></h1>
     <p class="dc-hero__intro">Since 1991, we’ve designed luxury homes and hospitality projects on the Central Coast, and now in Idaho too. We draw every detail, so your contractor builds exactly what you approved.</p>
     <div class="dc-hero__actions">
       <a class="dc-btn dc-btn--light" href="/inquire">Start a Conversation</a>
       <a class="dc-link" href="/selected-works">See Our Work</a>
     </div>
   </div>
+  <div class="dc-scroll dc-label" aria-hidden="true">Scroll<i></i></div>
 </section>
 
 <!-- 02 · CREDENTIALS -->
-<div class="dc-creds">
-  <div class="dc-wrap">
-    <ul class="dc-label" aria-label="Credentials">
-      <li>NCIDQ-certified designers</li>
-      <li>IIDA member</li>
-      <li>NARI First Place</li>
-      <li>Featured in Sunset, Food &amp; Wine, and European Homes and Gardens</li>
-      <li>Offices in San Luis Obispo, CA and the Boise area, ID</li>
-    </ul>
-  </div>
+<div class="dc-creds dc-wrap">
+  <ul class="dc-label" aria-label="Credentials">
+    <li>NCIDQ-certified designers</li>
+    <li>IIDA member</li>
+    <li>NARI First Place</li>
+    <li>Featured in Sunset, Food &amp; Wine, and European Homes and Gardens</li>
+    <li>Offices in San Luis Obispo, CA and the Boise area, ID</li>
+  </ul>
 </div>
 
 <!-- 03 · INTRODUCTION -->
 <section class="dc-section dc-intro" aria-labelledby="dc-intro-h">
-  <div class="dc-wrap">
-    <h2 class="dc-h2 dc-center dc-intro__head" id="dc-intro-h" data-reveal style="text-align:center">From the First Drawings to the Final Detail</h2>
-    <div class="dc-grid dc-intro__cols">
-      <p class="dc-lede" data-reveal>Design Collaborative is a boutique, full service interior design firm based in San Luis Obispo, with a second office in the Boise area. For 35 years, we've designed homes, hotels, wineries, and workplaces, many of them for clients we've worked with before.</p>
-      <div class="dc-prose" data-reveal style="--d:.12s">
-        <p>We work alongside your architect and contractor from the early stages, then draw out every decision in a complete set of construction plans. Your builder knows exactly what to build and what it will cost, so nothing gets guessed or redone on site.</p>
-      </div>
+  <div class="dc-wrap dc-grid">
+    <div class="dc-collage">
+      <div class="dc-media c1" data-reveal="img"><img src="images/bluff-estate-shell-beach-floating-staircase.jpg" width="1334" height="2000" loading="lazy" decoding="async" alt="Floating wood staircase overlooking the dining room at Bluff Estate, by Design Collaborative, a luxury interior designer in Shell Beach."></div>
+      <div class="dc-media c3" data-reveal="img" style="--d:.3s"><img src="images/montana-ranch-door-hardware.jpg" width="1000" height="666" loading="lazy" decoding="async" alt="Hand-forged iron door hardware on a plank door at Montana Ranch."></div>
+      <div class="dc-media c2" data-reveal="img" style="--d:.15s"><img src="images/gold-coast-spanish-avila-beach-carved-door-tile.jpg" width="1000" height="1500" loading="lazy" decoding="async" alt="Hand-carved wood door framed in hand-painted tile at Gold Coast Spanish in Avila Beach."></div>
     </div>
-    <div class="dc-grid dc-intro__imgs">
-      <figure class="a">
-        <div class="dc-media" data-reveal="img"><img src="images/bluff-estate-shell-beach-floating-staircase.jpg" width="1334" height="2000" loading="lazy" decoding="async" style="object-position:50% 40%" alt="Floating wood staircase overlooking the dining room at Bluff Estate, by Design Collaborative, a luxury interior designer in Shell Beach."></div>
-        <figcaption class="dc-cap dc-label" aria-hidden="true">Bluff Estate · Shell Beach</figcaption>
-      </figure>
-      <figure class="b">
-        <div class="dc-media" data-reveal="img" style="--d:.15s"><img src="images/gold-coast-spanish-avila-beach-carved-door-tile.jpg" width="1000" height="1500" loading="lazy" decoding="async" alt="Hand-carved wood door framed in hand-painted tile at Gold Coast Spanish in Avila Beach."></div>
-        <figcaption class="dc-cap dc-label" aria-hidden="true">Gold Coast Spanish · Avila Beach</figcaption>
-      </figure>
+    <div class="dc-intro__text">
+      <h2 class="dc-h2" id="dc-intro-h" data-reveal>From the First Drawings to the <span class="dc-i">Final Detail</span></h2>
+      <p class="dc-lede" data-reveal style="--d:.1s">Design Collaborative is a boutique, full service interior design firm based in San Luis Obispo, with a second office in the Boise area. For 35 years, we've designed homes, hotels, wineries, and workplaces, many of them for clients we've worked with before.</p>
+      <div class="dc-prose" data-reveal style="--d:.2s"><p>We work alongside your architect and contractor from the early stages, then draw out every decision in a complete set of construction plans. Your builder knows exactly what to build and what it will cost, so nothing gets guessed or redone on site.</p></div>
     </div>
   </div>
 </section>
 
 <!-- 04 · WHAT WE DESIGN -->
-<section class="dc-section dc-stone dc-svc" aria-labelledby="dc-svc-h">
-  <div class="dc-wrap dc-grid">
-    <h2 class="dc-h2 dc-svc__head" id="dc-svc-h" data-reveal>Interior design for homes, hotels, wineries, and workplaces</h2>
-    <div class="dc-svc__stage" aria-hidden="true">
-      <div class="dc-svc__sticky" id="dcSvcStage">
-        <div class="dc-media is-active"><img src="images/el-hacon-san-luis-obispo-hillside-levels.jpg" alt="" loading="lazy" decoding="async"></div>
-        <div class="dc-media"><img src="images/paris-valley-road-estate-winery-paso-robles-salon.jpg" alt="" loading="lazy" decoding="async"></div>
-        <div class="dc-media"><img src="images/imdex-office-commercial-interior-design.jpg" alt="" loading="lazy" decoding="async"></div>
-        <div class="dc-media"><img src="images/gold-coast-spanish-avila-beach-custom-millwork.jpg" alt="" loading="lazy" decoding="async"></div>
-      </div>
-    </div>
-    <ul class="dc-svc__list" id="dcSvcList">
-      <li class="dc-svc__item is-active">
-        <div class="dc-media dc-svc__thumb" aria-hidden="true"><img src="images/el-hacon-san-luis-obispo-hillside-levels.jpg" alt="" loading="lazy" decoding="async"></div>
-        <span class="dc-label dc-svc__num" aria-hidden="true">01</span>
-        <h3 class="dc-h3xl">Residential.</h3>
+<section class="dc-section dc-taupe dc-svc" aria-labelledby="dc-svc-h">
+  <div class="dc-wrap">
+    <h2 class="dc-h2 dc-svc__head" id="dc-svc-h" data-reveal>Interior design for <span class="dc-i">homes, hotels, wineries,</span> and workplaces</h2>
+    <ul class="dc-svc__row">
+      <li class="dc-svc__card" data-reveal>
+        <div class="dc-media" aria-hidden="true"><img src="images/el-hacon-san-luis-obispo-hillside-levels.jpg" alt="" loading="lazy" decoding="async"></div>
+        <span class="dc-label" aria-hidden="true">01</span>
+        <h3 class="dc-h3">Residential.</h3>
         <p>New construction and major remodels for primary homes and the legacy homes families come back to for generations.</p>
         <a class="dc-link" href="/residential-interior-design-services">Residential Interior Design</a>
       </li>
-      <li class="dc-svc__item">
-        <div class="dc-media dc-svc__thumb" aria-hidden="true"><img src="images/paris-valley-road-estate-winery-paso-robles-salon.jpg" alt="" loading="lazy" decoding="async"></div>
-        <span class="dc-label dc-svc__num" aria-hidden="true">02</span>
-        <h3 class="dc-h3xl">Hospitality.</h3>
+      <li class="dc-svc__card" data-reveal style="--d:.1s">
+        <div class="dc-media" aria-hidden="true"><img src="images/paris-valley-road-estate-winery-paso-robles-salon.jpg" alt="" loading="lazy" decoding="async"></div>
+        <span class="dc-label" aria-hidden="true">02</span>
+        <h3 class="dc-h3">Hospitality.</h3>
         <p>Boutique hotels, winery and distillery tasting rooms, and restaurants designed to create a memorable experience for guests and hold up to heavy use.</p>
         <a class="dc-link" href="/hospitality-interior-design">Hospitality Interior Design</a>
       </li>
-      <li class="dc-svc__item">
-        <div class="dc-media dc-svc__thumb" aria-hidden="true"><img src="images/imdex-office-commercial-interior-design.jpg" alt="" loading="lazy" decoding="async"></div>
-        <span class="dc-label dc-svc__num" aria-hidden="true">03</span>
-        <h3 class="dc-h3xl">Commercial.</h3>
+      <li class="dc-svc__card" data-reveal style="--d:.2s">
+        <div class="dc-media" aria-hidden="true"><img src="images/imdex-office-commercial-interior-design.jpg" alt="" loading="lazy" decoding="async"></div>
+        <span class="dc-label" aria-hidden="true">03</span>
+        <h3 class="dc-h3">Commercial.</h3>
         <p>As a commercial interior designer for offices and medical practices, we tailor each space to the people who use it every day.</p>
         <a class="dc-link" href="/commercial-interior-design-services">Commercial Interior Design</a>
       </li>
-      <li class="dc-svc__item">
-        <div class="dc-media dc-svc__thumb" aria-hidden="true"><img src="images/gold-coast-spanish-avila-beach-custom-millwork.jpg" alt="" loading="lazy" decoding="async"></div>
-        <span class="dc-label dc-svc__num" aria-hidden="true">04</span>
-        <h3 class="dc-h3xl">Construction Documents.</h3>
+      <li class="dc-svc__card" data-reveal style="--d:.3s">
+        <div class="dc-media" aria-hidden="true"><img src="images/gold-coast-spanish-avila-beach-custom-millwork.jpg" alt="" loading="lazy" decoding="async"></div>
+        <span class="dc-label" aria-hidden="true">04</span>
+        <h3 class="dc-h3">Construction Documents.</h3>
         <p>The detailed plans that keep your builder from guessing, and your budget from creeping.</p>
         <a class="dc-link" href="/new-construction-interior-design">See Our Construction Documents</a>
       </li>
@@ -486,10 +472,10 @@ ul,ol{list-style:none}
 </section>
 
 <!-- 05 · THE CONSTRUCTION SET -->
-<section class="dc-section dc-dark dc-cset" aria-labelledby="dc-cset-h">
+<section class="dc-section dc-black dc-cset" aria-labelledby="dc-cset-h">
   <div class="dc-wrap dc-grid">
     <div class="dc-cset__text">
-      <h2 class="dc-h2" id="dc-cset-h" data-reveal>Beautiful design still needs a path to construction</h2>
+      <h2 class="dc-h2" id="dc-cset-h" data-reveal>Beautiful design still needs a <span class="dc-i">path to construction</span></h2>
       <div class="dc-prose" data-reveal style="--d:.1s">
         <p>Your builder builds what's on the drawings. Your architect's plans cover the walls and wiring, but not the inside. Without interior plans, the crew fills in the blanks with standard options or their best interpretation of what you wanted.</p>
         <p>Our NCIDQ-certified team draws every detail, down to the cabinets and lighting, so nothing gets left to guesswork. Builders tell us our plans are the most complete they receive.</p>
@@ -540,106 +526,87 @@ ul,ol{list-style:none}
 </section>
 
 <!-- 06 · WHO WE WORK WITH -->
-<section class="dc-section dc-who" aria-labelledby="dc-who-h">
-  <div class="dc-media dc-who__img" data-reveal="img">
-    <img src="images/sixmile-bridge-vineyard-retreat-terrace.jpg" width="2000" height="1334" loading="lazy" decoding="async" alt="Covered terrace overlooking a pool and vineyards at the Sixmile Bridge Vineyard Retreat, designed by Design Collaborative.">
-  </div>
+<section class="dc-section dc-taupe dc-who" aria-labelledby="dc-who-h">
   <div class="dc-wrap dc-grid">
-    <h2 class="dc-h2 dc-who__head" id="dc-who-h" data-reveal>For people building the space they've been planning for years</h2>
-    <div class="dc-who__body">
-      <div class="dc-prose" data-reveal><p>Our residential clients are often building a place to retire or the house their grown kids and grandkids will come back to. Many own more than one property, so quality and low maintenance matter as much as looks. Our commercial and hospitality clients want the same for their businesses: every square foot utilized, and a team that does its job well.</p></div>
-      <p class="dc-who__note" data-reveal style="--d:.1s">Our best projects start with your architect and contractor at the table with us from day one. If your plans are underway, reach out before they're final.</p>
+    <div class="dc-who__text">
+      <h2 class="dc-h2" id="dc-who-h" data-reveal>For people building the space they've been <span class="dc-i">planning for years</span></h2>
+      <div class="dc-prose" data-reveal style="--d:.1s"><p>Our residential clients are often building a place to retire or the house their grown kids and grandkids will come back to. Many own more than one property, so quality and low maintenance matter as much as looks. Our commercial and hospitality clients want the same for their businesses: every square foot utilized, and a team that does its job well.</p></div>
+      <p class="dc-who__note" data-reveal style="--d:.2s">Our best projects start with your architect and contractor at the table with us from day one. If your plans are underway, reach out before they're final.</p>
+    </div>
+    <div class="dc-who__imgs">
+      <div class="dc-media w1" data-reveal="img"><img src="images/sixmile-bridge-vineyard-retreat-terrace.jpg" width="2000" height="1334" loading="lazy" decoding="async" alt="Covered terrace overlooking a pool and vineyards at the Sixmile Bridge Vineyard Retreat, designed by Design Collaborative."></div>
+      <div class="dc-media w2" data-reveal="img" style="--d:.2s"><img src="images/sixmile-bridge-vineyard-retreat-reading-chair.jpg" width="1000" height="1499" loading="lazy" decoding="async" alt="Leather reading chair beside floor-to-ceiling windows and vineyard views at the Sixmile Bridge Vineyard Retreat."></div>
     </div>
   </div>
 </section>
 
 <!-- 07 · ONE FIRM, TWO HOMES -->
-<section class="dc-section dc-stone dc-homes" style="padding-bottom:0" aria-labelledby="dc-homes-h">
+<section class="dc-section dc-homes" aria-labelledby="dc-homes-h">
   <div class="dc-wrap dc-homes__head">
-    <h2 class="dc-h2" id="dc-homes-h" data-reveal>Offices in San Luis Obispo and the Boise area</h2>
+    <h2 class="dc-h2" id="dc-homes-h" data-reveal>Offices in <span class="dc-i">San Luis Obispo</span> and the <span class="dc-i">Boise area</span></h2>
     <div class="dc-prose" data-reveal style="--d:.1s"><p>Many of our clients own homes in more than one place. With studios on California's Central Coast and in Idaho, one team designs both of your homes and already knows your taste the second time around.</p></div>
   </div>
   <div class="dc-homes__pair">
     <div class="dc-place">
       <div class="dc-media"><img src="images/bluff-estate-shell-beach-reflecting-pool-dusk.jpg" width="2000" height="1332" loading="lazy" decoding="async" style="object-position:42% 50%" alt="Bluff Estate at dusk on the hillside above Shell Beach, designed by Design Collaborative, interior designers in San Luis Obispo."></div>
-      <div class="dc-place__body">
-        <span class="dc-label" aria-hidden="true">California · Central Coast</span>
-        <p class="dc-h3" aria-hidden="true">San Luis Obispo</p>
-        <a class="dc-link" href="/interior-designer-san-luis-obispo">Interior Designer in San Luis Obispo</a>
-      </div>
+      <div class="dc-place__body"><p class="dc-h3 dc-i" aria-hidden="true">Central Coast</p><a class="dc-link" href="/interior-designer-san-luis-obispo">Interior Designer in San Luis Obispo</a></div>
     </div>
     <div class="dc-place">
       <div class="dc-media"><img src="images/montana-ranch-exterior-night.jpg" width="2000" height="1331" loading="lazy" decoding="async" style="object-position:62% 50%" alt="Montana Ranch lit at night under the Milky Way, a mountain home designed by Design Collaborative."></div>
-      <div class="dc-place__body">
-        <span class="dc-label" aria-hidden="true">Idaho · Mountain West</span>
-        <p class="dc-h3" aria-hidden="true">Boise Area</p>
-        <a class="dc-link" href="/interior-designer-boise">Interior Designer in Boise</a>
-      </div>
+      <div class="dc-place__body"><p class="dc-h3 dc-i" aria-hidden="true">Mountain West</p><a class="dc-link" href="/interior-designer-boise">Interior Designer in Boise</a></div>
     </div>
   </div>
 </section>
 
 <!-- 08 · HOW IT STARTS -->
-<section class="dc-section dc-dark dc-steps" aria-labelledby="dc-steps-h">
-  <div class="dc-wrap dc-grid">
-    <h2 class="dc-h2 dc-steps__head" id="dc-steps-h" data-reveal>What happens after you reach out</h2>
+<section class="dc-section dc-olive dc-steps" aria-labelledby="dc-steps-h">
+  <div class="dc-wrap">
+    <h2 class="dc-h2 dc-steps__head" id="dc-steps-h" data-reveal>What happens after <span class="dc-i">you reach out</span></h2>
     <ol class="dc-steps__list">
-      <li class="dc-step" data-reveal><span class="dc-step__n" aria-hidden="true">1</span><div><h3 class="dc-h3">A conversation.</h3><p>We learn about you, your property, your timeline, and who's already on your team.</p></div></li>
-      <li class="dc-step" data-reveal style="--d:.1s"><span class="dc-step__n" aria-hidden="true">2</span><div><h3 class="dc-h3">A site visit.</h3><p>We walk the property or review the plans, take measurements, and talk through your goals for the space.</p></div></li>
-      <li class="dc-step" data-reveal style="--d:.2s"><span class="dc-step__n" aria-hidden="true">3</span><div><h3 class="dc-h3">A proposal.</h3><p>A clear scope and fee, so you know exactly what to expect before we start.</p></div></li>
+      <li class="dc-step" data-reveal><span class="dc-step__n" aria-hidden="true">i.</span><h3 class="dc-h3">A conversation.</h3><p>We learn about you, your property, your timeline, and who's already on your team.</p></li>
+      <li class="dc-step" data-reveal style="--d:.1s"><span class="dc-step__n" aria-hidden="true">ii.</span><h3 class="dc-h3">A site visit.</h3><p>We walk the property or review the plans, take measurements, and talk through your goals for the space.</p></li>
+      <li class="dc-step" data-reveal style="--d:.2s"><span class="dc-step__n" aria-hidden="true">iii.</span><h3 class="dc-h3">A proposal.</h3><p>A clear scope and fee, so you know exactly what to expect before we start.</p></li>
     </ol>
   </div>
 </section>
 
 <!-- 09 · RECENT PROJECTS -->
-<section class="dc-section dc-works" aria-labelledby="dc-works-h">
-  <div class="dc-wrap dc-works__top">
-    <h2 class="dc-h2" id="dc-works-h" data-reveal>Recent projects</h2>
-    <div class="dc-rail-nav">
-      <button type="button" data-dir="-1" aria-label="Previous projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M10 3 5 8l5 5"/></svg></button>
-      <button type="button" data-dir="1" aria-label="Next projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="m6 3 5 5-5 5"/></svg></button>
+<section class="dc-section dc-black dc-works" aria-labelledby="dc-works-h">
+  <div class="dc-works__grid">
+    <div class="dc-works__intro">
+      <h2 class="dc-h2" id="dc-works-h" data-reveal>Recent <span class="dc-i">projects</span></h2>
+      <div class="dc-rail-nav">
+        <button type="button" data-dir="-1" aria-label="Previous projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M10 3 5 8l5 5"/></svg></button>
+        <button type="button" data-dir="1" aria-label="Next projects"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="m6 3 5 5-5 5"/></svg></button>
+      </div>
+      <a class="dc-btn" href="/selected-works">View All Projects</a>
     </div>
-  </div>
-  <ul class="dc-rail" id="dcRail" tabindex="0" aria-label="Recent projects, scroll horizontally">
-    <li class="dc-card">
-      <a class="dc-card__img dc-media" href="/selected-works/shell-beach-house" tabindex="-1" aria-hidden="true"><img src="images/bluff-estate-shell-beach-ocean-view-living.jpg" width="2000" height="1334" loading="lazy" decoding="async" alt="" draggable="false"></a>
-      <div class="dc-card__meta">
-        <span class="dc-label dc-card__n" aria-hidden="true">01</span>
-        <p class="dc-label dc-card__loc" aria-hidden="true">Shell Beach</p>
+    <ul class="dc-rail" id="dcRail" tabindex="0" aria-label="Recent projects, scroll horizontally">
+      <li class="dc-card">
+        <a class="dc-card__img dc-media" href="/selected-works/shell-beach-house" tabindex="-1" aria-hidden="true"><img src="images/bluff-estate-shell-beach-floating-staircase.jpg" width="1334" height="2000" loading="lazy" decoding="async" alt="" draggable="false"></a>
+        <span class="dc-label" aria-hidden="true">Shell Beach</span>
         <h3 class="dc-h3"><a href="/selected-works/shell-beach-house">Bluff Estate<span class="dc-sr">, Shell Beach</span></a></h3>
         <p>An oceanfront home inspired by 1970s modern architects, with a zen reflecting pool and the owner's art collection.</p>
-      </div>
-    </li>
-    <li class="dc-card">
-      <a class="dc-card__img dc-media" href="/selected-works/spanish-style-interior-design-gold-coast" tabindex="-1" aria-hidden="true"><img src="images/gold-coast-spanish-avila-beach-limestone-fireplace.jpg" width="1500" height="1001" loading="lazy" decoding="async" alt="" draggable="false"></a>
-      <div class="dc-card__meta">
-        <span class="dc-label dc-card__n" aria-hidden="true">02</span>
-        <p class="dc-label dc-card__loc" aria-hidden="true">Avila Beach</p>
+      </li>
+      <li class="dc-card">
+        <a class="dc-card__img dc-media" href="/selected-works/spanish-style-interior-design-gold-coast" tabindex="-1" aria-hidden="true"><img src="images/gold-coast-spanish-avila-beach-limestone-fireplace.jpg" width="1500" height="1001" loading="lazy" decoding="async" alt="" draggable="false" style="object-position:50% 50%"></a>
+        <span class="dc-label" aria-hidden="true">Avila Beach</span>
         <h3 class="dc-h3"><a href="/selected-works/spanish-style-interior-design-gold-coast">Gold Coast Spanish<span class="dc-sr">, Avila Beach</span></a></h3>
         <p>A complete remodel where nearly every element was custom made, including a limestone fireplace and hand-painted tile.</p>
-      </div>
-    </li>
-    <li class="dc-card">
-      <a class="dc-card__img dc-media" href="/selected-works/indoor-outdoor-mountain-modern-home" tabindex="-1" aria-hidden="true"><img src="images/el-hacon-san-luis-obispo-stone-wall-living.jpg" width="2000" height="1334" loading="lazy" decoding="async" alt="" draggable="false"></a>
-      <div class="dc-card__meta">
-        <span class="dc-label dc-card__n" aria-hidden="true">03</span>
-        <p class="dc-label dc-card__loc" aria-hidden="true">San Luis Obispo</p>
+      </li>
+      <li class="dc-card">
+        <a class="dc-card__img dc-media" href="/selected-works/indoor-outdoor-mountain-modern-home" tabindex="-1" aria-hidden="true"><img src="images/el-hacon-san-luis-obispo-stair.jpg" width="1000" height="1500" loading="lazy" decoding="async" alt="" draggable="false"></a>
+        <span class="dc-label" aria-hidden="true">San Luis Obispo</span>
         <h3 class="dc-h3"><a href="/selected-works/indoor-outdoor-mountain-modern-home">El Hacón<span class="dc-sr">, San Luis Obispo</span></a></h3>
         <p>A hillside home built one level at a time, with an indoor funicular instead of an elevator.</p>
-      </div>
-    </li>
-    <li class="dc-card">
-      <a class="dc-card__img dc-media" href="/selected-works/paris-valley-modern-winery-design" tabindex="-1" aria-hidden="true"><img src="images/paris-valley-road-estate-winery-paso-robles-salon.jpg" width="1500" height="1001" loading="lazy" decoding="async" alt="" draggable="false"></a>
-      <div class="dc-card__meta">
-        <span class="dc-label dc-card__n" aria-hidden="true">04</span>
-        <p class="dc-label dc-card__loc" aria-hidden="true">Paso Robles</p>
+      </li>
+      <li class="dc-card">
+        <a class="dc-card__img dc-media" href="/selected-works/paris-valley-modern-winery-design" tabindex="-1" aria-hidden="true"><img src="images/paris-valley-road-estate-winery-paso-robles-salon.jpg" width="1500" height="1001" loading="lazy" decoding="async" alt="" draggable="false" style="object-position:30% 50%"></a>
+        <span class="dc-label" aria-hidden="true">Paso Robles</span>
         <h3 class="dc-h3"><a href="/selected-works/paris-valley-modern-winery-design">Paris Valley Road Estate Winery<span class="dc-sr">, Paso Robles</span></a></h3>
         <p>A dated building on Highway 46 East, reborn as a French country estate.</p>
-      </div>
-    </li>
-  </ul>
-  <div class="dc-wrap dc-works__all">
-    <a class="dc-btn" href="/selected-works">View All Projects</a>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -647,7 +614,7 @@ ul,ol{list-style:none}
 <section class="dc-close" aria-labelledby="dc-close-h">
   <div class="dc-media"><img src="images/gold-coast-spanish-avila-beach-courtyard-fountain.jpg" width="2000" height="1333" loading="lazy" decoding="async" alt=""></div>
   <div class="dc-close__body">
-    <h2 class="dc-h2" id="dc-close-h" data-reveal>Ready to start your project?</h2>
+    <h2 class="dc-h2" id="dc-close-h" data-reveal><span class="dc-i">Ready to start</span> <span class="dc-caps">your project?</span></h2>
     <p data-reveal style="--d:.1s">Tell us a little about what you're building. We'll get back to you within 2 business days.</p>
     <a class="dc-btn dc-btn--light" href="/inquire" data-reveal style="--d:.2s">Get in Touch</a>
   </div>
@@ -656,25 +623,27 @@ ul,ol{list-style:none}
 </main>
 
 <footer class="dc-footer">
-  <div class="dc-wrap dc-grid">
+  <div class="dc-wrap">
     <img class="dc-footer__logo" src="images/design-collaborative-logo.png" width="750" height="211" alt="Design Collaborative" loading="lazy">
-    <div class="dc-footer__col">
-      <span class="dc-label">San Luis Obispo, California</span>
-      <address>863A Pacific St.<br>San Luis Obispo, CA 93401<br><a href="tel:+18057813550">(805) 781-3550</a></address>
-      <a class="dc-link" href="/interior-designer-san-luis-obispo">Interior Designer in San Luis Obispo</a>
-    </div>
-    <div class="dc-footer__col">
-      <span class="dc-label">Boise area, Idaho</span>
-      <address>9233 W. State St.<br>Garden City, ID 83714<br><a href="tel:+12087819093">(208) 781-9093</a></address>
-      <a class="dc-link" href="/interior-designer-boise">Interior Designer in Boise</a>
-    </div>
-    <div class="dc-footer__col">
-      <span class="dc-label">Studio</span>
-      <ul class="dc-footer__nav"><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/interior-design-services">Services</a></li><li><a href="/selected-works">Selected Works</a></li><li><a href="/inquire">Inquire</a></li></ul>
-    </div>
-    <div class="dc-footer__col">
-      <span class="dc-label">Email</span>
-      <a href="mailto:accounts@designcollaborative.design">accounts@designcollaborative.design</a>
+    <div class="dc-footer__cols">
+      <div>
+        <p class="dc-footer__h">San Luis Obispo</p>
+        <address>863A Pacific St.<br>San Luis Obispo, CA 93401<br><a href="tel:+18057813550">(805) 781-3550</a></address>
+        <a class="dc-link" href="/interior-designer-san-luis-obispo">Interior Designer in San Luis Obispo</a>
+      </div>
+      <div>
+        <p class="dc-footer__h">Boise area</p>
+        <address>9233 W. State St.<br>Garden City, ID 83714<br><a href="tel:+12087819093">(208) 781-9093</a></address>
+        <a class="dc-link" href="/interior-designer-boise">Interior Designer in Boise</a>
+      </div>
+      <div>
+        <p class="dc-footer__h">Studio</p>
+        <ul class="dc-footer__nav"><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/interior-design-services">Services</a></li><li><a href="/selected-works">Selected Works</a></li><li><a href="/inquire">Inquire</a></li></ul>
+      </div>
+      <div>
+        <p class="dc-footer__h">Connect</p>
+        <a href="mailto:accounts@designcollaborative.design">accounts@designcollaborative.design</a>
+      </div>
     </div>
     <div class="dc-footer__base"><span>© 2026 Design Collaborative, Inc.</span><span>San Luis Obispo · Boise</span></div>
   </div>
@@ -687,33 +656,23 @@ ul,ol{list-style:none}
 (function(){
   var d=document,w=window,reduce=w.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Reveals (clipped images are observed via their parent) */
+  /* Reveals */
   var els=d.querySelectorAll('[data-reveal],[data-reveal-group]');
   if(reduce||!('IntersectionObserver' in w)){els.forEach(function(e){e.classList.add('is-in')})}
-  else{
-    var map=new Map(),io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){(map.get(e.target)||[]).forEach(function(t){t.classList.add('is-in')});io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.06});
-    els.forEach(function(el){var t=el.getAttribute('data-reveal')==='img'?el.parentElement:el;if(!map.has(t)){map.set(t,[]);io.observe(t)}map.get(t).push(el)});
-  }
+  else{var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.05});els.forEach(function(el){io.observe(el)})}
 
-  /* Header */
+  /* Header: transparent over the hero, solid after */
   var h=d.getElementById('dcHeader'),hero=d.querySelector('.dc-hero');
   function solid(){h.classList.toggle('is-solid',w.scrollY>(hero?hero.offsetHeight-90:10))}
   solid();w.addEventListener('scroll',solid,{passive:true});w.addEventListener('resize',solid);
 
-  /* Mobile menu */
-  var btn=d.getElementById('dcMenuBtn'),nav=d.getElementById('dcNav');
-  btn.addEventListener('click',function(){var o=btn.getAttribute('aria-expanded')!=='true';btn.setAttribute('aria-expanded',o);nav.classList.toggle('is-open',o);h.classList.toggle('is-open',o);btn.textContent=o?'Close':'Menu';d.body.style.overflow=o?'hidden':''});
-  d.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('is-open'))btn.click()});
+  /* Full-screen menu */
+  var btn=d.getElementById('dcMenuBtn'),ov=d.getElementById('dcOverlay'),lbl=btn.querySelector('span');
+  function toggle(o){btn.setAttribute('aria-expanded',o);ov.classList.toggle('is-open',o);h.classList.toggle('is-open',o);lbl.textContent=o?'Close':'Menu';d.body.style.overflow=o?'hidden':'';if(o){var f=ov.querySelector('a');f&&f.focus({preventScroll:true})}}
+  btn.addEventListener('click',function(){toggle(btn.getAttribute('aria-expanded')!=='true')});
+  d.addEventListener('keydown',function(e){if(e.key==='Escape'&&ov.classList.contains('is-open')){toggle(false);btn.focus()}});
 
-  /* Services: sticky image follows the item in view */
-  var stage=d.getElementById('dcSvcStage'),items=d.querySelectorAll('.dc-svc__item');
-  if(stage&&'IntersectionObserver' in w){
-    var pics=stage.querySelectorAll('.dc-media');
-    var so=new IntersectionObserver(function(en){en.forEach(function(e){if(!e.isIntersecting)return;var i=[].indexOf.call(items,e.target);items.forEach(function(x,k){x.classList.toggle('is-active',k===i)});pics.forEach(function(p,k){p.classList.toggle('is-active',k===i)})})},{rootMargin:'-45% 0px -45% 0px'});
-    items.forEach(function(it){so.observe(it)});
-  }
-
-  /* Projects rail: buttons + drag on desktop (touch scrolls natively) */
+  /* Projects rail: buttons + mouse drag (touch scrolls natively) */
   var rail=d.getElementById('dcRail');
   if(rail){
     d.querySelectorAll('.dc-rail-nav button').forEach(function(b){b.addEventListener('click',function(){rail.scrollBy({left:(+b.dataset.dir)*rail.clientWidth*.6,behavior:reduce?'auto':'smooth'})})});
