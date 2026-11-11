@@ -1,4 +1,17 @@
-# Design Collaborative: Homepage Concept (Round 1)
+# Design Collaborative: Homepage Concept (Round 2)
+
+**v2 direction (current):** gallery-like and image-led, in the spirit of Kelly Wearstler's studio site.
+Everything is sans-serif in the brand typeface, with no arches, italics or ornaments, and real Design Collaborative photography.
+
+- **Photography:** 20 photos pulled from the live designcollaborative.design project pages and saved in `images/`
+  under SEO file names. A light CSS grade (`saturate(.88)`) calms the bright real-estate look so it reads more editorial.
+  It's easy to remove. Confirm the photographer's licence allows web reuse (it's already on the live site).
+- **Fonts:** the live site uses **Proxima Nova** (Adobe Fonts) for headings, body and navigation, and Helvetica Neue for meta.
+  No separate brand guide was found in Drive. Squarespace serves Proxima Nova natively. The local preview substitutes
+  **Figtree** because the Adobe kit is locked to the client's domain.
+- **Logo:** the real DC logo, white over the hero and inverted to black once the header turns solid.
+- **Palette:** Bone `#F3F0EA`, Plaster `#E8E3DA`, Black `#151413`, Grey `#5A554F`, Stone `#A39C90`, and one accent, Bronze `#7D5F45`.
+- `homepage-concept-v1.html` and `design-system-v1.html` are the earlier serif/arch direction, kept for reference.
 
 A working visual preview of the new homepage, built from the approved copy in
 *DRAFT 1 - Design Collaborative SEO Website Copywriting* (Home tab). This round is for **review only**.
