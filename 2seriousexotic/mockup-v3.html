@@ -105,6 +105,42 @@ header .row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;h
 .spec .act{padding-left:24px;align-self:center}
 @media (max-width:1000px){.spec{grid-template-columns:1fr 1fr}.spec .model-cell{grid-column:1/-1}.spec > div,.spec > div + div{padding:22px 0;border-left:0;border-bottom:1px solid var(--hair)}.spec .act{grid-column:1/-1;padding:28px 0 40px}}
 
+/* ---------- delivered ---------- */
+.delivered{padding-block:0 clamp(100px,12vw,160px)}
+.dhead{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:56px}
+.dhead .xl{font-size:clamp(34px,4.6vw,72px)}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--hair);border:1px solid var(--hair)}
+@media (max-width:900px){.dgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.dgrid{grid-template-columns:1fr}}
+.dcar{background:var(--black);display:grid;grid-template-rows:auto 1fr;margin:0}
+.dcar .ph{aspect-ratio:4/3;max-width:100%;overflow:hidden;background:#111}
+.dcar img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.dcar:hover img{transform:scale(1.04)}
+.dcar figcaption{display:flex;justify-content:space-between;align-items:end;gap:16px;padding:22px 24px 26px}
+.dcar .yr{font:200 13px/1 var(--wide);font-stretch:125%;letter-spacing:.2em;color:var(--mute);display:block;margin-bottom:10px}
+.dcar b{font:700 clamp(17px,1.5vw,22px)/1.05 var(--wide);font-stretch:125%;text-transform:uppercase;display:block}
+.status{font:600 10px/1 var(--wide);font-stretch:125%;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:8px}
+.status::before{content:"";width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+
+/* ---------- deal sheet ---------- */
+.sheet{border-top:1px solid var(--hair);padding-block:clamp(100px,12vw,160px);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,7vw,120px);align-items:start}
+@media (max-width:900px){.sheet{grid-template-columns:1fr}}
+.sheet .intro{display:grid;gap:28px;position:sticky;top:120px}
+@media (max-width:900px){.sheet .intro{position:static}}
+.sheet .xl{font-size:clamp(34px,4.4vw,68px)}
+.sheet p{margin:0;color:#BDBDBD;max-width:44ch}
+.sheet .mo{font:200 clamp(64px,8vw,124px)/.9 var(--wide);font-stretch:125%;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.sheet .mo small{font:400 12px var(--wide);font-stretch:125%;letter-spacing:.24em;color:var(--mute);margin-left:10px}
+.ledger{border:1px solid var(--hair);padding:clamp(24px,3.4vw,48px);display:grid;gap:34px;font-variant-numeric:tabular-nums}
+.ledger h3{margin:0 0 6px;font:500 11px/1 var(--wide);font-stretch:125%;letter-spacing:.28em;text-transform:uppercase;color:var(--mute)}
+.ledger dl{margin:0;display:grid}
+.ledger dl div{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid var(--hair)}
+.ledger dt{color:#BDBDBD}
+.ledger dd{margin:0;white-space:nowrap}
+.ledger .tot dt,.ledger .tot dd{color:var(--white);font-weight:500}
+.ledger .tot{border-bottom:0!important;border-top:1px solid var(--white)}
+.ledger .fine{font-size:11px;color:#6A6A6A;margin:0}
+
 /* ---------- split ---------- */
 .split{display:grid;grid-template-columns:1.25fr 1fr;min-height:640px}
 .split .img{position:relative;overflow:hidden;min-height:420px}
@@ -188,7 +224,7 @@ footer{border-top:1px solid var(--hair);padding-block:70px calc(40px + env(safe-
     <div class="who">
       <span class="label" id="h-make">Lamborghini · Aventador S</span>
       <h1 class="xl">Beyond<br><span class="thin">ownership</span></h1>
-      <div class="links"><a class="go" href="#collection">Discover the collection</a><a class="go" href="#enquire">Get approved</a></div>
+      <div class="links"><a class="go" href="#delivered">See recent deals</a><a class="go" href="#enquire">Get approved</a></div>
     </div>
     <div class="counter">
       <span class="n"><b id="h-i">01</b> / 04</span>
@@ -202,6 +238,59 @@ footer{border-top:1px solid var(--hair);padding-block:70px calc(40px + env(safe-
   <span class="label mute">Exotic leasing · Fort Lauderdale</span>
   <h2 class="xl">The rarest cars, <b>structured</b> by people who drive them.</h2>
   <p>We work hand in hand with the nation's best banks. Quick turnarounds, unrivalled rates, and residuals written for how exotics actually hold their value.</p>
+</section>
+
+<!-- RECENTLY DELIVERED -->
+<section class="delivered pad" id="delivered">
+  <div class="dhead">
+    <div style="display:grid;gap:24px"><span class="label mute">Recently delivered</span><h2 class="xl">From Gallardo<br><span class="thin">to TRX</span></h2></div>
+    <a class="go" href="https://www.instagram.com/2seriousexoticdeals/">Every deal on Instagram</a>
+  </div>
+  <div class="dgrid">
+    <figure class="dcar"><div class="ph"><img src="deals/gallardo-spyder.jpg" alt="Grey 2007 Lamborghini Gallardo Spyder"></div><figcaption><div><span class="yr">2007</span><b>Lamborghini<br>Gallardo Spyder</b></div><span class="status">Leased</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="deals/ferrari-roma.jpg" alt="Yellow Ferrari Roma, front view"></div><figcaption><div><span class="yr">Ferrari</span><b>Roma</b></div><span class="status">Leased</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="deals/ferrari-488.jpg" alt="Red 2016 Ferrari 488"></div><figcaption><div><span class="yr">2016</span><b>Ferrari<br>488 GTB</b></div><span class="status">Approved</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="deals/gallardo-black.jpg" alt="Black Lamborghini Gallardo from behind"></div><figcaption><div><span class="yr">Lamborghini</span><b>Gallardo</b></div><span class="status">Delivered</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="deals/supra.jpg" alt="Black widebody Toyota Supra"></div><figcaption><div><span class="yr">Toyota</span><b>Supra<br>Widebody</b></div><span class="status">Leased</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="deals/ram-trx.jpg" alt="Custom black RAM TRX with light bar"></div><figcaption><div><span class="yr">RAM</span><b>1500 TRX<br>Custom</b></div><span class="status">Leased</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- DEAL SHEET -->
+<section class="sheet pad" id="deal">
+  <div class="intro">
+    <span class="label mute">Inside a real deal</span>
+    <h2 class="xl">2025 McLaren<br><span class="thin">Artura Spider</span></h2>
+    <p>Techlux convertible, 4,691 miles. Structured over 60 months with a balloon, so the client keeps capital in the business and can pay off the lease at any time.</p>
+    <div><span class="label mute">Total monthly</span><div class="mo">$3,894<small>/ MO</small></div></div>
+    <a class="cut" href="#enquire">Structure mine</a>
+  </div>
+  <div class="ledger">
+    <div>
+      <h3>The structure</h3>
+      <dl>
+        <div><dt>Sales price</dt><dd>$234,327.50</dd></div>
+        <div><dt>Capitalized cost reduction</dt><dd>&minus;$54,527.13</dd></div>
+        <div><dt>Total capitalized amount</dt><dd>$179,800.37</dd></div>
+        <div><dt>Term</dt><dd>60 months</dd></div>
+        <div><dt>Mileage allowance</dt><dd>3,500 / yr</dd></div>
+        <div><dt>Balloon</dt><dd>$63,700.00</dd></div>
+        <div><dt>Base monthly payment</dt><dd>$3,622.48</dd></div>
+        <div><dt>FL sales &amp; use tax on payment</dt><dd>$271.69</dd></div>
+        <div class="tot"><dt>Total monthly payment</dt><dd>$3,894.17</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h3>Due at signing</h3>
+      <dl>
+        <div><dt>Capitalized cost reduction</dt><dd>$54,527.13</dd></div>
+        <div><dt>First + pre-paid last month</dt><dd>$7,788.34</dd></div>
+        <div><dt>Taxes, title, lien &amp; bank fees</dt><dd>$7,684.53</dd></div>
+        <div class="tot"><dt>Total due at signing</dt><dd>$70,000.00</dd></div>
+      </dl>
+    </div>
+    <p class="fine">Actual client deal, September 2026. Personal details removed. Lessee may pay off the lease, including the balloon, at any time.</p>
+  </div>
 </section>
 
 <!-- MODEL SELECTOR -->
@@ -290,8 +379,8 @@ footer{border-top:1px solid var(--hair);padding-block:70px calc(40px + env(safe-
 <footer class="pad">
   <div class="fcols">
     <div style="display:grid;gap:18px;align-content:start"><span class="logo" style="align-items:flex-start">2Serious<small style="padding-left:0">Exotic</small></span><span class="mute" style="max-width:34ch">Exotic and luxury vehicle leasing. Fort Lauderdale, Florida.</span></div>
-    <div><span class="label mute">Leasing</span><ul><li><a href="#collection">The collection</a></li><li><a href="#calc">Configurator</a></li><li><a href="#enquire">Get approved</a></li></ul></div>
-    <div><span class="label mute">Marques</span><ul><li>Bentley</li><li>Lamborghini</li><li>Rolls-Royce</li><li>Ferrari</li></ul></div>
+    <div><span class="label mute">Leasing</span><ul><li><a href="#delivered">Recent deliveries</a></li><li><a href="#deal">Deal breakdown</a></li><li><a href="#collection">The collection</a></li><li><a href="#calc">Configurator</a></li><li><a href="#enquire">Get approved</a></li></ul></div>
+    <div><span class="label mute">Follow</span><ul><li><a href="https://www.instagram.com/2seriousexoticdeals/">Instagram<br>@2seriousexoticdeals</a></li></ul></div>
     <div><span class="label mute">Contact</span><ul><li>954.594.3642</li><li>Fort Lauderdale, FL</li></ul></div>
   </div>
   <div class="legal"><p>© 2026 2Serious Exotic LLC. All rights reserved. All terms subject to credit approval and may change without notice. Figures shown are illustrative. Logos and names © their owners; 2Serious Exotic LLC has no affiliation with manufacturers.</p><span>Privacy · Terms</span></div>
