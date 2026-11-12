@@ -1,7 +1,14 @@
-# Installing the homepage on the hidden "Homepage Draft v2" page
+# Installing the homepage on the hidden "Home V2 (Draft)" page
 
-This puts the approved v4 design onto the draft page so it looks exactly like the preview.
-The other pages and the live homepage are not touched.
+This puts the approved v4 design onto **Home V2 (Draft)** only, so it looks exactly like the preview.
+
+**Nothing else on the site changes.** Everything lives inside one Code Block on that page:
+- every style rule is scoped to that page
+- the script and fonts only load there
+- nothing goes into the site-wide Custom CSS, site-wide Code Injection or Site Styles
+
+Do **not** paste any of this into Website › Custom Code › Custom CSS or Settings › Advanced › Code Injection.
+Those affect every page.
 
 ## What you'll paste
 
@@ -19,12 +26,12 @@ They use responsive sizes (750 / 1500 / 2500 px), so phones download small files
 - **Plan:** Code Blocks that run JavaScript need a Squarespace plan that allows custom code
   (Core/Business or higher). Check under Settings › Billing. On a plan without custom code,
   the layout still shows but the menu button and scroll fade-ins won't work.
-- **Site animations:** turn off Site Styles › Animations, or set them to None. Squarespace's
-  own block animations can fight with this page's fade-ins. (The code also neutralises them on this page.)
+- **Leave Site Styles alone.** The code switches off Squarespace's block animations and spacing for
+  this page only.
 
 ## Steps (about 5 minutes)
 
-1. **Pages** › open the hidden page (*Homepage Draft v2*, under Not Linked).
+1. **Pages** › Not Linked › open **Home V2 (Draft)**.
 2. Delete the sections already on that page, so it's empty.
 3. **Add Section** › choose any blank section › **Add Block** › **Code**.
 4. Open the Code Block, delete its sample text, and paste the **entire** contents of `1-code-block.html`.
@@ -32,11 +39,12 @@ They use responsive sizes (750 / 1500 / 2500 px), so phones download small files
    - Leave the mode on HTML.
 5. Don't add any other blocks to that section. The code makes its section full-width and hides the
    site's normal header and footer **on this page only**, because the design has its own.
-6. **Page Settings › SEO:** turn ON *Hide page from search engines* while it's a draft. This stops
-   Google indexing a second copy of the homepage.
-7. **Save**, then open the page's URL in a **private/incognito window**.
-   - Squarespace pauses scripts in the editor, so the editor view won't show the menu or fade-ins.
-     The live URL will.
+6. On **Home V2 (Draft)'s** own gear icon › **SEO**, turn ON *Hide page from search engines*. This is a
+   page-level setting. Your page shows greyed out, which means it's disabled, so the public can't see it anyway.
+7. **Save**, exit the editor, and view the page while you're **logged in**. A disabled page can't be
+   opened in a private window.
+   - Squarespace pauses scripts in edit mode, so the editor won't show the menu or fade-ins.
+     The page will once you exit the editor.
 
 ### Check it
 
@@ -69,7 +77,7 @@ They use responsive sizes (750 / 1500 / 2500 px), so phones download small files
    - SEO title: `Design Collaborative | Luxury Interior Design San Luis Obispo`
    - Description: `Luxury interior designers for Central Coast and Idaho homes and businesses, with construction-ready drawings that carry your project to the finish.`
    - Turn OFF *Hide page from search engines*.
-3. **Page Settings › Advanced › Page Header Code Injection:** paste `2-homepage-header-injection.html`.
+3. On this page's own **Page Settings › Advanced › Page Header Code Injection** (page-level, not the site-wide one), paste `2-homepage-header-injection.html`.
    This is the structured data for both offices.
 4. Disable or delete the old homepage, and fix the footer "Home" link from `/home` to `/`.
 5. Test with Google's Rich Results Test, then request indexing in Search Console.
