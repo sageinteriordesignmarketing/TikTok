@@ -197,19 +197,18 @@ ul,ol{list-style:none}
 @media (max-width:960px){.dc-creds ul{display:block;padding-block:.6rem}.dc-creds li{padding:.85rem 0;border-left:0;border-top:1px solid var(--dc-rule)}.dc-creds li:first-child{border-top:0}}
 
 /* =====================================================================
-   03 · INTRODUCTION — overlapping collage + centred text
+   03 · INTRODUCTION — single portrait photograph + centred text
    ===================================================================== */
-.dc-collage{position:relative;grid-column:1 / span 6;height:clamp(520px,58vw,860px)}
-.dc-collage .dc-media{position:absolute}
-.dc-collage .c1{left:0;top:0;width:62%;height:78%}
-.dc-collage .c2{right:4%;bottom:0;width:42%;height:56%;box-shadow:0 0 0 clamp(8px,1vw,14px) var(--dc-cream)}
-.dc-collage .c3{right:0;top:8%;width:22%;height:26%}
+.dc-intro__img{grid-column:1 / span 6}
+.dc-intro__img .dc-media{aspect-ratio:4/5}
+.dc-intro__img img{object-position:50% 45%}
+.dc-intro__img figcaption{margin-top:1.1rem;display:flex;justify-content:space-between;color:var(--dc-text)}
 .dc-intro__text{grid-column:8 / span 4;align-self:center;text-align:center}
 .dc-intro__text .dc-lede{margin-top:2.4rem}
 .dc-intro__text .dc-prose{margin:1.8rem auto 0}
 @media (max-width:960px){
   .dc-intro .dc-grid{display:block}
-  .dc-collage{height:118vw;margin-top:3.5rem}
+  .dc-intro__img{margin-top:3.5rem}
 }
 
 /* =====================================================================
@@ -249,16 +248,15 @@ ul,ol{list-style:none}
 @media (max-width:960px){.dc-cset .dc-grid{display:block}.dc-cset__pair{margin-top:3.5rem}.dc-draw *{stroke-width:2}}
 
 /* =====================================================================
-   06 · WHO WE WORK WITH — text left, overlapping pair right
+   06 · WHO WE WORK WITH — text left, single photograph right
    ===================================================================== */
 .dc-who__text{grid-column:2 / span 4;align-self:center}
 .dc-who__text .dc-prose{margin-top:2rem}
 .dc-who__note{margin-top:2.2rem;font:italic 400 var(--dc-fs-h3)/1.35 var(--dc-serif);max-width:28rem}
-.dc-who__imgs{grid-column:7 / -1;position:relative;height:clamp(520px,52vw,800px)}
-.dc-who__imgs .dc-media{position:absolute}
-.dc-who__imgs .w1{right:0;top:0;width:78%;height:68%}
-.dc-who__imgs .w2{left:0;bottom:0;width:40%;height:55%;box-shadow:0 0 0 clamp(8px,1vw,14px) var(--dc-taupe)}
-@media (max-width:960px){.dc-who .dc-grid{display:block}.dc-who__imgs{height:112vw;margin-top:3.5rem}}
+.dc-who__img{grid-column:7 / -1;align-self:center}
+.dc-who__img .dc-media{aspect-ratio:5/4}
+.dc-who__img figcaption{margin-top:1.1rem;display:flex;justify-content:space-between;color:var(--dc-text)}
+@media (max-width:960px){.dc-who .dc-grid{display:block}.dc-who__img{margin-top:3.5rem}}
 
 /* =====================================================================
    07 · ONE FIRM, TWO HOMES — edge-to-edge diptych
@@ -421,11 +419,10 @@ ul,ol{list-style:none}
 <!-- 03 · INTRODUCTION -->
 <section class="dc-section dc-intro" aria-labelledby="dc-intro-h">
   <div class="dc-wrap dc-grid">
-    <div class="dc-collage">
-      <div class="dc-media c1" data-reveal="img"><img src="images/bluff-estate-shell-beach-floating-staircase.jpg" width="1334" height="2000" loading="lazy" decoding="async" alt="Floating wood staircase overlooking the dining room at Bluff Estate, by Design Collaborative, a luxury interior designer in Shell Beach."></div>
-      <div class="dc-media c3" data-reveal="img" style="--d:.3s"><img src="images/montana-ranch-door-hardware.jpg" width="1000" height="666" loading="lazy" decoding="async" alt="Hand-forged iron door hardware on a plank door at Montana Ranch."></div>
-      <div class="dc-media c2" data-reveal="img" style="--d:.15s"><img src="images/gold-coast-spanish-avila-beach-carved-door-tile.jpg" width="1000" height="1500" loading="lazy" decoding="async" alt="Hand-carved wood door framed in hand-painted tile at Gold Coast Spanish in Avila Beach."></div>
-    </div>
+    <figure class="dc-intro__img">
+      <div class="dc-media" data-reveal="img"><img src="images/bluff-estate-shell-beach-floating-staircase.jpg" width="1334" height="2000" loading="lazy" decoding="async" alt="Floating wood staircase overlooking the dining room at Bluff Estate, by Design Collaborative, a luxury interior designer in Shell Beach."></div>
+      <figcaption class="dc-label" aria-hidden="true"><span>Bluff Estate</span><span>Shell Beach</span></figcaption>
+    </figure>
     <div class="dc-intro__text">
       <h2 class="dc-h2" id="dc-intro-h" data-reveal>From the First Drawings to the <span class="dc-i">Final Detail</span></h2>
       <p class="dc-lede" data-reveal style="--d:.1s">Design Collaborative is a boutique, full service interior design firm based in San Luis Obispo, with a second office in the Boise area. For 35 years, we've designed homes, hotels, wineries, and workplaces, many of them for clients we've worked with before.</p>
@@ -533,10 +530,10 @@ ul,ol{list-style:none}
       <div class="dc-prose" data-reveal style="--d:.1s"><p>Our residential clients are often building a place to retire or the house their grown kids and grandkids will come back to. Many own more than one property, so quality and low maintenance matter as much as looks. Our commercial and hospitality clients want the same for their businesses: every square foot utilized, and a team that does its job well.</p></div>
       <p class="dc-who__note" data-reveal style="--d:.2s">Our best projects start with your architect and contractor at the table with us from day one. If your plans are underway, reach out before they're final.</p>
     </div>
-    <div class="dc-who__imgs">
-      <div class="dc-media w1" data-reveal="img"><img src="images/sixmile-bridge-vineyard-retreat-terrace.jpg" width="2000" height="1334" loading="lazy" decoding="async" alt="Covered terrace overlooking a pool and vineyards at the Sixmile Bridge Vineyard Retreat, designed by Design Collaborative."></div>
-      <div class="dc-media w2" data-reveal="img" style="--d:.2s"><img src="images/sixmile-bridge-vineyard-retreat-reading-chair.jpg" width="1000" height="1499" loading="lazy" decoding="async" alt="Leather reading chair beside floor-to-ceiling windows and vineyard views at the Sixmile Bridge Vineyard Retreat."></div>
-    </div>
+    <figure class="dc-who__img">
+      <div class="dc-media" data-reveal="img"><img src="images/sixmile-bridge-vineyard-retreat-terrace.jpg" width="2000" height="1334" loading="lazy" decoding="async" alt="Covered terrace overlooking a pool and vineyards at the Sixmile Bridge Vineyard Retreat, designed by Design Collaborative."></div>
+      <figcaption class="dc-label" aria-hidden="true"><span>Sixmile Bridge Vineyard Retreat</span></figcaption>
+    </figure>
   </div>
 </section>
 
