@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lease Calculator · 2Serious Exotic</title>
+<meta name="description" content="Exotic car lease calculator with money factor, residual, tax and due at signing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,200..800&family=Inter:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header id="hdr">
+  <div class="row pad">
+    <button class="menu" id="menu-open" aria-label="Open menu" aria-controls="overlay" aria-expanded="false"><i></i><span class="label">Menu</span></button>
+    <a class="logo" href="index.html">2Serious<small>Exotic</small></a>
+    <div class="right"><a class="tel" href="tel:+19545943642">954.594.3642</a><a href="apply.html">Get approved</a></div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="row pad">
+    <button class="close" id="menu-close" aria-label="Close menu"><i></i><span class="label">Close</span></button>
+    <a class="logo" href="index.html">2Serious<small>Exotic</small></a>
+    <div class="right"><a href="apply.html">Get approved</a></div>
+  </div>
+  <nav class="pad" aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="collection.html">The Collection<small>What we lease</small></a>
+      <a href="deals.html">Deals<small>Recently delivered</small></a>
+      <a href="leasing.html">Leasing<small>How it works & FAQ</small></a>
+      <a href="calculator.html" aria-current="page">Calculator<small>Price a lease</small></a>
+      <a href="apply.html">Get Approved<small>Apply in minutes</small></a>
+  </nav>
+  <div class="foot pad"><span class="label mute">Direct line · 954.594.3642</span><span class="label mute">Fort Lauderdale, Florida</span><a class="label" href="https://www.instagram.com/2seriousexoticdeals/">Instagram</a></div>
+</div>
+<main>
+<section class="phero short">
+  <div class="in pad">
+    <span class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Calculator</span>
+    <h1 class="xl">Lease<br><span class="thin">calculator</span></h1>
+    <p>Every field a real deal sheet uses. Start from the McLaren Artura deal below or enter your own numbers. A value above 0.1 in the rate field is read as APR.</p>
+  </div>
+</section>
+
+<section class="pad" style="padding-block:40px 120px">
+  <div class="filters" role="group" aria-label="Start from an example" id="presets">
+    <button type="button" data-p="artura" aria-pressed="true">McLaren Artura (client deal)</button>
+    <button type="button" data-p="huracan" aria-pressed="false">Huracán EVO</button>
+    <button type="button" data-p="cullinan" aria-pressed="false">Rolls-Royce Cullinan</button>
+    <button type="button" data-p="trx" aria-pressed="false">RAM TRX</button>
+  </div>
+  <div class="fcalc">
+    <form id="fc" novalidate>
+      <span class="grp">Vehicle</span>
+      <div class="fld"><label for="msrp">MSRP / vehicle price</label><div class="in"><i>$</i><input id="msrp" inputmode="decimal" value="234,327.50"></div><small id="msrp-n"></small></div>
+      <div class="fld"><label for="cap">Selling price / cap cost</label><div class="in"><i>$</i><input id="cap" inputmode="decimal" value="234,327.50"></div><small id="cap-n"></small></div>
+      <span class="grp">Structure</span>
+      <div class="fld"><label for="term">Term</label><div class="in"><select id="term"><option>24</option><option>36</option><option>39</option><option>48</option><option selected>60</option></select><i>months</i></div><small></small></div>
+      <div class="fld"><label for="miles">Miles per year</label><div class="in"><select id="miles"><option>2,000</option><option selected>3,500</option><option>5,000</option><option>7,500</option><option>10,000</option><option>12,000</option></select></div><small></small></div>
+      <div class="fld"><label for="resid">Residual / balloon</label><div class="in"><input id="resid" inputmode="decimal" value="27.1842"><i>%</i></div><small id="resid-n"></small></div>
+      <div class="fld"><label for="mf">Money factor or APR</label><div class="in"><input id="mf" inputmode="decimal" value="0.00693"></div><small id="mf-n"></small></div>
+      <span class="grp">At signing</span>
+      <div class="fld"><label for="down">Down payment / cap reduction</label><div class="in"><i>$</i><input id="down" inputmode="decimal" value="54,527.13"></div><small id="down-n"></small></div>
+      <div class="fld"><label for="trade">Trade-in value</label><div class="in"><i>$</i><input id="trade" inputmode="decimal" value="0"></div><small id="trade-n"></small></div>
+      <div class="fld"><label for="fees">Other due at signing</label><div class="in"><i>$</i><input id="fees" inputmode="decimal" value="11,578.72"></div><small id="fees-n">Taxes, title, lien, bank fees, last month</small></div>
+      <div class="fld"><label for="tax">Sales tax on payment</label><div class="in"><input id="tax" inputmode="decimal" value="7.5"><i>%</i></div><small id="tax-n"></small></div>
+    </form>
+    <div class="out" aria-live="polite">
+      <span class="label mute">Estimated monthly payment</span>
+      <div class="pay" id="fpay">$0</div>
+      <div class="bar" aria-hidden="true"><span id="bd" style="background:var(--white)"></span><span id="br" style="background:var(--gold)"></span><span id="bt" style="background:#444"></span></div>
+      <dl>
+        <div><dt><i style="background:var(--white)"></i>Depreciation</dt><dd id="o-dep"></dd></div>
+        <div><dt><i style="background:var(--gold)"></i>Rent charge</dt><dd id="o-rent"></dd></div>
+        <div><dt><i style="background:#444"></i>Sales tax</dt><dd id="o-tax"></dd></div>
+        <div><dt>Base payment, before tax</dt><dd id="o-base"></dd></div>
+        <div><dt>Due at signing (est.)</dt><dd id="o-das"></dd></div>
+        <div class="tot"><dt>Total lease cost</dt><dd id="o-total"></dd></div>
+      </dl>
+      <a class="cut" href="apply.html">Get real numbers on this car</a>
+      <p style="margin:0;font-size:11px;color:#6A6A6A">Estimates only. All terms subject to credit approval and may change without notice at the discretion of 2Serious Exotic LLC. Example presets other than the Artura use illustrative pricing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="enquire">
+  <img src="https://images.unsplash.com/photo-1612825173281-9a193378527e?w=2400&q=80" alt="Orange Lamborghini Huracán EVO" loading="lazy">
+  <div class="in pad">
+    <span class="label">Private client desk</span>
+    <h2 class="xl">Your next car<br><span class="thin">starts with a call</span></h2>
+    <span class="tel">954.594.3642</span>
+    <div class="row"><a class="cut" href="apply.html">Get approved today</a><a class="cut ghost" href="calculator.html">Price a lease</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="pad">
+  <div class="fcols">
+    <div style="display:grid;gap:18px;align-content:start"><span class="logo" style="align-items:flex-start">2Serious<small style="padding-left:0">Exotic</small></span><span class="mute" style="max-width:34ch">Exotic and luxury vehicle leasing. Fort Lauderdale, Florida.</span></div>
+    <div><span class="label mute">Leasing</span><ul><li><a href="collection.html">The collection</a></li><li><a href="deals.html">Recent deals</a></li><li><a href="leasing.html">How leasing works</a></li><li><a href="calculator.html">Calculator</a></li></ul></div>
+    <div><span class="label mute">Start</span><ul><li><a href="apply.html">Get approved</a></li><li><a href="tel:+19545943642">954.594.3642</a></li></ul></div>
+    <div><span class="label mute">Follow</span><ul><li><a href="https://www.instagram.com/2seriousexoticdeals/">Instagram<br>@2seriousexoticdeals</a></li></ul></div>
+  </div>
+  <div class="legal"><p>© 2026 2Serious Exotic LLC. All rights reserved. All terms subject to credit approval and may change without notice at the discretion of 2Serious Exotic LLC. Example figures are illustrative unless marked as a client deal. Logos and names © their owners; 2Serious Exotic LLC has no affiliation with manufacturers.</p><a href="credits.html">Photo credits</a></div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

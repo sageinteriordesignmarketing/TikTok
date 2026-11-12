@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Get Approved · 2Serious Exotic</title>
+<meta name="description" content="Apply for an exotic car lease with 2Serious Exotic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,200..800&family=Inter:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header id="hdr">
+  <div class="row pad">
+    <button class="menu" id="menu-open" aria-label="Open menu" aria-controls="overlay" aria-expanded="false"><i></i><span class="label">Menu</span></button>
+    <a class="logo" href="index.html">2Serious<small>Exotic</small></a>
+    <div class="right"><a class="tel" href="tel:+19545943642">954.594.3642</a><a href="apply.html">Get approved</a></div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="row pad">
+    <button class="close" id="menu-close" aria-label="Close menu"><i></i><span class="label">Close</span></button>
+    <a class="logo" href="index.html">2Serious<small>Exotic</small></a>
+    <div class="right"><a href="apply.html">Get approved</a></div>
+  </div>
+  <nav class="pad" aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="collection.html">The Collection<small>What we lease</small></a>
+      <a href="deals.html">Deals<small>Recently delivered</small></a>
+      <a href="leasing.html">Leasing<small>How it works & FAQ</small></a>
+      <a href="calculator.html">Calculator<small>Price a lease</small></a>
+      <a href="apply.html" aria-current="page">Get Approved<small>Apply in minutes</small></a>
+  </nav>
+  <div class="foot pad"><span class="label mute">Direct line · 954.594.3642</span><span class="label mute">Fort Lauderdale, Florida</span><a class="label" href="https://www.instagram.com/2seriousexoticdeals/">Instagram</a></div>
+</div>
+<main>
+<section class="phero short">
+  <div class="in pad">
+    <span class="crumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Get Approved</span>
+    <h1 class="xl">Get<br><span class="thin">approved</span></h1>
+    <p>Four short steps. We'll review your request and come back with a structure, usually the same day.</p>
+  </div>
+</section>
+
+<section class="pad" style="padding-block:50px 130px">
+  <div class="apply">
+    <aside>
+      <div style="display:grid;gap:12px"><span class="label mute">Prefer to talk?</span><a href="tel:+19545943642" style="font:200 clamp(30px,3vw,44px)/1 var(--wide);font-stretch:125%">954.594.3642</a></div>
+      <div style="display:grid;gap:12px"><span class="label mute">Based in</span><span>Fort Lauderdale, Florida</span></div>
+      <div style="display:grid;gap:12px"><span class="label mute">What you'll need</span><ul style="margin:0;padding-left:18px;color:#BDBDBD;display:grid;gap:6px"><li>The car you want, or a link to it</li><li>Driver's license</li><li>Business details if leasing through a company</li></ul></div>
+      <div style="display:grid;gap:12px"><span class="label mute">Your information</span><span class="mute" style="font-size:13px">Used only to structure your lease. Submitting doesn't affect your credit until you approve a credit check.</span></div>
+    </aside>
+    <div>
+      <div class="progress" id="prog">
+        <div class="now"><span></span><b>01 Vehicle</b></div>
+        <div><span></span><b>02 You</b></div>
+        <div><span></span><b>03 Structure</b></div>
+        <div><span></span><b>04 Review</b></div>
+      </div>
+      <form class="aform" id="af" novalidate>
+        <fieldset data-step="0" style="display:contents;border:0">
+          <div class="fld wide"><label for="a-car">Vehicle you want</label><div class="in"><input id="a-car" value="2025 McLaren Artura Spider" placeholder="Year, make, model"></div><small>Or paste a listing link</small></div>
+          <div class="fld"><label for="a-cond">Condition</label><div class="in"><select id="a-cond"><option>Pre-owned</option><option>New</option></select></div></div>
+          <div class="fld"><label for="a-price">Approximate price</label><div class="in"><i>$</i><input id="a-price" inputmode="decimal" value="235,000"></div></div>
+          <div class="wide"><span class="label mute" style="display:block;margin-bottom:14px">How will it be used?</span>
+            <div class="choice">
+              <label><input type="radio" name="use" checked><b>Personal</b><span>Daily or weekend driver</span></label>
+              <label><input type="radio" name="use"><b>Business</b><span>Leased through a company</span></label>
+              <label><input type="radio" name="use"><b>Rental fleet</b><span>For an operator</span></label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset data-step="1" style="display:none;border:0" hidden>
+          <div class="fld"><label for="a-first">First name</label><div class="in"><input id="a-first" autocomplete="given-name"></div></div>
+          <div class="fld"><label for="a-last">Last name</label><div class="in"><input id="a-last" autocomplete="family-name"></div></div>
+          <div class="fld"><label for="a-email">Email</label><div class="in"><input id="a-email" type="email" autocomplete="email"></div></div>
+          <div class="fld"><label for="a-phone">Phone</label><div class="in"><input id="a-phone" type="tel" autocomplete="tel"></div></div>
+          <div class="fld wide"><label for="a-state">State</label><div class="in"><input id="a-state" value="Florida"></div></div>
+        </fieldset>
+        <fieldset data-step="2" style="display:none;border:0" hidden>
+          <div class="fld"><label for="a-term">Preferred term</label><div class="in"><select id="a-term"><option>24 months</option><option>36 months</option><option>48 months</option><option selected>60 months</option></select></div></div>
+          <div class="fld"><label for="a-miles">Miles per year</label><div class="in"><select id="a-miles"><option>2,000</option><option selected>3,500</option><option>5,000</option><option>7,500</option><option>10,000+</option></select></div></div>
+          <div class="fld"><label for="a-down">Down payment available</label><div class="in"><i>$</i><input id="a-down" inputmode="decimal" value="55,000"></div></div>
+          <div class="fld"><label for="a-trade">Trade-in?</label><div class="in"><select id="a-trade"><option>No</option><option>Yes</option></select></div></div>
+          <div class="fld wide"><label for="a-notes">Anything else</label><textarea id="a-notes" placeholder="Timing, balloon preference, current lease to exit…"></textarea></div>
+        </fieldset>
+        <fieldset data-step="3" style="display:none;border:0" hidden>
+          <div class="wide" id="review" style="display:grid;gap:0"></div>
+        </fieldset>
+        <div class="formnav">
+          <button type="button" class="go" id="back" hidden>Back</button>
+          <button type="submit" class="cut" id="next">Continue</button>
+        </div>
+        <p class="notice" id="sent" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pad">
+  <div class="fcols">
+    <div style="display:grid;gap:18px;align-content:start"><span class="logo" style="align-items:flex-start">2Serious<small style="padding-left:0">Exotic</small></span><span class="mute" style="max-width:34ch">Exotic and luxury vehicle leasing. Fort Lauderdale, Florida.</span></div>
+    <div><span class="label mute">Leasing</span><ul><li><a href="collection.html">The collection</a></li><li><a href="deals.html">Recent deals</a></li><li><a href="leasing.html">How leasing works</a></li><li><a href="calculator.html">Calculator</a></li></ul></div>
+    <div><span class="label mute">Start</span><ul><li><a href="apply.html">Get approved</a></li><li><a href="tel:+19545943642">954.594.3642</a></li></ul></div>
+    <div><span class="label mute">Follow</span><ul><li><a href="https://www.instagram.com/2seriousexoticdeals/">Instagram<br>@2seriousexoticdeals</a></li></ul></div>
+  </div>
+  <div class="legal"><p>© 2026 2Serious Exotic LLC. All rights reserved. All terms subject to credit approval and may change without notice at the discretion of 2Serious Exotic LLC. Example figures are illustrative unless marked as a client deal. Logos and names © their owners; 2Serious Exotic LLC has no affiliation with manufacturers.</p><a href="credits.html">Photo credits</a></div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

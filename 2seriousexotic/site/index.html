@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2Serious Exotic</title>
+<meta name="description" content="Exotic and luxury car leasing from Fort Lauderdale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,200..800&family=Inter:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header id="hdr">
+  <div class="row pad">
+    <button class="menu" id="menu-open" aria-label="Open menu" aria-controls="overlay" aria-expanded="false"><i></i><span class="label">Menu</span></button>
+    <a class="logo" href="index.html">2Serious<small>Exotic</small></a>
+    <div class="right"><a class="tel" href="tel:+19545943642">954.594.3642</a><a href="apply.html">Get approved</a></div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="row pad">
+    <button class="close" id="menu-close" aria-label="Close menu"><i></i><span class="label">Close</span></button>
+    <a class="logo" href="index.html">2Serious<small>Exotic</small></a>
+    <div class="right"><a href="apply.html">Get approved</a></div>
+  </div>
+  <nav class="pad" aria-label="Site">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="collection.html">The Collection<small>What we lease</small></a>
+      <a href="deals.html">Deals<small>Recently delivered</small></a>
+      <a href="leasing.html">Leasing<small>How it works & FAQ</small></a>
+      <a href="calculator.html">Calculator<small>Price a lease</small></a>
+      <a href="apply.html">Get Approved<small>Apply in minutes</small></a>
+  </nav>
+  <div class="foot pad"><span class="label mute">Direct line · 954.594.3642</span><span class="label mute">Fort Lauderdale, Florida</span><a class="label" href="https://www.instagram.com/2seriousexoticdeals/">Instagram</a></div>
+</div>
+<main>
+
+<!-- HERO -->
+<section class="hero" aria-label="Featured">
+  <div class="slide on"><img src="https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?w=2400&q=80" alt="Lamborghini Aventador S, scissor doors raised at sunset" style="object-position:center 40%"></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1632441730372-d8509de481d1?w=2400&q=80" alt="Ferrari SF90 Stradale in yellow"></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1618418721668-0d1f72aa4bab?w=2400&q=80" alt="Bentley Flying Spur at night"></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1627454820516-dc767bcb4d3e?w=2400&q=80" alt="Bugatti Chiron in white"></div>
+  <div class="hero-copy pad">
+    <div class="who">
+      <span class="label" id="h-make">Lamborghini · Aventador S</span>
+      <h1 class="xl">Beyond<br><span class="thin">ownership</span></h1>
+      <div class="links"><a class="go" href="#delivered">See recent deals</a><a class="go" href="#enquire">Get approved</a></div>
+    </div>
+    <div class="counter">
+      <span class="n"><b id="h-i">01</b> / 04</span>
+      <div class="bars" id="bars"><button class="on" aria-label="Slide 1"><span></span></button><button aria-label="Slide 2"><span></span></button><button aria-label="Slide 3"><span></span></button><button aria-label="Slide 4"><span></span></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto pad">
+  <span class="label mute">Exotic leasing · Fort Lauderdale</span>
+  <h2 class="xl">The rarest cars, <b>structured</b> by people who drive them.</h2>
+  <p>We work hand in hand with the nation's best banks. Quick turnarounds, unrivalled rates, and residuals written for how exotics actually hold their value.</p>
+</section>
+
+<!-- RECENTLY DELIVERED -->
+<section class="delivered pad" id="delivered">
+  <div class="dhead">
+    <div style="display:grid;gap:24px"><span class="label mute">Recently delivered</span><h2 class="xl">From Gallardo<br><span class="thin">to TRX</span></h2></div>
+    <a class="go" href="deals.html">All recent deals</a>
+  </div>
+  <div class="dgrid">
+    <figure class="dcar"><div class="ph"><img src="img/gallardo-spyder.jpg" alt="Yellow Lamborghini Gallardo Spyder"></div><figcaption><div><span class="yr">2007</span><b>Lamborghini<br>Gallardo Spyder</b></div><span class="status">Leased</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="img/ferrari-roma.jpg" alt="Silver Ferrari Roma"></div><figcaption><div><span class="yr">Ferrari</span><b>Roma</b></div><span class="status">Leased</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="img/ferrari-488.jpg" alt="Red 2016 Ferrari 488"></div><figcaption><div><span class="yr">2016</span><b>Ferrari<br>488 GTB</b></div><span class="status">Approved</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="img/gallardo-black.jpg" alt="Yellow Lamborghini Gallardo LP560-4"></div><figcaption><div><span class="yr">Lamborghini</span><b>Gallardo</b></div><span class="status">Delivered</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="img/supra.jpg" alt="Blue Toyota Supra A80"></div><figcaption><div><span class="yr">Toyota</span><b>Supra<br>MK4</b></div><span class="status">Leased</span></figcaption></figure>
+    <figure class="dcar"><div class="ph"><img src="img/ram-trx.jpg" alt="Red RAM 1500 TRX"></div><figcaption><div><span class="yr">RAM</span><b>1500 TRX</b></div><span class="status">Leased</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- DEAL SHEET -->
+<section class="sheet pad" id="deal">
+  <div class="intro">
+    <span class="label mute">Inside a real deal</span>
+    <h2 class="xl">2025 McLaren<br><span class="thin">Artura Spider</span></h2>
+    <p>Techlux convertible, 4,691 miles. Structured over 60 months with a balloon, so the client keeps capital in the business and can pay off the lease at any time.</p>
+    <div><span class="label mute">Total monthly</span><div class="mo">$3,894<small>/ MO</small></div></div>
+    <a class="cut" href="apply.html">Structure mine</a>
+  </div>
+  <div class="ledger">
+    <div>
+      <h3>The structure</h3>
+      <dl>
+        <div><dt>Sales price</dt><dd>$234,327.50</dd></div>
+        <div><dt>Capitalized cost reduction</dt><dd>&minus;$54,527.13</dd></div>
+        <div><dt>Total capitalized amount</dt><dd>$179,800.37</dd></div>
+        <div><dt>Term</dt><dd>60 months</dd></div>
+        <div><dt>Mileage allowance</dt><dd>3,500 / yr</dd></div>
+        <div><dt>Balloon</dt><dd>$63,700.00</dd></div>
+        <div><dt>Base monthly payment</dt><dd>$3,622.48</dd></div>
+        <div><dt>FL sales &amp; use tax on payment</dt><dd>$271.69</dd></div>
+        <div class="tot"><dt>Total monthly payment</dt><dd>$3,894.17</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h3>Due at signing</h3>
+      <dl>
+        <div><dt>Capitalized cost reduction</dt><dd>$54,527.13</dd></div>
+        <div><dt>First + pre-paid last month</dt><dd>$7,788.34</dd></div>
+        <div><dt>Taxes, title, lien &amp; bank fees</dt><dd>$7,684.53</dd></div>
+        <div class="tot"><dt>Total due at signing</dt><dd>$70,000.00</dd></div>
+      </dl>
+    </div>
+    <p class="fine">Actual client deal, September 2026. Personal details removed. Lessee may pay off the lease, including the balloon, at any time.</p>
+  </div>
+</section>
+
+<!-- MODEL SELECTOR -->
+<section class="models" id="collection">
+  <div class="pad">
+    <div class="tabs" role="tablist" id="tabs"></div>
+  </div>
+  <div class="stage">
+    <div class="ghostname" id="ghost">Bentley</div>
+    <div class="carimg"><img id="carimg" src="" alt=""></div>
+    <div class="pad">
+      <div class="spec">
+        <div class="model-cell"><span class="label mute" id="m-make"></span><span class="model" id="m-model"></span></div>
+        <div><span class="label mute">Term</span><span class="v" id="m-term"></span></div>
+        <div><span class="label mute">Miles / yr</span><span class="v" id="m-miles"></span></div>
+        <div><span class="label mute">Down</span><span class="v" id="m-down"></span></div>
+        <div><span class="label mute">From</span><span class="v" id="m-from"></span></div>
+        <div class="act"><a class="cut" href="collection.html">View collection</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT: residuals -->
+<section class="split">
+  <div class="img"><img src="https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=1800&q=80" alt="Rolls-Royce Wraith beneath palm trees"></div>
+  <div class="txt pad">
+    <span class="label mute">The 2Serious difference</span>
+    <h2 class="xl">Residuals<br><span class="thin">engineered for exotics</span></h2>
+    <p>Traditional banks price a hypercar like a sedan. We set residuals on the real-world depreciation curves of exotic vehicles, so the numbers stay fair when it's time to upgrade or exit.</p>
+    <ul>
+      <li><span>Lease structures</span><span>Open-end · Closed-end</span></li>
+      <li><span>Early exit</span><span>Trade out or upgrade mid-term</span></li>
+      <li><span>Built for</span><span>Collectors · Operators · Business owners</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="pad">
+  <div class="nums">
+    <div><b>24–60</b><span class="label mute">Month terms</span></div>
+    <div><b>2,000</b><span class="label mute">Miles / yr from</span></div>
+    <div><b>15–20%</b><span class="label mute">Typical down</span></div>
+    <div><b>Days</b><span class="label mute">Not weeks to approval</span></div>
+  </div>
+</div>
+
+<!-- CONFIGURATOR -->
+<section class="config pad" id="calc">
+  <div class="head">
+    <div style="display:grid;gap:24px"><span class="label mute">Lease configurator</span><h2 class="xl">Configure<br><span class="thin">your payment</span></h2></div>
+    <a class="go" href="calculator.html">Open full calculator</a>
+  </div>
+  <div class="cgrid">
+    <form class="sliders" id="f">
+      <div class="sl"><div class="t"><label class="label mute" for="price">Vehicle price</label><output id="o-price"></output></div><input type="range" id="price" min="150000" max="600000" step="5000" value="420000"></div>
+      <div class="sl"><div class="t"><label class="label mute" for="down">Down payment</label><output id="o-down"></output></div><input type="range" id="down" min="0" max="150000" step="1000" value="80000"></div>
+      <div class="sl"><div class="t"><label class="label mute" for="term">Term</label><output id="o-term"></output></div><input type="range" id="term" min="24" max="60" step="12" value="36"></div>
+      <div class="sl"><div class="t"><label class="label mute" for="res">Residual</label><output id="o-res"></output></div><input type="range" id="res" min="40" max="75" step="1" value="65"></div>
+    </form>
+    <div class="result" aria-live="polite">
+      <span class="label mute">Estimated monthly</span>
+      <div class="pay" id="pay"></div>
+      <dl>
+        <div><dt>Depreciation</dt><dd id="b1"></dd></div>
+        <div><dt>Rent charge</dt><dd id="b2"></dd></div>
+        <div><dt>Sales tax, 7%</dt><dd id="b3"></dd></div>
+      </dl>
+      <span style="font-size:11px;color:#6A6A6A">Estimate only. All terms subject to credit approval.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRE -->
+<section class="enquire" id="enquire">
+  <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=2400&q=80" alt="Ferrari F8 Tributo at golden hour">
+  <div class="in pad">
+    <span class="label">Private client desk</span>
+    <h2 class="xl">Your next car<br><span class="thin">starts with a call</span></h2>
+    <span class="tel">954.594.3642</span>
+    <div class="row"><a class="cut" href="apply.html">Get approved today</a><a class="cut ghost" href="calculator.html">Price a lease</a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pad">
+  <div class="fcols">
+    <div style="display:grid;gap:18px;align-content:start"><span class="logo" style="align-items:flex-start">2Serious<small style="padding-left:0">Exotic</small></span><span class="mute" style="max-width:34ch">Exotic and luxury vehicle leasing. Fort Lauderdale, Florida.</span></div>
+    <div><span class="label mute">Leasing</span><ul><li><a href="collection.html">The collection</a></li><li><a href="deals.html">Recent deals</a></li><li><a href="leasing.html">How leasing works</a></li><li><a href="calculator.html">Calculator</a></li></ul></div>
+    <div><span class="label mute">Start</span><ul><li><a href="apply.html">Get approved</a></li><li><a href="tel:+19545943642">954.594.3642</a></li></ul></div>
+    <div><span class="label mute">Follow</span><ul><li><a href="https://www.instagram.com/2seriousexoticdeals/">Instagram<br>@2seriousexoticdeals</a></li></ul></div>
+  </div>
+  <div class="legal"><p>© 2026 2Serious Exotic LLC. All rights reserved. All terms subject to credit approval and may change without notice at the discretion of 2Serious Exotic LLC. Example figures are illustrative unless marked as a client deal. Logos and names © their owners; 2Serious Exotic LLC has no affiliation with manufacturers.</p><a href="credits.html">Photo credits</a></div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>
