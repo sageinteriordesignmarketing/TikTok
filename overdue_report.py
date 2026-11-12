@@ -48,6 +48,10 @@ TEAM = {
 
 CLIENT_DEADLINE_PREFIX = "CLIENT DEADLINE"
 
+# Statuses that always count as open (not finished), even if a list in ClickUp
+# has them set up as a "done" status.
+ALWAYS_OPEN_STATUSES = {"admin"}
+
 # Show at most this many tasks per person / section; the rest are summarised
 # as "+N more". Tasks are sorted most-overdue first, so the oldest always show.
 MAX_LINES_PER_SECTION = 12
@@ -111,8 +115,10 @@ def client_name(task):
 def is_open(task):
     if task.get("archived"):
         return False
-    status_type = ((task.get("status") or {}).get("type") or "").lower()
-    return status_type not in ("closed", "done")
+    status = task.get("status") or {}
+    if (status.get("status") or "").strip().lower() in ALWAYS_OPEN_STATUSES:
+        return True
+    return (status.get("type") or "").lower() not in ("closed", "done")
 
 
 def build_items(tasks, today):
