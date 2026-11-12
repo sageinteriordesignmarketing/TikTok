@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2Serious Exotic</title>
+<meta name="description" content="Exotic and luxury car leasing from Fort Lauderdale. Fast approvals through the nation's top lenders, with residuals built for exotics and early-exit options.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: full-bleed night hero → marques ribbon → bank-vs-us ledger → live lease desk → process → FAQ → contact. Wide, low and fast, like the cars. */
+:root{
+  --ink:#0A0B0D;          /* carbon */
+  --ink-2:#121417;        /* raised carbon */
+  --line:#24272C;         /* hairline */
+  --bone:#ECE8E1;         /* primary text */
+  --smoke:#9A968E;        /* secondary text */
+  --champagne:#CDB78A;    /* accent: brushed brass */
+  --champagne-dim:#8C7B58;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:max(20px, 4vw);
+  --max:1320px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--ink);color:var(--bone);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--champagne);outline-offset:3px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-left:max(var(--gutter), env(safe-area-inset-left,0px));padding-right:max(var(--gutter), env(safe-area-inset-right,0px))}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--champagne)}
+.h2{font-family:var(--display);font-stretch:125%;font-weight:800;text-transform:uppercase;font-size:clamp(30px,4.6vw,64px);line-height:.95;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.lede{color:var(--smoke);max-width:56ch;margin:0}
+.btn{display:inline-flex;align-items:center;gap:.6em;font:600 14px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:17px 26px;border:1px solid var(--champagne);transition:background .25s,color .25s;cursor:pointer}
+.btn-solid{background:var(--champagne);color:var(--ink)}
+.btn-solid:hover{background:var(--bone);border-color:var(--bone)}
+.btn-ghost{background:transparent;color:var(--bone);border-color:rgba(236,232,225,.35)}
+.btn-ghost:hover{border-color:var(--bone)}
+.arrow{width:14px;height:10px;flex:none}
+
+/* ---------- Nav ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--ink)}
+.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(10,11,13,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+.mark{display:flex;align-items:baseline;gap:.35em;text-decoration:none;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;font-size:19px;letter-spacing:-.01em;white-space:nowrap}
+.mark b{color:var(--champagne);font-weight:900}
+.mark span{font-weight:300;font-stretch:100%;letter-spacing:.32em;font-size:12px;color:var(--smoke)}
+.nav ul{display:flex;gap:34px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--smoke);transition:color .2s}
+.nav ul a:hover{color:var(--bone)}
+.nav .btn{padding:12px 18px;font-size:12px}
+@media (max-width:900px){.nav ul{display:none}}
+@media (max-width:420px){.mark span{display:none}.nav .btn{padding:11px 14px}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:min(92vh,880px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero-img{position:absolute;inset:0;z-index:-2;background:#111 url("https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=2400&q=80") 70% 62%/cover no-repeat;transform:scale(1.06);animation:settle 2.4s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes settle{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,11,13,.55) 0%,rgba(10,11,13,.15) 35%,rgba(10,11,13,.75) 72%,var(--ink) 100%),linear-gradient(90deg,rgba(10,11,13,.85) 0%,rgba(10,11,13,.35) 50%,rgba(10,11,13,0) 75%)}
+.hero .wrap{width:100%;padding-block:150px 56px;display:grid;gap:34px}
+.hero h1{margin:0;font-family:var(--display);font-weight:900;font-stretch:125%;text-transform:uppercase;line-height:.86;letter-spacing:-.02em;font-size:clamp(44px,7.2vw,118px);text-wrap:balance}
+.hero h1 em{font-style:normal;font-weight:200;font-stretch:125%;color:var(--champagne)}
+.hero p{max-width:50ch;margin:0;font-size:clamp(17px,1.5vw,20px);color:#D3CEC5}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.terms{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(236,232,225,.18);margin-top:18px}
+.terms div{padding:20px 20px 0 0;display:grid;gap:6px}
+.terms div + div{padding-left:20px;border-left:1px solid rgba(236,232,225,.12)}
+.terms strong{font:600 clamp(22px,2.4vw,32px)/1 var(--display);font-stretch:112%;font-variant-numeric:tabular-nums}
+.terms span{font:400 11px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
+@media (max-width:760px){.terms{grid-template-columns:repeat(2,1fr)}.terms div{padding:18px 12px 16px 0}.terms div:nth-child(3){padding-left:0;border-left:0}.terms div:nth-child(n+3){border-top:1px solid rgba(236,232,225,.12)}}
+
+/* ---------- Clientele ---------- */
+.clientele{border-block:1px solid var(--line);background:var(--ink-2)}
+.clientele .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 40px;padding-block:26px}
+.clientele p{margin:0;font-family:var(--display);font-stretch:100%;font-weight:400;font-size:clamp(17px,1.8vw,22px)}
+.clientele p strong{font-weight:800;font-stretch:118%;text-transform:uppercase;letter-spacing:.01em}
+.clientele ul{display:flex;flex-wrap:wrap;gap:8px 28px;list-style:none;margin:0;padding:0;font:400 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--smoke)}
+.clientele li::before{content:"";display:inline-block;width:5px;height:5px;background:var(--champagne);margin-right:10px;vertical-align:middle;transform:rotate(45deg)}
+
+/* ---------- Sections ---------- */
+section{scroll-margin-top:80px}
+.sec{padding-block:clamp(80px,11vw,150px)}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:28px 60px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.sec-head > div{display:grid;gap:22px}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+
+/* ---------- Marques ribbon ---------- */
+.ribbon{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,calc((100% - 42px)/3.4));gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.car{scroll-snap-align:start;position:relative;aspect-ratio:4/5;max-width:100%;overflow:hidden;background:var(--ink-2)}
+.car img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s;filter:saturate(.9)}
+.car:hover img{transform:scale(1.04);filter:saturate(1.05)}
+.car figcaption{position:absolute;inset:auto 0 0;padding:60px 20px 20px;background:linear-gradient(transparent,rgba(10,11,13,.92));display:grid;gap:4px}
+.car figcaption b{font:800 clamp(18px,1.6vw,22px)/1.05 var(--display);font-stretch:112%;overflow-wrap:anywhere;text-transform:uppercase}
+.car figcaption span{font:400 12px/1.3 var(--mono);letter-spacing:.1em;color:var(--smoke);text-transform:uppercase}
+@media (max-width:640px){.ribbon{grid-auto-columns:78%}}
+.fine{font:400 11px/1.5 var(--mono);letter-spacing:.06em;color:#6E6A63;margin:14px 0 0}
+
+/* ---------- Ledger (bank vs us) ---------- */
+.ledger-sec{background:var(--ink-2);border-block:1px solid var(--line)}
+.ledger{width:100%;border-collapse:collapse}
+.ledger th,.ledger td{text-align:left;vertical-align:top;padding:26px 24px 26px 0;border-bottom:1px solid var(--line)}
+.ledger thead th{font:500 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--smoke);padding-block:0 18px}
+.ledger thead th:last-child{color:var(--champagne)}
+.ledger tbody th{font:700 clamp(17px,1.6vw,21px)/1.15 var(--display);font-stretch:112%;text-transform:uppercase;width:24%}
+.ledger td{color:var(--smoke);width:34%}
+.ledger td:last-child{color:var(--bone);width:42%}
+.ledger td:last-child::before{content:"";display:inline-block;width:14px;height:1px;background:var(--champagne);vertical-align:middle;margin-right:12px}
+@media (max-width:760px){
+  .ledger thead{display:none}
+  .ledger tr{display:grid;gap:8px;padding-block:22px;border-bottom:1px solid var(--line)}
+  .ledger th,.ledger td{border:0;padding:0;width:auto!important}
+  .ledger td:first-of-type::before{content:"Typical bank · ";font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#6E6A63}
+  .ledger td:last-child::before{width:auto;height:auto;background:none;content:"2Serious · ";font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--champagne);margin:0}
+}
+
+/* ---------- Lease desk ---------- */
+.desk{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border:1px solid var(--line)}
+@media (max-width:980px){.desk{grid-template-columns:1fr}}
+.desk form{padding:clamp(22px,3vw,40px);display:grid;grid-template-columns:1fr 1fr;gap:22px 22px;border-right:1px solid var(--line)}
+@media (max-width:980px){.desk form{border-right:0;border-bottom:1px solid var(--line)}}
+@media (max-width:520px){.desk form{grid-template-columns:1fr}}
+.field{display:grid;gap:8px;min-width:0}
+.field label{font:500 11px/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
+.field .in{display:flex;align-items:center;border-bottom:1px solid #3A3D43;transition:border-color .2s}
+.field .in:focus-within{border-color:var(--champagne)}
+.field .in i{font:400 15px var(--mono);font-style:normal;color:#6E6A63;padding-right:6px}
+.field input,.field select{width:100%;min-width:0;background:transparent;border:0;color:var(--bone);font:500 20px/1 var(--mono);padding:10px 0;font-variant-numeric:tabular-nums;outline:none;-moz-appearance:textfield;appearance:none}
+.field select{cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--smoke) 50%),linear-gradient(135deg,var(--smoke) 50%,transparent 50%);background-position:calc(100% - 10px) 52%,calc(100% - 5px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+.field select option{background:var(--ink-2)}
+.field input::-webkit-inner-spin-button,.field input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.field small{font:400 11px/1.3 var(--mono);color:#6E6A63;min-height:1.3em}
+.vehicle{grid-column:1/-1}
+.preset-row{display:flex;flex-wrap:wrap;gap:8px}
+.preset{font:500 12px/1 var(--mono);letter-spacing:.06em;color:var(--smoke);background:transparent;border:1px solid var(--line);padding:9px 12px;cursor:pointer;transition:all .2s}
+.preset:hover{color:var(--bone);border-color:#4A4D53}
+.preset[aria-pressed="true"]{color:var(--ink);background:var(--champagne);border-color:var(--champagne)}
+
+.readout{padding:clamp(22px,3vw,40px);display:grid;gap:28px;align-content:start;background:linear-gradient(180deg,rgba(205,183,138,.05),transparent 60%)}
+.big{display:grid;gap:10px}
+.big output{font:700 clamp(52px,7vw,92px)/.9 var(--display);font-stretch:112%;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.big output sup{font-size:.36em;vertical-align:.95em;color:var(--champagne);font-weight:400;margin-right:4px}
+.big output sub{font:400 15px var(--mono);vertical-align:baseline;color:var(--smoke);letter-spacing:.04em;margin-left:6px}
+.stack{display:flex;height:10px;gap:2px}
+.stack span{display:block;height:100%;transition:flex-grow .5s cubic-bezier(.2,.7,.2,1)}
+.s-dep{background:var(--champagne)}.s-rent{background:var(--champagne-dim)}.s-tax{background:#4A4D53}
+.rows{display:grid;margin:0}
+.rows div{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.rows dt{color:var(--smoke);font-size:15px;display:flex;align-items:center;gap:10px}
+.rows dt i{width:8px;height:8px;display:inline-block}
+.rows dd{margin:0;font:500 16px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.rows .total dt,.rows .total dd{color:var(--bone);font-weight:600}
+.readout .btn{justify-self:start}
+
+/* ---------- Process ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{padding:28px 28px 0 0;border-top:1px solid var(--line);display:grid;gap:12px;align-content:start;counter-increment:s;position:relative}
+.steps li + li{padding-left:28px;border-left:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 13px var(--mono);color:var(--champagne);letter-spacing:.1em}
+.steps h3{margin:0;font:800 22px/1.05 var(--display);font-stretch:118%;text-transform:uppercase}
+.steps p{margin:0;color:var(--smoke);font-size:16px}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}.steps li{padding:28px 20px 32px 0}.steps li:nth-child(3){padding-left:0;border-left:0}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}.steps li,.steps li + li{padding:24px 0 28px;border-left:0}}
+
+/* ---------- Coastline band ---------- */
+.band{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.band::before{content:"";position:absolute;inset:0;z-index:-2;background:#111 url("https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=2200&q=80") center 70%/cover}
+.band::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,11,13,.92) 0%,rgba(10,11,13,.55) 55%,rgba(10,11,13,.2) 100%)}
+.band .wrap{width:100%;padding-block:90px;display:grid;gap:26px}
+.band blockquote{margin:0;max-width:20ch;font:800 clamp(30px,4.4vw,60px)/1 var(--display);font-stretch:118%;text-transform:uppercase;text-wrap:balance}
+.band blockquote em{font-style:normal;font-weight:200;color:var(--champagne)}
+.band p{margin:0;max-width:46ch;color:#CFCAC1}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:60px}
+@media (max-width:860px){.faq{grid-template-columns:1fr;gap:36px}}
+.faq-head{display:grid;gap:22px;align-content:start}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;font:700 clamp(18px,1.8vw,23px)/1.15 var(--display);font-stretch:112%;text-transform:uppercase}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;width:14px;height:14px;background:linear-gradient(var(--champagne),var(--champagne)) center/14px 1.5px no-repeat,linear-gradient(var(--champagne),var(--champagne)) center/1.5px 14px no-repeat;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0;padding:0 0 28px;color:var(--smoke);max-width:62ch}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--ink-2);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,90px)}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.contact-info{display:grid;gap:30px;align-content:start}
+.line{display:grid;gap:8px}
+.line a{font:700 clamp(32px,4.4vw,56px)/1 var(--display);font-stretch:112%;text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:-.01em;transition:color .2s;width:fit-content}
+.line a:hover{color:var(--champagne)}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:12px 28px;margin:0;font-size:15px}
+.meta dt{font:500 11px/1.9 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
+.meta dd{margin:0}
+.inquiry{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
+.inquiry .wide{grid-column:1/-1}
+@media (max-width:520px){.inquiry{grid-template-columns:1fr}}
+.inquiry textarea{width:100%;background:transparent;border:0;border-bottom:1px solid #3A3D43;color:var(--bone);font:400 17px/1.5 var(--body);padding:10px 0;resize:vertical;min-height:96px;outline:none}
+.inquiry textarea:focus{border-color:var(--champagne)}
+.inquiry .field input{font:400 18px/1.2 var(--body)}
+.inquiry .btn{justify-self:start}
+.sent{grid-column:1/-1;margin:0;font:400 14px/1.5 var(--mono);color:var(--champagne)}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:40px calc(40px + env(safe-area-inset-bottom,0px));display:grid;gap:26px}
+.foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
+.foot-top ul{display:flex;flex-wrap:wrap;gap:12px 28px;list-style:none;margin:0;padding:0}
+.foot-top ul a{text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--smoke)}
+.foot-top ul a:hover{color:var(--bone)}
+.legal{font:400 11px/1.7 var(--mono);color:#6E6A63;letter-spacing:.04em;margin:0;max-width:110ch}
+.wordmark{font:900 clamp(56px,15vw,220px)/.8 var(--display);font-stretch:125%;text-transform:uppercase;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px #2C2F35;margin:10px 0 0;white-space:nowrap;overflow:hidden;user-select:none}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="2Serious Exotic, home"><b>2</b>Serious <span>Exotic</span></a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#marques">Vehicles</a></li>
+        <li><a href="#why">Why us</a></li>
+        <li><a href="#desk">Calculator</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-solid" href="#contact">Get approved</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-img" role="img" aria-label="Bugatti Chiron parked at night"></div>
+    <div class="wrap">
+      <span class="eyebrow">Exotic &amp; luxury leasing · Fort Lauderdale, FL</span>
+      <h1>Drive the car.<br><em>Keep</em> the capital.</h1>
+      <p>We structure exotic car leases with the nation's best banks. You get quick turnarounds, sharp rates and residuals built around how these cars actually hold value.</p>
+      <div class="ctas">
+        <a class="btn btn-solid" href="#contact">Get approved today
+          <svg class="arrow" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <a class="btn btn-ghost" href="#desk">Price a lease</a>
+      </div>
+      <div class="terms" role="list">
+        <div role="listitem"><strong>24–60</strong><span>Month terms</span></div>
+        <div role="listitem"><strong>2,000</strong><span>Miles / yr, minimum option</span></div>
+        <div role="listitem"><strong>15–20%</strong><span>Typical down payment</span></div>
+        <div role="listitem"><strong>Early exit</strong><span>Upgrade or trade out mid-term</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTELE -->
+  <div class="clientele">
+    <div class="wrap">
+      <p>Trusted by athletes, creators and collectors, including <strong>Jake Paul</strong>.</p>
+      <ul>
+        <li>Collectors</li>
+        <li>Rental operators</li>
+        <li>Business owners</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MARQUES -->
+  <section class="sec" id="marques">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">What we lease</span>
+          <h2 class="h2">If it's rare,<br>we can structure it.</h2>
+        </div>
+        <p class="lede">Hypercars, super sedans and grand tourers, new or pre-owned. Send us the car you want, from a dealer or a private sale, and we'll build the lease around it.</p>
+      </div>
+      <div class="ribbon" tabindex="0" aria-label="Example vehicles, scroll sideways">
+        <figure class="car"><img loading="lazy" src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=900&q=75" alt="White Bugatti Chiron, front view"><figcaption><b>Bugatti</b><span>Chiron</span></figcaption></figure>
+        <figure class="car"><img loading="lazy" src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=900&q=75" alt="Red Ferrari F8 Tributo"><figcaption><b>Ferrari</b><span>F8 Tributo</span></figcaption></figure>
+        <figure class="car"><img loading="lazy" src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=900&q=75" alt="Yellow Lamborghini Huracán"><figcaption><b>Lamborghini</b><span>Huracán</span></figcaption></figure>
+        <figure class="car"><img loading="lazy" src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=900&q=75" alt="Silver McLaren 720S"><figcaption><b>McLaren</b><span>720S</span></figcaption></figure>
+        <figure class="car"><img loading="lazy" src="https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=900&q=75" alt="Two-tone Rolls-Royce Wraith under palm trees"><figcaption><b>Rolls-Royce</b><span>Wraith</span></figcaption></figure>
+        <figure class="car"><img loading="lazy" src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=900&q=75" alt="Black Porsche 911 GT3 RS"><figcaption><b>Porsche</b><span>911 GT3 RS</span></figcaption></figure>
+        <figure class="car"><img loading="lazy" src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=900&q=75" alt="Blue Lamborghini Aventador S"><figcaption><b>Lamborghini</b><span>Aventador S</span></figcaption></figure>
+      </div>
+      <p class="fine">Marques shown as examples. Logos and names © their owners. 2Serious Exotic LLC has no affiliation with manufacturers.</p>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="sec ledger-sec" id="why">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Why 2Serious</span>
+          <h2 class="h2">Banks lease cars.<br>We lease exotics.</h2>
+        </div>
+        <p class="lede">A Huracán doesn't depreciate like a sedan, so it shouldn't be financed like one. Here's what changes when the lease is built by people who specialize in these cars.</p>
+      </div>
+      <table class="ledger">
+        <thead><tr><th scope="col"><span class="sr">&nbsp;</span></th><th scope="col">Typical bank lease</th><th scope="col">2Serious Exotic</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Residuals</th><td>Cookie-cutter tables written for everyday cars.</td><td>Set to the real depreciation curves of exotic vehicles, so the numbers are fair when you upgrade or exit.</td></tr>
+          <tr><th scope="row">Mileage</th><td>Fixed tiers that rarely fit a weekend car.</td><td>Flexible options starting as low as 2,000 miles a year.</td></tr>
+          <tr><th scope="row">Getting out early</th><td>Heavy penalties, or not allowed at all.</td><td>Early exit and trade-out options on open-end and closed-end leases.</td></tr>
+          <tr><th scope="row">Down payment</th><td>One fixed requirement.</td><td>Usually 15–20%, with creative alternatives for qualified clients.</td></tr>
+          <tr><th scope="row">Who it's for</th><td>Personal-use drivers only.</td><td>Collectors, rental operators and business owners, with terms tailored to each.</td></tr>
+          <tr><th scope="row">Speed</th><td>Weeks in underwriting.</td><td>Quick turnarounds through our network of top national lenders.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- LEASE DESK -->
+  <section class="sec" id="desk">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">Lease calculator</span>
+          <h2 class="h2">Run the numbers<br>before you call.</h2>
+        </div>
+        <p class="lede">Pick an example or enter your own deal. Payments update as you type. Money factor or APR both work: enter a value above 0.1 and we'll treat it as APR.</p>
+      </div>
+
+      <div class="desk">
+        <form id="calc" novalidate>
+          <div class="field vehicle">
+            <label id="ex-label">Example deals</label>
+            <div class="preset-row" role="group" aria-labelledby="ex-label">
+              <button type="button" class="preset" data-p="huracan" aria-pressed="true">Huracán EVO</button>
+              <button type="button" class="preset" data-p="f8" aria-pressed="false">Ferrari F8</button>
+              <button type="button" class="preset" data-p="cullinan" aria-pressed="false">RR Cullinan</button>
+              <button type="button" class="preset" data-p="gt3" aria-pressed="false">911 GT3</button>
+            </div>
+          </div>
+          <div class="field"><label for="msrp">MSRP</label><div class="in"><i>$</i><input id="msrp" inputmode="decimal" value="268,000"></div><small></small></div>
+          <div class="field"><label for="cap">Selling price / cap cost</label><div class="in"><i>$</i><input id="cap" inputmode="decimal" value="262,000"></div><small></small></div>
+          <div class="field"><label for="term">Term</label><div class="in"><select id="term"><option>24</option><option selected>36</option><option>39</option><option>48</option><option>60</option></select><i>mo</i></div><small></small></div>
+          <div class="field"><label for="miles">Miles per year</label><div class="in"><select id="miles"><option>2,000</option><option>3,000</option><option selected>5,000</option><option>7,500</option><option>10,000</option><option>12,000</option></select></div><small></small></div>
+          <div class="field"><label for="resid">Residual</label><div class="in"><input id="resid" inputmode="decimal" value="62"><i>%</i></div><small id="resid-amt"></small></div>
+          <div class="field"><label for="mf">Money factor or APR</label><div class="in"><input id="mf" inputmode="decimal" value="0.00285"></div><small id="mf-note"></small></div>
+          <div class="field"><label for="down">Down payment</label><div class="in"><i>$</i><input id="down" inputmode="decimal" value="45,000"></div><small id="down-pct"></small></div>
+          <div class="field"><label for="trade">Trade-in value</label><div class="in"><i>$</i><input id="trade" inputmode="decimal" value="0"></div><small></small></div>
+          <div class="field"><label for="fees">Fees due at signing</label><div class="in"><i>$</i><input id="fees" inputmode="decimal" value="1,995"></div><small></small></div>
+          <div class="field"><label for="tax">Sales tax</label><div class="in"><input id="tax" inputmode="decimal" value="7"><i>%</i></div><small>Broward County: 6% FL + 1% surtax</small></div>
+        </form>
+
+        <div class="readout" aria-live="polite">
+          <div class="big">
+            <span class="eyebrow">Estimated monthly payment</span>
+            <output id="monthly"><sup>$</sup>0<sub>/mo</sub></output>
+          </div>
+          <div class="stack" aria-hidden="true"><span class="s-dep" id="b-dep"></span><span class="s-rent" id="b-rent"></span><span class="s-tax" id="b-tax"></span></div>
+          <dl class="rows">
+            <div><dt><i class="s-dep"></i>Depreciation</dt><dd id="o-dep">–</dd></div>
+            <div><dt><i class="s-rent"></i>Rent charge</dt><dd id="o-rent">–</dd></div>
+            <div><dt><i class="s-tax"></i>Sales tax</dt><dd id="o-tax">–</dd></div>
+            <div><dt>Base payment, before tax</dt><dd id="o-base">–</dd></div>
+            <div><dt>Due at signing (est.)</dt><dd id="o-das">–</dd></div>
+            <div class="total"><dt>Total lease cost</dt><dd id="o-total">–</dd></div>
+          </dl>
+          <a class="btn btn-solid" href="#contact" id="quote-cta">Get a real quote on this deal
+            <svg class="arrow" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></a>
+          <p class="fine" style="margin:0">Estimates only. All terms subject to credit approval and may change without notice at the discretion of 2Serious Exotic LLC. Example deals use illustrative pricing, not current offers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COASTLINE BAND -->
+  <section class="band" aria-label="About">
+    <div class="wrap">
+      <span class="eyebrow">Based in Fort Lauderdale</span>
+      <blockquote>Built for people who <em>take their cars</em> seriously.</blockquote>
+      <p>We work hand in hand with the nation's best banks to give our clients a leasing experience that matches the car: fast, discreet and done properly.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="sec" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="eyebrow">How it works</span>
+          <h2 class="h2">From inquiry<br>to keys.</h2>
+        </div>
+        <p class="lede">One point of contact from the first call through delivery. Most of the work happens on our side.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Tell us the car</h3><p>New, pre-owned, dealer or private sale. Share the vehicle and how you plan to use it.</p></li>
+        <li><h3>We structure it</h3><p>We shop the deal across our lenders and set term, mileage, residual and down payment to fit you.</p></li>
+        <li><h3>Approve &amp; sign</h3><p>Quick turnaround on approval, with clear numbers and no surprises at signing.</p></li>
+        <li><h3>Drive, then decide</h3><p>Upgrade, trade out early, or buy it at the end. The exit options are part of the plan from day one.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec ledger-sec" id="faq">
+    <div class="wrap faq">
+      <div class="faq-head">
+        <span class="eyebrow">Lease terms</span>
+        <h2 class="h2">Straight<br>answers.</h2>
+        <p class="lede">Something not covered here? Call the direct line and you'll speak to us, not a call center.</p>
+      </div>
+      <div>
+        <details open>
+          <summary>What are standard lease terms?</summary>
+          <p>Our leases typically run 24 to 60 months, with flexible mileage options starting as low as 2,000 miles per year. Terms can be tailored for collectors, rental operators or business owners.</p>
+        </details>
+        <details>
+          <summary>What's the minimum down payment?</summary>
+          <p>Most structures require 15–20% down, depending on the vehicle, your profile and the deal structure. For qualified clients, we can design creative alternatives to a standard down payment.</p>
+        </details>
+        <details>
+          <summary>How are residual values set?</summary>
+          <p>Residuals are tailored to the real-world depreciation curves of exotic vehicles, not cookie-cutter numbers from traditional banks. That keeps things fair and flexible when it's time to upgrade or exit.</p>
+        </details>
+        <details>
+          <summary>Can I exit my lease early?</summary>
+          <p>Yes. Whether you choose an open-end or closed-end lease, we offer early exit and trade-out options for clients who want to upgrade or change vehicles before the end of the term. Each structure has different benefits, and we'll match the flexibility to your goals and your car.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <span class="eyebrow">Request a quote</span>
+        <h2 class="h2">Let's get you<br>approved.</h2>
+        <div class="line">
+          <span class="eyebrow" style="color:var(--smoke)">Direct line</span>
+          <a href="tel:+19545943642">954.594.3642</a>
+        </div>
+        <dl class="meta">
+          <dt>Location</dt><dd>Fort Lauderdale, Florida</dd>
+          <dt>Serving</dt><dd>Clients nationwide</dd>
+          <dt>Specialty</dt><dd>Exotic, luxury &amp; collector vehicle leasing</dd>
+        </dl>
+      </div>
+      <form class="inquiry" id="inquiry">
+        <div class="field"><label for="c-name">Full name</label><div class="in"><input id="c-name" autocomplete="name" required></div></div>
+        <div class="field"><label for="c-phone">Phone</label><div class="in"><input id="c-phone" type="tel" autocomplete="tel" required></div></div>
+        <div class="field wide"><label for="c-email">Email</label><div class="in"><input id="c-email" type="email" autocomplete="email" required></div></div>
+        <div class="field wide"><label for="c-car">Vehicle you're interested in</label><div class="in"><input id="c-car" placeholder="e.g. 2025 Lamborghini Revuelto"></div></div>
+        <div class="field wide"><label for="c-msg">Anything else we should know</label><textarea id="c-msg" placeholder="Term, mileage, trade-in, timing…"></textarea></div>
+        <button class="btn btn-solid" type="submit">Send inquiry
+          <svg class="arrow" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M0 5h12M8 1l4 4-4 4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <p class="sent" id="sent" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="mark" href="#top"><b>2</b>Serious <span>Exotic</span></a>
+      <ul>
+        <li><a href="#marques">Vehicles</a></li>
+        <li><a href="#desk">Calculator</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <p class="legal">© 2026 2Serious Exotic LLC. All rights reserved. All terms subject to credit approval and may change without notice at the discretion of 2Serious Exotic LLC. Logos and vehicle names © their owners; 2Serious Exotic LLC has no affiliation with manufacturers.</p>
+    <div class="wordmark" aria-hidden="true">2Serious</div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Sticky nav background
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('solid', scrollY > 40);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // ---------- Lease calculator ----------
+  const $ = id => document.getElementById(id);
+  const num = v => { const n = parseFloat(String(v).replace(/[^0-9.\-]/g,'')); return isFinite(n) ? n : 0; };
+  const usd = (n, d=2) => (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+  const fmtInt = n => n.toLocaleString('en-US',{maximumFractionDigits:0});
+
+  // Illustrative example deals (not live offers)
+  const presets = {
+    huracan:  {msrp:268000, cap:262000, term:36, miles:'5,000', resid:62, mf:'0.00285', down:45000, trade:0, fees:1995},
+    f8:       {msrp:298000, cap:289000, term:39, miles:'5,000', resid:64, mf:'0.00290', down:52000, trade:0, fees:1995},
+    cullinan: {msrp:395000, cap:385000, term:48, miles:'7,500', resid:55, mf:'0.00275', down:70000, trade:0, fees:2495},
+    gt3:      {msrp:222000, cap:222000, term:36, miles:'3,000', resid:72, mf:'0.00300', down:35000, trade:0, fees:1495},
+  };
+  const moneyIds = ['msrp','cap','down','trade','fees'];
+
+  function apply(p){
+    const d = presets[p];
+    moneyIds.forEach(k => $(k).value = fmtInt(d[k]));
+    $('term').value = d.term; $('miles').value = d.miles; $('resid').value = d.resid; $('mf').value = d.mf;
+    document.querySelectorAll('.preset').forEach(b => b.setAttribute('aria-pressed', b.dataset.p === p));
+    calc();
+  }
+
+  function calc(){
+    const msrp = num($('msrp').value), cap = num($('cap').value), term = Math.max(1, num($('term').value));
+    const resPct = num($('resid').value), rawMf = num($('mf').value);
+    const down = num($('down').value), trade = num($('trade').value), fees = num($('fees').value), tax = num($('tax').value);
+
+    const isApr = rawMf > 0.1;
+    const mf = isApr ? rawMf / 2400 : rawMf;
+    $('mf-note').textContent = isApr ? `Treated as APR → MF ${mf.toFixed(5)}` : `≈ ${(mf*2400).toFixed(2)}% APR`;
+
+    const residual = msrp * resPct / 100;
+    $('resid-amt').textContent = msrp ? usd(residual,0) + ' buyout at term end' : '';
+    $('down-pct').textContent = cap ? `${(down / cap * 100).toFixed(1)}% of cap cost` : '';
+
+    const adjCap = cap - down - trade;
+    const dep = Math.max(0, (adjCap - residual) / term);
+    const rent = Math.max(0, (adjCap + residual) * mf);
+    const base = dep + rent;
+    const taxM = base * tax / 100;
+    const monthly = base + taxM;
+    const das = down + fees + monthly;
+    const total = monthly * term + down + trade + fees;
+
+    $('monthly').innerHTML = `<sup>$</sup>${Math.round(monthly).toLocaleString('en-US')}<sub>/mo</sub>`;
+    $('o-dep').textContent = usd(dep); $('o-rent').textContent = usd(rent); $('o-tax').textContent = usd(taxM);
+    $('o-base').textContent = usd(base); $('o-das').textContent = usd(das); $('o-total').textContent = usd(total);
+    const t = monthly || 1;
+    $('b-dep').style.flexGrow = dep / t; $('b-rent').style.flexGrow = rent / t; $('b-tax').style.flexGrow = taxM / t;
+  }
+
+  document.querySelectorAll('.preset').forEach(b => b.addEventListener('click', () => apply(b.dataset.p)));
+  $('calc').addEventListener('input', e => {
+    if (e.target.id !== 'tax') document.querySelectorAll('.preset').forEach(b => b.setAttribute('aria-pressed','false'));
+    calc();
+  });
+  $('calc').addEventListener('submit', e => e.preventDefault());
+  moneyIds.forEach(k => $(k).addEventListener('blur', () => { const v = num($(k).value); $(k).value = fmtInt(v); }));
+
+  // Carry the calculated deal into the inquiry message
+  $('quote-cta').addEventListener('click', () => {
+    const msg = $('c-msg');
+    if (!msg.value.trim()) msg.value = `Calculator: cap cost ${$('cap').value ? '$'+$('cap').value : '–'}, ${$('term').value} mo, ${$('miles').value} mi/yr, $${$('down').value} down. Est. ${$('monthly').textContent.replace('/mo','')}/mo.`;
+  });
+
+  calc();
+
+  // ---------- Inquiry form (connect to CRM/email before launch) ----------
+  $('inquiry').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target;
+    if (!f.reportValidity()) return;
+    const s = $('sent');
+    s.textContent = 'Thanks, ' + ($('c-name').value.split(' ')[0] || 'there') + '. Your inquiry is ready to send. (Form handler not connected in this preview.)';
+    s.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
