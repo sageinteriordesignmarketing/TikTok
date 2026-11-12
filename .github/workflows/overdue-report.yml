@@ -1,0 +1,60 @@
+name: Daily overdue report
+
+on:
+  # Weekdays at 8:00 AM Eastern. GitHub schedules run in UTC, and Eastern time
+  # shifts by an hour for daylight saving, so there are two entries; the
+  # "Check it's 8 AM Eastern" step below lets only the right one through.
+  # NOTE: the schedule is switched OFF until the test run has been approved.
+  # To switch it on, delete the "#" in front of the three lines below.
+  # schedule:
+  #   - cron: "0 12 * * 1-5"   # 8 AM EDT (summer)
+  #   - cron: "0 13 * * 1-5"   # 8 AM EST (winter)
+
+  # Lets you run it by hand from the Actions tab ("Run workflow" button).
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview only (show the report in the log, don't post to Slack)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: overdue-report
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check it's 8 AM Eastern
+        id: gate
+        run: |
+          offset=$(TZ=America/New_York date +%z)
+          run=true
+          if [ "${{ github.event.schedule }}" = "0 12 * * 1-5" ] && [ "$offset" != "-0400" ]; then run=false; fi
+          if [ "${{ github.event.schedule }}" = "0 13 * * 1-5" ] && [ "$offset" != "-0500" ]; then run=false; fi
+          echo "Eastern UTC offset: $offset  ->  run=$run"
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Build and send the report
+        if: steps.gate.outputs.run == 'true'
+        env:
+          CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python overdue_report.py --dry-run
+          else
+            python overdue_report.py
+          fi
