@@ -64,7 +64,7 @@ p { margin: 0; }
 
 /* ---------- Cover ---------- */
 .cover { position: relative; color: #fff; background: var(--night); }
-.cover img { width: 100%; height: clamp(520px, 86vh, 940px); object-fit: cover; object-position: 50% 60%; }
+.cover img { width: 100%; height: clamp(520px, 88vh, 960px); object-fit: cover; object-position: 50% 55%; }
 .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 25%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.75) 100%); pointer-events: none; }
 .cover-text { position: absolute; inset: auto 0 0 0; z-index: 2; }
 .cover-text .wrap { padding-block: 0 clamp(36px, 6vw, 72px); display: grid; gap: 22px; }
@@ -73,10 +73,20 @@ p { margin: 0; }
 .cover .deck { font-size: clamp(17px, 1.5vw, 21px); max-width: 44ch; color: rgba(255,255,255,.88); }
 .cover .credit { position: absolute; right: var(--gr); bottom: 14px; z-index: 2; color: rgba(255,255,255,.6); }
 
+/* ---------- Contents strip ---------- */
+.contents { border-bottom: 1px solid var(--ink); }
+.contents .wrap { display: grid; grid-template-columns: auto repeat(4, 1fr); gap: 0 28px; align-items: baseline; padding-block: 22px; }
+.contents a { text-decoration: none; display: grid; gap: 4px; padding-left: 20px; border-left: 1px solid var(--rule); min-width: 0; }
+.contents a:hover .t { color: var(--sage); }
+.contents .pg { font: 600 10px var(--f-sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey); }
+.contents .t { font-family: var(--f-display); font-size: 19px; line-height: 1.2; }
+@media (max-width: 980px) { .contents .wrap { grid-template-columns: 1fr 1fr; row-gap: 18px; } .contents .kicker { grid-column: 1 / -1; } .contents a { padding-left: 14px; } }
+figcaption { font-style: italic; font-size: 15px; color: var(--grey); }
+
 /* ---------- Feature spread ---------- */
 .feature .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); padding-block: clamp(72px, 10vw, 140px); align-items: center; }
 .feature figure { margin: 0; display: grid; gap: 10px; }
-.feature figure img { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
+.feature figure img { aspect-ratio: 2 / 3; object-fit: cover; width: 100%; }
 .essay { display: grid; gap: 22px; max-width: 34em; min-width: 0; }
 .essay h2 { font-size: clamp(38px, 4.6vw, 68px); }
 .essay .standfirst { font-style: italic; font-size: 21px; line-height: 1.5; color: var(--grey); }
@@ -99,6 +109,7 @@ p { margin: 0; }
 .tile h3 { font-size: clamp(28px, 2.4vw, 36px); }
 .tile p { color: var(--grey); font-size: 16px; }
 .tile .inc { font: 500 11px/1.7 var(--f-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); border-top: 1px solid var(--rule); padding-top: 12px; }
+@media (min-width: 981px) { .tile:nth-child(3n+2) { margin-top: 72px; } }
 @media (max-width: 980px) { .tiles { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .tiles { grid-template-columns: 1fr; } }
 
@@ -206,7 +217,7 @@ footer .wrap { padding-block: 28px 36px; display: grid; gap: 28px; }
 <main id="top">
 
   <section class="cover">
-    <img src="img/hero.jpg" alt="A long, low living room with a deep sofa, timber ceiling and a wall of glass onto trees." width="2600" height="1371" fetchpriority="high">
+    <img src="img/living.jpg" alt="A plaster-walled living room with a curved bouclé sofa, travertine table and beamed ceiling in late light." width="1680" height="944" fetchpriority="high">
     <div class="cover-text">
       <div class="wrap">
         <p class="kicker">The agency</p>
@@ -216,10 +227,21 @@ footer .wrap { padding-block: 28px 36px; display: grid; gap: 28px; }
     </div>
   </section>
 
-  <section class="feature">
+  <nav class="contents" aria-label="In this issue">
+    <div class="wrap">
+      <p class="kicker">In this issue</p>
+      <a href="#note"><span class="pg">The note</span><span class="t">Great rooms don’t market themselves</span></a>
+      <a href="#services"><span class="pg">Departments</span><span class="t">Six disciplines, one team</span></a>
+      <a href="#process"><span class="pg">The process</span><span class="t">From first call to first cover</span></a>
+      <a href="#enquire"><span class="pg">Back page</span><span class="t">Begin with a conversation</span></a>
+    </div>
+  </nav>
+
+  <section class="feature" id="note">
     <div class="wrap">
       <figure>
-        <img src="img/dark-living.jpg" alt="A double-height living room at dusk, with a low sectional and a large abstract canvas." width="1400" height="2100" loading="lazy">
+        <img src="img/stair.jpg" alt="A double-height entry hall with a sculptural plaster staircase, abstract painting and a stone table of branches." width="1024" height="1536" loading="lazy">
+        <figcaption>The entry hall: a plaster stair turns beneath a skylight.</figcaption>
       </figure>
       <div class="essay">
         <p class="kicker">A note from Sage</p>
@@ -239,42 +261,42 @@ footer .wrap { padding-block: 28px 36px; display: grid; gap: 28px; }
       </div>
       <div class="tiles">
         <article class="tile">
-          <div class="ph"><img src="img/mustard-chair.jpg" alt="A tufted mustard slipper chair alone in a pale room." width="1400" height="933" loading="lazy"></div>
+          <div class="ph"><img src="img/stilllife.jpg" alt="A rust velvet armchair beside a travertine side table with books and a ceramic vase." width="1136" height="1408" loading="lazy"></div>
           <p class="kicker">Brand</p>
           <h3>Positioning &amp; voice</h3>
           <p>What your studio believes, who it’s for and how it sounds, written down and used everywhere.</p>
           <p class="inc">Brand audit · Voice guide · Portfolio edit</p>
         </article>
         <article class="tile">
-          <div class="ph"><img src="img/fireplace.jpg" alt="A grey-panelled library with a lit fireplace and a sculptural pendant." width="1400" height="1400" loading="lazy"></div>
+          <div class="ph"><img src="img/library.jpg" alt="A walnut-panelled library with a leather club chair beside a lit fireplace." width="1136" height="1408" loading="lazy"></div>
           <p class="kicker">Press</p>
           <h3>Editorial &amp; publicity</h3>
           <p>Projects shot, packaged and placed with the shelter titles and editors who set the taste.</p>
           <p class="inc">Shoot direction · Pitching · Editor relations</p>
         </article>
         <article class="tile">
-          <div class="ph"><img src="img/yellow-chairs.jpg" alt="Two modern chairs, one yellow, against a dark brown wall." width="1400" height="2100" loading="lazy"></div>
+          <div class="ph"><img src="img/kitchen.jpg" alt="A sage-green kitchen with a zinc hood, marble island and copper pots." width="1136" height="1408" loading="lazy"></div>
           <p class="kicker">Social</p>
           <h3>Instagram, Pinterest &amp; TikTok</h3>
           <p>Art-directed feeds and short-form video filmed on install day, in your voice, every week.</p>
           <p class="inc">Content calendar · On-site filming · Community</p>
         </article>
         <article class="tile">
-          <div class="ph"><img src="img/orange-sofa.jpg" alt="Close detail of a rust-orange sofa on a woven rug against a green wall." width="1400" height="1400" loading="lazy"></div>
+          <div class="ph"><img src="img/bath.jpg" alt="A vaulted bathroom carved from green marble with a stone tub and brass taps." width="1136" height="1408" loading="lazy"></div>
           <p class="kicker">Product</p>
           <h3>Collections &amp; licensing</h3>
           <p>Launch campaigns for furniture, lighting, textiles and retail collaborations, built to sell through.</p>
           <p class="inc">Launch strategy · Campaigns · Partner marketing</p>
         </article>
         <article class="tile">
-          <div class="ph"><img src="img/concrete-bed.jpg" alt="A bedroom with a leather bed, concrete walls and floor-to-ceiling glass." width="1600" height="1067" loading="lazy"></div>
+          <div class="ph"><img src="img/bedroom.jpg" alt="A limewashed bedroom with a linen bed, carved stone table and olive branches." width="1136" height="1408" loading="lazy"></div>
           <p class="kicker">Digital</p>
           <h3>Website &amp; portfolio</h3>
           <p>A site that reads like a monograph and brings in inquiries at the budget you want.</p>
           <p class="inc">Design · Project stories · Local search</p>
         </article>
         <article class="tile">
-          <div class="ph"><img src="img/rust-linen.jpg" alt="A bed made with rust linen and striped cushions against a plaster wall." width="1400" height="1282" loading="lazy"></div>
+          <div class="ph"><img src="img/powder.jpg" alt="A powder room in hand-painted celadon wallpaper with a marble pedestal sink and gilt mirror." width="1136" height="1408" loading="lazy"></div>
           <p class="kicker">Long-form</p>
           <h3>Newsletter, video &amp; the book</h3>
           <p>The slower channels that build a name: a newsletter people open, a video series, a monograph.</p>
@@ -285,7 +307,7 @@ footer .wrap { padding-block: 28px 36px; display: grid; gap: 28px; }
   </section>
 
   <section class="bleed" aria-label="How we measure success">
-    <img src="img/dusk-house.jpg" alt="A modern house at dusk under a large tree, its rooms lit from within." width="2400" height="1600" loading="lazy">
+    <img src="img/house.jpg" alt="A concrete and timber hillside house at blue hour beside a long reflecting pool." width="1680" height="944" loading="lazy">
     <div class="wrap">
       <p class="kicker">How we measure</p>
       <blockquote>Inquiries, placements and <em>sell-through.</em> Likes are a footnote.</blockquote>
@@ -308,10 +330,12 @@ footer .wrap { padding-block: 28px 36px; display: grid; gap: 28px; }
   <section class="roster" id="studios">
     <div class="wrap">
       <figure class="a">
-        <img src="img/dark-bedroom.jpg" alt="A bedroom with a black panelled wall, layered bedding and tall dark curtains." width="1600" height="1016" loading="lazy">
+        <img src="img/terrace.jpg" alt="A whitewashed terrace with a plaster banquette, oak table and olive trees framing the sea." width="1440" height="1080" loading="lazy">
+        <figcaption>A terrace on the water, set for a long lunch.</figcaption>
       </figure>
       <figure class="b">
-        <img src="img/green-room.jpg" alt="A green-walled sitting room with a herringbone floor and a framed portrait." width="1400" height="2488" loading="lazy">
+        <img src="img/dining.jpg" alt="An oxblood lacquered dining room lit by candles and a brass chandelier." width="1136" height="1408" loading="lazy">
+        <figcaption>Oxblood lacquer, by candlelight.</figcaption>
       </figure>
       <div class="txt">
         <p class="kicker" style="color: var(--sage);">The studios</p>
@@ -365,7 +389,7 @@ footer .wrap { padding-block: 28px 36px; display: grid; gap: 28px; }
     <div class="foot-row">
       <span>&copy; 2026 Sage Interior Design Marketing</span>
       <nav aria-label="Footer"><a href="#services">Services</a><a href="#process">Process</a><a href="#studios">Studios</a><a href="#enquire">Enquire</a></nav>
-      <span>Photography: Unsplash</span>
+      <span>Imagery: Sage studio</span>
     </div>
   </div>
 </footer>
