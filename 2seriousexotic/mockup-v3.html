@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2Serious Exotic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,200..800&family=Inter:wght@300;400;500&display=swap">
+<style>
+:root{
+  --black:#000;
+  --char:#0B0B0B;
+  --white:#FFF;
+  --mute:#8A8A8A;
+  --hair:rgba(255,255,255,.16);
+  --gold:#B8A06A;
+  --wide:"Archivo","Arial Black",Arial,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--black);color:var(--white);font:300 15px/1.7 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pad{padding-left:max(24px,env(safe-area-inset-left,0px),4vw);padding-right:max(24px,env(safe-area-inset-right,0px),4vw)}
+.label{font:500 11px/1 var(--wide);font-stretch:125%;letter-spacing:.28em;text-transform:uppercase}
+.mute{color:var(--mute)}
+.xl{font-family:var(--wide);font-stretch:125%;font-weight:700;text-transform:uppercase;letter-spacing:.02em;line-height:.92;margin:0}
+.thin{font-weight:200}
+
+/* link with travelling line */
+.go{display:inline-flex;align-items:center;gap:16px;font:500 12px/1 var(--wide);font-stretch:125%;letter-spacing:.24em;text-transform:uppercase;padding-block:8px}
+.go::after{content:"";width:44px;height:1px;background:currentColor;transition:width .4s cubic-bezier(.2,.7,.2,1)}
+.go:hover::after{width:80px}
+/* clipped-corner button */
+.cut{display:inline-flex;align-items:center;justify-content:center;gap:12px;font:600 12px/1 var(--wide);font-stretch:125%;letter-spacing:.22em;text-transform:uppercase;padding:20px 34px;background:var(--white);color:var(--black);clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);transition:background .3s}
+.cut:hover{background:var(--gold)}
+.cut.ghost{background:transparent;color:var(--white);box-shadow:inset 0 0 0 1px var(--white)}
+
+/* ---------- header ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#000;z-index:60}
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;transition:background .4s}
+header.solid{background:rgba(0,0,0,.94)}
+header .row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:84px}
+.menu{display:flex;align-items:center;gap:14px;justify-self:start}
+.menu i{display:grid;gap:5px;width:22px}
+.menu i::before,.menu i::after{content:"";height:1px;background:var(--white)}
+.logo{font:800 20px/1 var(--wide);font-stretch:125%;letter-spacing:.16em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px}
+.logo small{font:400 8.5px/1 var(--wide);font-stretch:125%;letter-spacing:.62em;color:var(--mute);padding-left:.62em}
+.right{justify-self:end;display:flex;gap:34px;align-items:center}
+.right a{font:500 11px/1 var(--wide);font-stretch:125%;letter-spacing:.24em;text-transform:uppercase}
+@media (max-width:720px){.right .tel,.menu span{display:none}.logo{font-size:16px}.logo small{font-size:7px}}
+
+/* ---------- hero slideshow ---------- */
+.hero{position:relative;height:100vh;min-height:620px;max-height:1100px;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 7s linear}
+.slide.on img{transform:scale(1)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 50%,rgba(0,0,0,.85) 100%);pointer-events:none}
+.hero-copy{position:absolute;left:0;right:0;bottom:0;z-index:2;padding-bottom:56px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:30px}
+.hero-copy .xl{font-size:clamp(44px,8.6vw,150px)}
+.hero-copy .who{display:grid;gap:22px}
+.hero-copy .links{display:flex;gap:40px;flex-wrap:wrap}
+.counter{display:grid;gap:14px;justify-items:end;min-width:180px}
+.counter .n{font:200 13px/1 var(--wide);font-stretch:125%;letter-spacing:.3em}
+.counter .n b{font-weight:700}
+.bars{display:flex;gap:6px}
+.bars button{width:30px;height:2px;background:rgba(255,255,255,.25);position:relative;overflow:hidden}
+.bars button span{position:absolute;inset:0;background:var(--white);transform:scaleX(0);transform-origin:left}
+.bars button.on span{animation:fill 6s linear forwards}
+.bars button.done span{transform:scaleX(1)}
+@keyframes fill{to{transform:scaleX(1)}}
+@media (max-width:720px){.hero-copy{grid-template-columns:1fr}.counter{justify-items:start}}
+
+/* ---------- manifesto ---------- */
+.manifesto{padding-block:clamp(110px,14vw,200px);text-align:center;display:grid;justify-items:center;gap:34px}
+.manifesto .xl{font-size:clamp(30px,4.6vw,72px);max-width:16ch;font-weight:200;text-wrap:balance}
+.manifesto .xl b{font-weight:700}
+.manifesto p{max-width:54ch;margin:0;color:#BDBDBD;font-size:16px}
+
+/* ---------- model selector ---------- */
+.models{background:var(--char);border-top:1px solid var(--hair);padding-block:80px 0;overflow:hidden}
+.tabs{display:flex;gap:clamp(18px,3vw,48px);overflow-x:auto;border-bottom:1px solid var(--hair);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{font:500 12px/1 var(--wide);font-stretch:125%;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);padding:0 0 22px;white-space:nowrap;position:relative;transition:color .3s}
+.tabs button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--white);transform:scaleX(0);transition:transform .4s}
+.tabs button[aria-selected="true"]{color:var(--white)}
+.tabs button[aria-selected="true"]::after{transform:scaleX(1)}
+.stage{position:relative;padding-top:60px;display:grid}
+.ghostname{position:absolute;top:30px;left:50%;transform:translateX(-50%);font:800 clamp(80px,17vw,280px)/1 var(--wide);font-stretch:125%;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.14);white-space:nowrap;pointer-events:none;letter-spacing:-.01em}
+.carimg{position:relative;width:min(1180px,100%);margin-inline:auto;aspect-ratio:16/8;max-width:100%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,#000 75%,transparent),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,#000 75%,transparent),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-composite:intersect}
+.carimg img{width:100%;height:100%;object-fit:cover;transition:opacity .5s}
+.spec{display:grid;grid-template-columns:1.4fr repeat(4,1fr) auto;align-items:end;gap:0;border-top:1px solid var(--hair);margin-top:-20px;position:relative}
+.spec > div{padding:30px 24px 34px 0;display:grid;gap:12px}
+.spec > div + div{padding-left:24px;border-left:1px solid var(--hair)}
+.spec .model{font:700 clamp(26px,2.6vw,40px)/1 var(--wide);font-stretch:125%;text-transform:uppercase}
+.spec .v{font:200 clamp(22px,2vw,30px)/1 var(--wide);font-stretch:125%;font-variant-numeric:tabular-nums;white-space:nowrap}
+.spec .act{padding-left:24px;align-self:center}
+@media (max-width:1000px){.spec{grid-template-columns:1fr 1fr}.spec .model-cell{grid-column:1/-1}.spec > div,.spec > div + div{padding:22px 0;border-left:0;border-bottom:1px solid var(--hair)}.spec .act{grid-column:1/-1;padding:28px 0 40px}}
+
+/* ---------- split ---------- */
+.split{display:grid;grid-template-columns:1.25fr 1fr;min-height:640px}
+.split .img{position:relative;overflow:hidden;min-height:420px}
+.split .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.split .txt{display:grid;align-content:center;gap:30px;padding-block:80px}
+.split .xl{font-size:clamp(30px,3.6vw,56px)}
+.split p{margin:0;color:#BDBDBD;max-width:46ch}
+.split ul{list-style:none;margin:0;padding:0;display:grid;border-top:1px solid var(--hair)}
+.split li{padding:18px 0;border-bottom:1px solid var(--hair);display:flex;justify-content:space-between;gap:20px}
+.split li span:last-child{color:var(--white);text-align:right}
+.split li span:first-child{color:var(--mute)}
+.split.flip{grid-template-columns:1fr 1.25fr}
+.split.flip .img{order:2}
+@media (max-width:900px){.split,.split.flip{grid-template-columns:1fr}.split.flip .img{order:0}}
+
+/* ---------- numbers ---------- */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--hair)}
+.nums div{padding:56px 24px 50px 0;display:grid;gap:16px}
+.nums div + div{padding-left:24px;border-left:1px solid var(--hair)}
+.nums b{font:200 clamp(32px,4.4vw,76px)/1 var(--wide);white-space:nowrap;font-stretch:125%;letter-spacing:-.02em}
+@media (max-width:900px){.nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){padding-left:0;border-left:0}.nums div:nth-child(n+3){border-top:1px solid var(--hair)}.nums div{padding:36px 14px 32px 0}}
+
+/* ---------- configurator ---------- */
+.config{padding-block:clamp(100px,12vw,170px)}
+.config .head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:70px}
+.config .xl{font-size:clamp(34px,4.6vw,72px)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,120px);align-items:center}
+@media (max-width:900px){.cgrid{grid-template-columns:1fr}}
+.sliders{display:grid;gap:44px}
+.sl{display:grid;gap:18px}
+.sl .t{display:flex;justify-content:space-between}
+.sl output{font:300 18px/1 var(--wide);font-stretch:125%;font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:1px;background:linear-gradient(90deg,var(--white) var(--p,50%),rgba(255,255,255,.2) var(--p,50%));outline:none;margin:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--white);transform:rotate(45deg);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:13px;height:13px;border:0;border-radius:0;background:var(--white);transform:rotate(45deg);cursor:pointer}
+.result{border:1px solid var(--hair);padding:clamp(28px,4vw,56px);display:grid;gap:30px}
+.result .pay{font:200 clamp(64px,8vw,128px)/.9 var(--wide);font-stretch:125%;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.result .pay small{font:400 12px var(--wide);font-stretch:125%;letter-spacing:.24em;color:var(--mute);margin-left:10px}
+.result dl{margin:0;display:grid}
+.result dl div{display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid var(--hair)}
+.result dt{color:var(--mute)}
+.result dd{margin:0;font-variant-numeric:tabular-nums}
+
+/* ---------- enquire ---------- */
+.enquire{position:relative;min-height:760px;display:grid;align-items:end;overflow:hidden}
+.enquire img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.enquire::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.9))}
+.enquire .in{position:relative;z-index:1;padding-block:90px;display:grid;gap:36px}
+.enquire .xl{font-size:clamp(40px,6.4vw,110px)}
+.enquire .tel{font:200 clamp(34px,4.4vw,70px)/1 var(--wide);font-stretch:125%;letter-spacing:.04em}
+.enquire .row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--hair);padding-block:70px calc(40px + env(safe-area-inset-bottom,0px));display:grid;gap:60px}
+.fcols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.fcols ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;color:#BDBDBD}
+.fcols a:hover{color:var(--white)}
+@media (max-width:800px){.fcols{grid-template-columns:1fr 1fr}}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:11px;color:#6A6A6A;border-top:1px solid var(--hair);padding-top:26px}
+.legal p{margin:0;max-width:90ch}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="row pad">
+    <button class="menu" aria-label="Open menu"><i></i><span class="label">Menu</span></button>
+    <a class="logo" href="#">2Serious<small>Exotic</small></a>
+    <div class="right"><a class="tel" href="#enquire">954.594.3642</a><a href="#enquire">Enquire</a></div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" aria-label="Featured">
+  <div class="slide on"><img src="https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?w=2400&q=80" alt="Lamborghini Aventador S, scissor doors raised at sunset" style="object-position:center 40%"></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1632441730372-d8509de481d1?w=2400&q=80" alt="Ferrari SF90 Stradale in yellow"></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1618418721668-0d1f72aa4bab?w=2400&q=80" alt="Bentley Flying Spur at night"></div>
+  <div class="slide"><img src="https://images.unsplash.com/photo-1627454820516-dc767bcb4d3e?w=2400&q=80" alt="Bugatti Chiron in white"></div>
+  <div class="hero-copy pad">
+    <div class="who">
+      <span class="label" id="h-make">Lamborghini · Aventador S</span>
+      <h1 class="xl">Beyond<br><span class="thin">ownership</span></h1>
+      <div class="links"><a class="go" href="#collection">Discover the collection</a><a class="go" href="#enquire">Get approved</a></div>
+    </div>
+    <div class="counter">
+      <span class="n"><b id="h-i">01</b> / 04</span>
+      <div class="bars" id="bars"><button class="on" aria-label="Slide 1"><span></span></button><button aria-label="Slide 2"><span></span></button><button aria-label="Slide 3"><span></span></button><button aria-label="Slide 4"><span></span></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto pad">
+  <span class="label mute">Exotic leasing · Fort Lauderdale</span>
+  <h2 class="xl">The rarest cars, <b>structured</b> by people who drive them.</h2>
+  <p>We work hand in hand with the nation's best banks. Quick turnarounds, unrivalled rates, and residuals written for how exotics actually hold their value.</p>
+</section>
+
+<!-- MODEL SELECTOR -->
+<section class="models" id="collection">
+  <div class="pad">
+    <div class="tabs" role="tablist" id="tabs"></div>
+  </div>
+  <div class="stage">
+    <div class="ghostname" id="ghost">Bentley</div>
+    <div class="carimg"><img id="carimg" src="" alt=""></div>
+    <div class="pad">
+      <div class="spec">
+        <div class="model-cell"><span class="label mute" id="m-make"></span><span class="model" id="m-model"></span></div>
+        <div><span class="label mute">Term</span><span class="v" id="m-term"></span></div>
+        <div><span class="label mute">Miles / yr</span><span class="v" id="m-miles"></span></div>
+        <div><span class="label mute">Down</span><span class="v" id="m-down"></span></div>
+        <div><span class="label mute">From</span><span class="v" id="m-from"></span></div>
+        <div class="act"><a class="cut" href="#enquire">Enquire</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT: residuals -->
+<section class="split">
+  <div class="img"><img src="https://images.unsplash.com/photo-1631295868223-63265b40d9e4?w=1800&q=80" alt="Rolls-Royce Wraith beneath palm trees"></div>
+  <div class="txt pad">
+    <span class="label mute">The 2Serious difference</span>
+    <h2 class="xl">Residuals<br><span class="thin">engineered for exotics</span></h2>
+    <p>Traditional banks price a hypercar like a sedan. We set residuals on the real-world depreciation curves of exotic vehicles, so the numbers stay fair when it's time to upgrade or exit.</p>
+    <ul>
+      <li><span>Lease structures</span><span>Open-end · Closed-end</span></li>
+      <li><span>Early exit</span><span>Trade out or upgrade mid-term</span></li>
+      <li><span>Built for</span><span>Collectors · Operators · Business owners</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="pad">
+  <div class="nums">
+    <div><b>24–60</b><span class="label mute">Month terms</span></div>
+    <div><b>2,000</b><span class="label mute">Miles / yr from</span></div>
+    <div><b>15–20%</b><span class="label mute">Typical down</span></div>
+    <div><b>Days</b><span class="label mute">Not weeks to approval</span></div>
+  </div>
+</div>
+
+<!-- CONFIGURATOR -->
+<section class="config pad" id="calc">
+  <div class="head">
+    <div style="display:grid;gap:24px"><span class="label mute">Lease configurator</span><h2 class="xl">Configure<br><span class="thin">your payment</span></h2></div>
+    <a class="go" href="#enquire">Request exact terms</a>
+  </div>
+  <div class="cgrid">
+    <form class="sliders" id="f">
+      <div class="sl"><div class="t"><label class="label mute" for="price">Vehicle price</label><output id="o-price"></output></div><input type="range" id="price" min="150000" max="600000" step="5000" value="420000"></div>
+      <div class="sl"><div class="t"><label class="label mute" for="down">Down payment</label><output id="o-down"></output></div><input type="range" id="down" min="0" max="150000" step="1000" value="80000"></div>
+      <div class="sl"><div class="t"><label class="label mute" for="term">Term</label><output id="o-term"></output></div><input type="range" id="term" min="24" max="60" step="12" value="36"></div>
+      <div class="sl"><div class="t"><label class="label mute" for="res">Residual</label><output id="o-res"></output></div><input type="range" id="res" min="40" max="75" step="1" value="65"></div>
+    </form>
+    <div class="result" aria-live="polite">
+      <span class="label mute">Estimated monthly</span>
+      <div class="pay" id="pay"></div>
+      <dl>
+        <div><dt>Depreciation</dt><dd id="b1"></dd></div>
+        <div><dt>Rent charge</dt><dd id="b2"></dd></div>
+        <div><dt>Sales tax, 7%</dt><dd id="b3"></dd></div>
+      </dl>
+      <span style="font-size:11px;color:#6A6A6A">Estimate only. All terms subject to credit approval.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ENQUIRE -->
+<section class="enquire" id="enquire">
+  <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=2400&q=80" alt="Ferrari F8 Tributo at golden hour">
+  <div class="in pad">
+    <span class="label">Private client desk</span>
+    <h2 class="xl">Your next car<br><span class="thin">starts with a call</span></h2>
+    <span class="tel">954.594.3642</span>
+    <div class="row"><a class="cut" href="#">Get approved today</a><a class="cut ghost" href="#">Request a quote</a></div>
+  </div>
+</section>
+</main>
+
+<footer class="pad">
+  <div class="fcols">
+    <div style="display:grid;gap:18px;align-content:start"><span class="logo" style="align-items:flex-start">2Serious<small style="padding-left:0">Exotic</small></span><span class="mute" style="max-width:34ch">Exotic and luxury vehicle leasing. Fort Lauderdale, Florida.</span></div>
+    <div><span class="label mute">Leasing</span><ul><li><a href="#collection">The collection</a></li><li><a href="#calc">Configurator</a></li><li><a href="#enquire">Get approved</a></li></ul></div>
+    <div><span class="label mute">Marques</span><ul><li>Bentley</li><li>Lamborghini</li><li>Rolls-Royce</li><li>Ferrari</li></ul></div>
+    <div><span class="label mute">Contact</span><ul><li>954.594.3642</li><li>Fort Lauderdale, FL</li></ul></div>
+  </div>
+  <div class="legal"><p>© 2026 2Serious Exotic LLC. All rights reserved. All terms subject to credit approval and may change without notice. Figures shown are illustrative. Logos and names © their owners; 2Serious Exotic LLC has no affiliation with manufacturers.</p><span>Privacy · Terms</span></div>
+</footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const hdr = $('hdr'); const sc = () => hdr.classList.toggle('solid', scrollY > 60); addEventListener('scroll', sc, {passive:true}); sc();
+
+  // hero slideshow
+  const slides = [...document.querySelectorAll('.slide')], bars = [...$('bars').children];
+  const names = ['Lamborghini · Aventador S','Ferrari · SF90 Stradale','Bentley · Flying Spur','Bugatti · Chiron'];
+  let i = 0, t;
+  function show(n){
+    slides[i].classList.remove('on'); bars.forEach((b,k)=>{b.classList.remove('on');b.classList.toggle('done',k<n)});
+    i = n; slides[i].classList.add('on'); void bars[i].offsetWidth; bars[i].classList.add('on');
+    $('h-i').textContent = String(i+1).padStart(2,'0'); $('h-make').textContent = names[i];
+    clearTimeout(t); t = setTimeout(() => show((i+1) % slides.length), 6000);
+  }
+  bars.forEach((b,k) => b.addEventListener('click', () => show(k)));
+  t = setTimeout(() => show(1), 6000);
+
+  // model selector (illustrative structures)
+  const M = [
+    ['Bentley','Flying Spur','photo-1618418721668-0d1f72aa4bab','48 mo','7,500','$50K','$2,300'],
+    ['Lamborghini','Huracán EVO','photo-1612825173281-9a193378527e','36 mo','5,000','$45K','$2,680'],
+    ['Rolls-Royce','Wraith','photo-1631295868223-63265b40d9e4','48 mo','5,000','$60K','$3,500'],
+    ['Ferrari','SF90 Stradale','photo-1632441730372-d8509de481d1','39 mo','3,000','$95K','$4,810'],
+    ['McLaren','720S','photo-1542362567-b07e54358753','36 mo','2,000','$40K','$3,390'],
+    ['Bugatti','Chiron','photo-1606664515524-ed2f786a0bd6','60 mo','2,000','Bespoke','On request'],
+  ];
+  const tabs = $('tabs');
+  M.forEach((m,k) => { const b=document.createElement('button'); b.role='tab'; b.textContent=m[0]; b.setAttribute('aria-selected',k===0); b.onclick=()=>pick(k); tabs.appendChild(b); });
+  function pick(k){
+    const [make,model,img,term,miles,down,from] = M[k];
+    [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===k));
+    const el=$('carimg'); el.style.opacity=0;
+    setTimeout(()=>{ el.src=`https://images.unsplash.com/${img}?w=2000&q=80`; el.alt=`${make} ${model}`; el.onload=()=>el.style.opacity=1; },200);
+    $('ghost').textContent=make; $('m-make').textContent=make; $('m-model').textContent=model;
+    $('m-term').textContent=term; $('m-miles').textContent=miles; $('m-down').textContent=down;
+    $('m-from').innerHTML = from.startsWith('$') ? from+'<span style="font-size:.5em;color:var(--mute)"> /mo</span>' : from;
+  }
+  pick(0);
+
+  // configurator
+  const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+  function calc(){
+    ['price','down','term','res'].forEach(id=>{const e=$(id); e.style.setProperty('--p',((e.value-e.min)/(e.max-e.min)*100)+'%')});
+    const p=+$('price').value, d=+$('down').value, n=+$('term').value, r=+$('res').value;
+    const resid=p*r/100, adj=p-d, mf=.00285;
+    const dep=Math.max(0,(adj-resid)/n), rent=(adj+resid)*mf, tax=(dep+rent)*.07;
+    $('o-price').textContent=usd(p); $('o-down').textContent=usd(d); $('o-term').textContent=n+' months'; $('o-res').textContent=r+'%';
+    $('pay').innerHTML=usd(dep+rent+tax)+'<small>/ MO</small>';
+    $('b1').textContent=usd(dep); $('b2').textContent=usd(rent); $('b3').textContent=usd(tax);
+  }
+  $('f').addEventListener('input',calc); calc();
+})();
+</script>
+</body>
+</html>
