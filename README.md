@@ -69,7 +69,7 @@ The names have to match exactly: all capitals, with underscores.
 
 ### Step 5: Turn on the daily schedule
 
-The schedule is **off** until you've approved a test. To turn it on, open `.github/workflows/overdue-report.yml`, delete the `#` at the start of these three lines and commit:
+The schedule is **on**. To pause it, open `.github/workflows/overdue-report.yml`, put a `#` at the start of these three lines and commit:
 
 ```yaml
   schedule:
