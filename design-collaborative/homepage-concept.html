@@ -43,14 +43,17 @@
    Squarespace: Website > Pages > Custom Code > Custom CSS
    ===================================================================== */
 :root{
-  --dc-cream:#EFEAE0;       /* page */
-  --dc-taupe:#E6DED1;       /* warm alternate */
+  --dc-cream:#F8F5F2;       /* page: brand light accent hsl(30,20%,96%) */
+  --dc-taupe:#EFE7DD;       /* warm alternate */
   --dc-olive:#3A2F28;       /* chocolate (was olive) */
-  --dc-slate:#B8C1C0;       /* soft slate chapter */
-  --dc-sand:#AB9474;       /* deep accent chapter */
+  --dc-slate:#F2DFCA;       /* apricot tint chapter (from brand accent #FFCC99) */
+  --dc-copper:#B87332;      /* brand dark accent hsl(29,57%,46%) */
+  --dc-copper-text:#8F5626; /* copper for small text on light, 5.6:1 */
+  --dc-apricot:#FFCC99;     /* brand accent, for use on dark */
+  --dc-sand:#FFCC99;       /* deep accent chapter */
   --dc-ink:#141312;         /* gallery black */
   --dc-text:#5B544C;        /* body on light, 6.9:1 on cream */
-  --dc-soft:#B9AC98;        /* accent on dark */
+  --dc-soft:#D9A877;        /* copper-light, accent on dark */
   --dc-rule:rgba(20,19,18,.16);
   --dc-rule-d:rgba(243,238,230,.18);
 
@@ -67,7 +70,7 @@
 
   --dc-gutter: clamp(1.1rem, 3.8vw, 4rem);
   --dc-colgap: clamp(.9rem, 1.6vw, 1.75rem);
-  --dc-section: clamp(6.5rem, 13vw, 14rem);
+  --dc-section: clamp(5.5rem, 10vw, 10rem);
   --dc-ease: cubic-bezier(.22,.61,.12,1);
 }
 
@@ -92,7 +95,9 @@ ul,ol{list-style:none}
 .dc-slate{background:var(--dc-slate);color:var(--dc-ink)}
 
 /* Type: serif headlines at modest sizes, italic accents, tracked caps sans */
-.dc-h1,.dc-h2,.dc-h3{font-family:var(--dc-serif);font-weight:400;letter-spacing:-.01em;font-optical-sizing:auto}
+.dc-h1,.dc-h2,.dc-h3{font-family:var(--dc-serif);font-weight:400;letter-spacing:-.01em;font-optical-sizing:none;font-variation-settings:"opsz" 28}
+.dc-h1{font-variation-settings:"opsz" 60}
+.dc-h3{font-variation-settings:"opsz" 16}
 .dc-h1{font-size:var(--dc-fs-h1);line-height:1.08}
 .dc-h2{font-size:var(--dc-fs-h2);line-height:1.3;text-transform:uppercase;letter-spacing:.06em}
 .dc-h2 .dc-i,.dc-h2 .dc-caps{font-style:normal;font-family:inherit;font-size:inherit;letter-spacing:inherit}
@@ -220,12 +225,12 @@ ul,ol{list-style:none}
 /* =====================================================================
    04 · WHAT WE DESIGN — row of tall portrait panels
    ===================================================================== */
-.dc-svc__head{text-align:center;max-width:42rem;margin:0 auto clamp(3.5rem,6vw,6rem)}
+.dc-svc__head{text-align:center;max-width:42rem;margin:0 auto var(--dc-section)}
 .dc-svc__row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--dc-colgap)}
 .dc-svc__card{position:relative;display:flex;flex-direction:column}
 .dc-svc__card .dc-media{aspect-ratio:4/5}
 .dc-svc__card:hover img{transform:scale(1.04)}
-.dc-svc__card .dc-label{margin-top:1.5rem;color:var(--dc-text)}
+.dc-svc__card .dc-label{margin-top:1.5rem;color:var(--dc-copper-text)}
 .dc-svc__card .dc-h3{margin-top:.6rem}
 .dc-svc__card p{margin-top:.9rem;color:var(--dc-text);font-size:.93rem}
 .dc-svc__card .dc-link{margin-top:1.4rem;gap:.8rem}
@@ -267,7 +272,7 @@ ul,ol{list-style:none}
    07 · ONE FIRM, TWO HOMES — edge-to-edge diptych
    ===================================================================== */
 .dc-homes{padding-bottom:0}
-.dc-homes__head{max-width:44rem;text-align:center;margin:0 auto clamp(3.5rem,6vw,6rem)}
+.dc-homes__head{max-width:44rem;text-align:center;margin:0 auto var(--dc-section)}
 .dc-homes__head .dc-prose{margin:1.8rem auto 0;max-width:34rem}
 .dc-homes__pair{display:grid;grid-template-columns:1fr 1fr;gap:3px}
 .dc-place{position:relative;height:90vh;min-height:560px;color:var(--dc-cream);display:flex;align-items:flex-end;justify-content:center;text-align:center}
@@ -281,11 +286,11 @@ ul,ol{list-style:none}
 /* =====================================================================
    08 · HOW IT STARTS — olive chapter
    ===================================================================== */
-.dc-steps__head{text-align:center;margin-bottom:clamp(3.5rem,6vw,5.5rem)}
+.dc-steps__head{text-align:center;margin-bottom:var(--dc-section)}
 .dc-steps__list{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--dc-colgap)}
 .dc-step{text-align:center;padding:0 clamp(.5rem,2vw,2.5rem);border-left:1px solid var(--dc-rule)}
 .dc-step:first-child{border-left:0}
-.dc-step__n{display:block;font:italic 400 2rem/1 var(--dc-serif);color:var(--dc-ink);opacity:.55;margin-bottom:1.4rem}
+.dc-step__n{display:block;font:italic 400 2rem/1 var(--dc-serif);color:var(--dc-copper-text);margin-bottom:1.4rem}
 .dc-step p{margin:.9rem auto 0;color:#3F3B36;max-width:21rem}
 @media (max-width:960px){.dc-steps__list{grid-template-columns:1fr;gap:0}.dc-step{border-left:0;border-top:1px solid var(--dc-rule);padding:2.4rem 0}.dc-step:first-child{border-top:0}}
 
