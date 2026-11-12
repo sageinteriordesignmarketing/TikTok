@@ -78,6 +78,8 @@ def scope_block(text: str) -> str:
 
 
 scoped = scope_block(css)
+# Squarespace's own heading/paragraph rules can override spacing; make the design's margins win (still page-scoped)
+scoped = re.sub(r"(margin(?:-top|-bottom|-left|-right|-inline|-block)?:[^;{}!]+)(?=[;}])", r"\1!important", scoped)
 
 squarespace_css = f"""
 /* ---- Squarespace integration (this page only) ---- */
