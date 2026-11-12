@@ -43,7 +43,19 @@ A webhook is a private web address that lets the report post into one Slack chan
 
 *If Slack says you need approval, a Slack workspace admin has to approve the app first.*
 
-### Step 3: Save both as GitHub secrets
+### Step 2b: Let the report reply in a thread
+
+When someone has more than 12 overdue tasks, the report posts their full list as a thread reply under the main message. That needs two more values from the same Slack app:
+
+1. At **https://api.slack.com/apps**, open **Overdue Report**.
+2. In the left menu, click **OAuth & Permissions**.
+3. Scroll to **Scopes**, then **Bot Token Scopes**. Click **Add an OAuth Scope** and choose `chat:write`.
+4. Scroll back to the top and click **Reinstall to [your workspace]**, then **Allow**.
+5. Copy the **Bot User OAuth Token**. It starts with `xoxb-`.
+6. In Slack, open the report's channel and type `/invite @Overdue Report`, then send.
+7. Get the channel ID: click the channel name at the top, then scroll to the bottom of the pop-up. Copy the **Channel ID**. It starts with `C`.
+
+### Step 3: Save the keys as GitHub secrets
 
 1. Open this repository on GitHub.
 2. Click **Settings** (top menu of the repo, far right).
@@ -56,6 +68,8 @@ A webhook is a private web address that lets the report post into one Slack chan
    - Name: `SLACK_WEBHOOK_URL`
    - Secret: paste the `https://hooks.slack.com/...` URL
    - Click **Add secret**
+
+   - If you did Step 2b, add two more the same way: `SLACK_BOT_TOKEN` (the `xoxb-...` token) and `SLACK_CHANNEL_ID` (the `C...` ID).
 
 The names have to match exactly: all capitals, with underscores.
 

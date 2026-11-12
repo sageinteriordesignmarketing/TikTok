@@ -3,7 +3,10 @@
 
 Reads two secrets from environment variables (never hard-code them):
   CLICKUP_API_TOKEN   personal ClickUp API token (starts with "pk_")
-  SLACK_WEBHOOK_URL   Slack incoming-webhook URL
+  SLACK_BOT_TOKEN     Slack bot token (starts with "xoxb-") - lets the full
+  SLACK_CHANNEL_ID    lists go in a thread under the report
+  SLACK_WEBHOOK_URL   Slack incoming-webhook URL - fallback if the two above
+                      aren't set (no thread replies then)
 
 Options:
   --dry-run           print the Slack message instead of posting it
@@ -175,18 +178,15 @@ def plural(n, word):
     return f"{n} {word}{'' if n == 1 else 's'}"
 
 
-def lines_by_client(items, limit=MAX_LINES_PER_SECTION):
-    """Group under client sub-headings; clients ordered by their oldest task."""
-    shown = items[:limit]  # items are already most-overdue first
+def client_lines(items):
+    """Lines grouped under client sub-headings (items already most-overdue first)."""
     groups = defaultdict(list)
-    for i in shown:
+    for i in items:
         groups[i["client"]].append(i)
     out = []
     for client, group in groups.items():
         out.append(f"_{esc(client)}_")
         out += [f"   • {link(i)}  ·  *{days_label(i['days'])}*" for i in group]
-    if len(items) > len(shown):
-        out.append(f"   _+{len(items) - len(shown)} more, all less overdue_")
     return out
 
 
@@ -203,7 +203,25 @@ def section(text):
     return blocks
 
 
-def build_message(items, today):
+def build_message(items, today, threads=False):
+    """Returns (main message, list of thread replies with the full lists).
+
+    With threads=False (webhook only, which can't reply in threads) the
+    replies are empty and cut-off lists just say "+N more".
+    """
+    replies = []
+
+    def capped(head, tasks, full_title):
+        lines = [head] + client_lines(tasks[:MAX_LINES_PER_SECTION])
+        hidden = len(tasks) - MAX_LINES_PER_SECTION
+        if hidden > 0:
+            if threads:
+                lines.append(f"   _+{hidden} more, all less overdue — full list in the thread 🧵_")
+                replies.append(reply_message(f"{full_title} ({len(tasks)})", client_lines(tasks)))
+            else:
+                lines.append(f"   _+{hidden} more, all less overdue_")
+        return section("\n".join(lines))
+
     team_tasks = [i for i in items if not i["deadline"]]
     deadlines = [i for i in items if i["deadline"]]
     unassigned = [i for i in team_tasks if not i["assignees"]]
@@ -211,7 +229,7 @@ def build_message(items, today):
 
     if not items:
         text = f"✅ *All clear for {date_str}* — no overdue team tasks or client deadlines. Nice work!"
-        return {"text": text, "blocks": section(text)}
+        return {"text": text, "blocks": section(text)}, []
 
     summary = (
         f"*{plural(len(team_tasks), 'overdue team task')}*"
@@ -238,7 +256,7 @@ def build_message(items, today):
             tasks = by_person[pid]
             label = TEAM.get(pid) or f"{names[pid]} (not on roster)"
             head = f"*{esc(label)}*  —  {len(tasks)} overdue, oldest {days_label(tasks[0]['days'])}"
-            blocks += section("\n".join([head] + lines_by_client(tasks)))
+            blocks += capped(head, tasks, f"*{esc(label)}* — all overdue tasks")
     caught_up = [name for pid, name in TEAM.items() if not by_person.get(pid)]
     if caught_up:
         blocks.append({"type": "context", "elements": [
@@ -248,7 +266,7 @@ def build_message(items, today):
     if unassigned:
         blocks.append({"type": "divider"})
         head = f"*⚠️ UNASSIGNED — needs an owner* ({len(unassigned)})"
-        blocks += section("\n".join([head] + lines_by_client(unassigned)))
+        blocks += capped(head, unassigned, "*⚠️ Unassigned* — all overdue tasks")
 
     # 3. Client deadlines.
     if deadlines:
@@ -267,18 +285,52 @@ def build_message(items, today):
     if len(blocks) > 50:  # Slack's hard limit per message
         blocks = blocks[:49] + [{"type": "context", "elements": [
             {"type": "mrkdwn", "text": "_Message trimmed — open ClickUp for the full list._"}]}]
-    return {"text": f"Overdue report {date_str}: {summary.replace('*', '')}", "blocks": blocks}
+    return {"text": f"Overdue report {date_str}: {summary.replace('*', '')}", "blocks": blocks}, replies
 
 
-def post_to_slack(webhook, payload):
+def reply_message(title, lines):
+    blocks = section("\n".join([title] + lines))
+    if len(blocks) > 50:
+        blocks = blocks[:49] + [{"type": "context", "elements": [
+            {"type": "mrkdwn", "text": "_List trimmed — open ClickUp for the rest._"}]}]
+    return {"text": title.replace("*", ""), "blocks": blocks}
+
+
+def http_post_json(url, payload, headers=None):
     req = urllib.request.Request(
-        webhook, data=json.dumps(payload).encode(),
-        headers={"Content-Type": "application/json"})
+        url, data=json.dumps(payload).encode(),
+        headers={"Content-Type": "application/json; charset=utf-8", **(headers or {})})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return resp.read().decode(errors="replace")
+
+
+def post_with_webhook(webhook, payload):
     try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            resp.read()
+        http_post_json(webhook, payload)
     except urllib.error.HTTPError as e:
         sys.exit(f"Slack error {e.code}: {e.read().decode(errors='replace')} (check the SLACK_WEBHOOK_URL secret)")
+
+
+def post_with_bot(token, channel, payload, thread_ts=None):
+    """Post via the Slack API (needed for thread replies). Returns the message ts."""
+    body = {"channel": channel, "unfurl_links": False, "unfurl_media": False, **payload}
+    if thread_ts:
+        body["thread_ts"] = thread_ts
+    try:
+        data = json.loads(http_post_json(
+            "https://slack.com/api/chat.postMessage", body, {"Authorization": f"Bearer {token}"}))
+    except urllib.error.HTTPError as e:
+        sys.exit(f"Slack error {e.code}: {e.read().decode(errors='replace')}")
+    if not data.get("ok"):
+        hints = {
+            "not_in_channel": "invite the app to the channel: type /invite @Overdue Report in it",
+            "channel_not_found": "check the SLACK_CHANNEL_ID secret, and invite the app to the channel",
+            "invalid_auth": "check the SLACK_BOT_TOKEN secret",
+            "missing_scope": "add the chat:write permission to the Slack app and reinstall it",
+        }
+        err = data.get("error")
+        sys.exit(f"Slack error: {err} ({hints.get(err, 'see https://api.slack.com/methods/chat.postMessage')})")
+    return data["ts"]
 
 
 def to_plain_text(payload):
@@ -314,15 +366,30 @@ def main():
             sys.exit("Missing CLICKUP_API_TOKEN secret.")
         tasks = fetch_overdue_tasks(token, start_of_day_ms(today))
 
-    payload = build_message(build_items(tasks, today), today)
+    bot_token = os.environ.get("SLACK_BOT_TOKEN", "").strip()
+    channel = os.environ.get("SLACK_CHANNEL_ID", "").strip()
+    use_bot = bool(bot_token and channel)
+
+    payload, replies = build_message(build_items(tasks, today), today, threads=use_bot or args.dry_run)
 
     if args.dry_run:
         print(to_plain_text(payload))
+        for r in replies:
+            print("\n   ↳ THREAD REPLY")
+            print("\n".join("   " + line for line in to_plain_text(r).splitlines()))
         return
+
+    if use_bot:
+        ts = post_with_bot(bot_token, channel, payload)
+        for r in replies:
+            post_with_bot(bot_token, channel, r, thread_ts=ts)
+        print(f"Posted report for {today} with {len(replies)} thread replies.")
+        return
+
     webhook = os.environ.get("SLACK_WEBHOOK_URL", "").strip()
     if not webhook:
-        sys.exit("Missing SLACK_WEBHOOK_URL secret.")
-    post_to_slack(webhook, payload)
+        sys.exit("Missing Slack secrets: set SLACK_BOT_TOKEN + SLACK_CHANNEL_ID (or SLACK_WEBHOOK_URL).")
+    post_with_webhook(webhook, payload)
     print(f"Posted report for {today}.")
 
 
