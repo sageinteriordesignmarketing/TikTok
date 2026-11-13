@@ -81,19 +81,12 @@ The names have to match exactly: all capitals, with underscores.
 4. After about 30 seconds, click the run, then **report**, then open the **Build and send the report** step. The full report prints there. Nothing goes to Slack yet.
 5. If the preview looks right, run it again with **"Preview only" unticked**. This time the report posts to your Slack channel.
 
-### Step 5: Turn on the daily schedule
+### Step 5: The daily schedule
 
-The schedule is **on**. To pause it, open `.github/workflows/overdue-report.yml`, put a `#` at the start of these three lines and commit:
+A **Claude scheduled routine** ("Daily overdue report") starts this workflow every weekday at about 8:00 AM Eastern, with "Preview only" switched off. GitHub's own built-in timer turned out to be unreliable: on the first day one run never fired and the other came 7 hours late, so it isn't used.
 
-```yaml
-  schedule:
-    - cron: "0 12 * * 1-5"   # 8 AM EDT (summer)
-    - cron: "0 13 * * 1-5"   # 8 AM EST (winter)
-```
-
-(Or just ask Claude to do it.)
-
-The two lines handle daylight saving time, and the workflow runs only the one that matches 8 AM Eastern. GitHub sometimes starts scheduled jobs **5–20 minutes late** when its servers are busy, so the post may land a little after 8:00.
+- **To pause or change the time:** manage the routine in Claude (claude.ai/code, under Routines), or ask Claude.
+- **To send a report by hand:** Actions tab → Daily overdue report → Run workflow, with "Preview only" unticked.
 
 ---
 
