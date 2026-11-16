@@ -1,0 +1,204 @@
+<!-- ============================================================
+     SAGE · Select studios we support
+     Paste everything below into a Squarespace Code Block.
+     1. Upload the six grid images (Design > Custom CSS > Manage Custom Files)
+     2. Replace each img: '...' URL in the STUDIOS list at the bottom
+   ============================================================ -->
+<section class="sage-studios" aria-labelledby="sage-studios-title">
+  <p class="sage-studios__kicker">Select studios we support</p>
+  <h2 id="sage-studios-title" class="sage-studios__title">The work, in their feeds.</h2>
+  <ul class="sage-studios__list" id="sage-studios-list"></ul>
+  <p class="sage-studios__press">Our clients’ work has appeared in <em>Architectural Digest</em>, <em>Interior Design</em>, <em>Luxe</em> and <em>Rue</em>.</p>
+  <div class="sage-studios__float" id="sage-studios-float" aria-hidden="true">
+    <img alt="" id="sage-studios-float-img">
+    <span class="sage-studios__float-tag" id="sage-studios-float-tag"></span>
+  </div>
+</section>
+
+<style>
+.sage-studios {
+  --ss-ink: currentColor;
+  --ss-rule: color-mix(in srgb, currentColor 18%, transparent);
+  --ss-soft: color-mix(in srgb, currentColor 55%, transparent);
+  --ss-ease: cubic-bezier(.2, .7, .2, 1);
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: inherit;
+}
+.sage-studios__kicker {
+  margin: 0 0 14px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ss-soft);
+}
+.sage-studios__title {
+  margin: 0 0 clamp(28px, 4vw, 48px);
+  font-size: clamp(32px, 4.4vw, 60px);
+  line-height: 1.05;
+  font-weight: 400;
+}
+.sage-studios__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ss-ink); }
+.sage-studios__item { border-bottom: 1px solid var(--ss-rule); }
+.sage-studios__link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 8px 24px;
+  padding: clamp(18px, 2.4vw, 28px) 0;
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: opacity .5s var(--ss-ease);
+}
+.sage-studios__name {
+  font-size: clamp(26px, 3.6vw, 52px);
+  line-height: 1.05;
+  transition: transform .7s var(--ss-ease), letter-spacing .7s var(--ss-ease);
+  transform-origin: left center;
+}
+.sage-studios__meta { display: flex; gap: 20px; align-items: baseline; font-size: 13px; color: var(--ss-soft); white-space: nowrap; }
+.sage-studios__handle { transition: color .4s var(--ss-ease); }
+.sage-studios__arrow { display: inline-block; transition: transform .5s var(--ss-ease); }
+.sage-studios__thumb { display: none; }
+
+/* Hover: the list quiets, the chosen name steps forward */
+.sage-studios__list:hover .sage-studios__link { opacity: .32; }
+.sage-studios__list .sage-studios__link:hover,
+.sage-studios__list .sage-studios__link:focus-visible { opacity: 1; }
+.sage-studios__link:hover .sage-studios__name,
+.sage-studios__link:focus-visible .sage-studios__name { transform: translateX(14px); }
+.sage-studios__link:hover .sage-studios__handle { color: var(--ss-ink); }
+.sage-studios__link:hover .sage-studios__arrow { transform: translate(3px, -3px); }
+.sage-studios__link:focus-visible { outline: 1px solid currentColor; outline-offset: 6px; }
+
+/* The floating grid */
+.sage-studios__float {
+  position: fixed;
+  left: 0; top: 0;
+  width: clamp(220px, 21vw, 300px);
+  aspect-ratio: 3 / 4;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  transform: translate3d(-9999px, 0, 0);
+  will-change: transform, opacity;
+}
+.sage-studios__float img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.45), 0 12px 24px -12px rgba(0,0,0,.3);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path .7s var(--ss-ease);
+}
+.sage-studios__float.is-on img { clip-path: inset(0 0 0 0); }
+.sage-studios__float-tag {
+  position: absolute; left: 12px; bottom: 12px;
+  background: #fff; color: #111;
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  padding: 6px 9px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity .5s var(--ss-ease) .15s, transform .5s var(--ss-ease) .15s;
+}
+.sage-studios__float.is-on .sage-studios__float-tag { opacity: 1; transform: none; }
+
+.sage-studios__press { margin: clamp(24px, 3vw, 36px) 0 0; font-size: 15px; color: var(--ss-soft); }
+
+/* Touch screens: no hover, so show each grid inline */
+@media (hover: none), (max-width: 760px) {
+  .sage-studios__float { display: none; }
+  .sage-studios__list:hover .sage-studios__link { opacity: 1; }
+  .sage-studios__link { grid-template-columns: 64px 1fr; align-items: center; }
+  .sage-studios__thumb { display: block; width: 64px; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 2px; grid-row: span 2; }
+  .sage-studios__meta { grid-column: 2; white-space: normal; flex-wrap: wrap; gap: 4px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sage-studios *, .sage-studios__float img { transition: none !important; }
+}
+</style>
+
+<script>
+(function () {
+  /* Order = what visitors see first. Replace each img with your uploaded file URL. */
+  var STUDIOS = [
+    { name: 'Andrew Suvalsky Designs', place: 'New York + Montclair', handle: 'andrewsuvalskydesigns', img: 'PASTE-URL/andrewsuvalsky.jpg' },
+    { name: 'Lori Margolis Interiors', place: 'Manhattan',            handle: 'lorimargolisinteriors', img: 'PASTE-URL/lorimargolis.jpg' },
+    { name: 'Karen White Interior Design', place: 'Aspen, Colorado',  handle: 'karenwhiteinteriordesign', img: 'PASTE-URL/karenwhite.jpg' },
+    { name: 'Coco Maison Design',      place: 'Southern California',  handle: 'cocomaisondesign',      img: 'PASTE-URL/cocomaison.jpg' },
+    { name: 'TKS Design Group',        place: 'Glen Ellyn, Illinois', handle: 'tksdesigngroup',        img: 'PASTE-URL/tks.jpg' },
+    { name: 'Love and Interiors',      place: 'San Francisco Bay Area', handle: 'loveandinteriors',    img: 'PASTE-URL/loveandinteriors.jpg' }
+  ];
+
+  var list = document.getElementById('sage-studios-list');
+  var float = document.getElementById('sage-studios-float');
+  var floatImg = document.getElementById('sage-studios-float-img');
+  var floatTag = document.getElementById('sage-studios-float-tag');
+  if (!list || list.dataset.ready) return;
+  list.dataset.ready = '1';
+
+  STUDIOS.forEach(function (s) {
+    new Image().src = s.img; /* preload so the float never flashes empty */
+    var li = document.createElement('li');
+    li.className = 'sage-studios__item';
+    li.innerHTML =
+      '<a class="sage-studios__link" href="https://www.instagram.com/' + s.handle + '/" target="_blank" rel="noopener" ' +
+         'data-img="' + s.img + '" data-handle="@' + s.handle + '" aria-label="' + s.name + ' on Instagram (opens in a new tab)">' +
+        '<img class="sage-studios__thumb" src="' + s.img + '" alt="" loading="lazy">' +
+        '<span class="sage-studios__name">' + s.name + '</span>' +
+        '<span class="sage-studios__meta"><span>' + s.place + '</span>' +
+          '<span class="sage-studios__handle">@' + s.handle + ' <span class="sage-studios__arrow">↗</span></span></span>' +
+      '</a>';
+    list.appendChild(li);
+  });
+
+  if (window.matchMedia('(hover: none), (max-width: 760px)').matches) return;
+
+  /* Smoothly trail the cursor; tilt gently with horizontal speed */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mx = 0, my = 0, x = 0, y = 0, raf = null, active = false;
+  var w = function () { return float.offsetWidth; }, h = function () { return float.offsetHeight; };
+
+  function frame() {
+    var k = reduce ? 1 : 0.12;
+    var dx = mx - x;
+    x += dx * k; y += (my - y) * k;
+    var tilt = reduce ? 0 : Math.max(-6, Math.min(6, dx * 0.04));
+    var px = x + 32, py = y - h() / 2;
+    if (px + w() > window.innerWidth - 16) px = x - w() - 32; /* flip to the left near the edge */
+    py = Math.max(16, Math.min(window.innerHeight - h() - 16, py));
+    float.style.transform = 'translate3d(' + px + 'px,' + py + 'px,0) rotate(' + tilt + 'deg)';
+    if (active || Math.abs(dx) > 0.5) raf = requestAnimationFrame(frame); else raf = null;
+  }
+  function show(a, e) {
+    if (e) { mx = e.clientX; my = e.clientY; if (!active) { x = mx; y = my; } }
+    float.classList.remove('is-on'); void float.offsetWidth; /* replay the reveal */
+    floatImg.src = a.dataset.img;
+    floatTag.textContent = a.dataset.handle;
+    float.style.transition = 'opacity .45s cubic-bezier(.2,.7,.2,1)';
+    float.style.opacity = '1';
+    float.classList.add('is-on');
+    active = true;
+    if (!raf) raf = requestAnimationFrame(frame);
+  }
+  function hide() {
+    active = false;
+    float.style.opacity = '0';
+    float.classList.remove('is-on');
+  }
+
+  list.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (!active) { x = mx; y = my; }
+  });
+  list.querySelectorAll('.sage-studios__link').forEach(function (a) {
+    a.addEventListener('mouseenter', function (e) { show(a, e); });
+    a.addEventListener('focus', function () {
+      var r = a.getBoundingClientRect(); mx = x = r.left + r.width * 0.55; my = y = r.top + r.height / 2; show(a);
+    });
+    a.addEventListener('blur', hide);
+  });
+  list.addEventListener('mouseleave', hide);
+})();
+</script>
