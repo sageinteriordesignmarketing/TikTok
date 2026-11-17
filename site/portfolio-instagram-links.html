@@ -1,0 +1,20 @@
+<script>
+/* Sage portfolio: send each studio name to its Instagram (opens in a new tab) */
+document.addEventListener('DOMContentLoaded', function () {
+  var INSTAGRAM = {
+    'andrew-suvalsky-designs':     'andrewsuvalskydesigns',
+    'lori-margolis-interiors':     'lorimargolisinteriors',
+    'karen-white-interior-design': 'karenwhiteinteriordesign',
+    'coco-maison-design':          'cocomaisondesign',
+    'tks-design-group':            'tksdesigngroup',
+    'love-and-interiors':          'loveandinteriors'
+  };
+  Object.keys(INSTAGRAM).forEach(function (slug) {
+    document.querySelectorAll('a[href$="/' + slug + '"], a[href$="/' + slug + '/"]').forEach(function (a) {
+      a.href = 'https://www.instagram.com/' + INSTAGRAM[slug] + '/';
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+  });
+});
+</script>
