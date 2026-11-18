@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sage Case Study</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Archivo:wght@400;500;600&display=swap">
+<style>
+/* Sage brand, simplified: big numbers, few words, generous space. Letter pages. */
+:root {
+  --paper: #F5F3EE;
+  --ink: #141414;
+  --grey: #6A6762;
+  --rule: #D6D2C8;
+  --sage: #5E6B57;
+  --sage-soft: #A9B7A0;
+  --night: #161616;
+  --on-night: #F2F0EB;
+  --f-display: "Libre Caslon Display", Georgia, serif;
+  --f-text: "Libre Caslon Text", Georgia, serif;
+  --f-sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+}
+@page { size: Letter; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: var(--f-text); font-size: 11pt; line-height: 1.55; }
+.page { width: 8.5in; height: 11in; padding: 0.75in; position: relative; overflow: hidden; page-break-after: always; display: flex; flex-direction: column; }
+.page:last-child { page-break-after: auto; }
+h1, h2 { font-family: var(--f-display); font-weight: 400; margin: 0; line-height: 1.05; letter-spacing: -0.01em; }
+p { margin: 0; }
+em { font-style: italic; }
+.kicker { font: 600 7.5pt var(--f-sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--sage); }
+.wordmark { font-family: var(--f-display); font-size: 30pt; line-height: 1; }
+.foot { margin-top: auto; display: flex; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 10px; font: 500 7pt var(--f-sans); letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey); }
+
+/* ---------- Cover ---------- */
+.cover { background: var(--night); color: var(--on-night); }
+.cover .top { display: flex; justify-content: space-between; align-items: baseline; }
+.cover .kicker { color: var(--sage-soft); }
+.cover .big { margin-top: 1.5in; font-family: var(--f-display); font-size: 170pt; line-height: 0.85; letter-spacing: -0.03em; display: flex; align-items: baseline; gap: 0.2in; }
+.cover .big .from { color: rgba(242,240,235,.35); }
+.cover .big .arrow { font-family: var(--f-text); font-style: italic; font-size: 64pt; color: var(--sage-soft); }
+.cover h1 { margin-top: 0.6in; font-size: 32pt; line-height: 1.12; max-width: 21ch; text-wrap: balance; }
+.cover h1 em { font-family: var(--f-text); }
+.cover .who { margin-top: auto; border-top: 1px solid rgba(242,240,235,.3); padding-top: 14px; display: flex; justify-content: space-between; gap: 20px; font: 500 8pt var(--f-sans); letter-spacing: 0.16em; text-transform: uppercase; color: rgba(242,240,235,.65); }
+
+/* ---------- Before / after ---------- */
+.ba-head { display: grid; grid-template-columns: 1fr auto auto; gap: 0 0.35in; align-items: end; border-bottom: 1px solid var(--ink); padding-bottom: 8px; margin-top: 0.35in; }
+.ba-head span { font: 600 7.5pt var(--f-sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey); width: 1.45in; text-align: right; }
+.ba-head span:first-child { text-align: left; width: auto; }
+.ba-row { display: grid; grid-template-columns: 1fr auto auto; gap: 0 0.35in; align-items: center; border-bottom: 1px solid var(--rule); padding: 0.26in 0; }
+.ba-row .what { font-size: 13pt; line-height: 1.35; }
+.ba-row .what small { display: block; font-size: 9.5pt; color: var(--grey); margin-top: 3px; }
+.ba-row .n { width: 1.45in; text-align: right; font-family: var(--f-display); font-size: 46pt; line-height: 1; font-variant-numeric: tabular-nums; }
+.ba-row .before { color: #B4B0A7; }
+.ba-row .after { color: var(--ink); }
+.changed { margin-top: 0.45in; display: grid; grid-template-columns: 1.6in 1fr; gap: 18px; }
+.changed ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.changed li { font-size: 12pt; line-height: 1.45; padding-left: 22px; position: relative; }
+.changed li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 10px; height: 1px; background: var(--sage); }
+.honest { margin-top: 0.45in; border: 1px solid var(--ink); padding: 16px 20px; font-size: 10.5pt; line-height: 1.5; }
+.honest b { font-family: var(--f-sans); font-weight: 600; font-size: 7.5pt; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sage); display: block; margin-bottom: 6px; }
+.src { margin-top: 10px; font-size: 7.5pt; color: var(--grey); }
+
+/* ---------- Website ---------- */
+.browser { border: 1px solid var(--rule); background: #fff; box-shadow: 0 18px 40px -24px rgba(0,0,0,.4); }
+.browser .bar { height: 22px; display: flex; align-items: center; gap: 5px; padding: 0 9px; border-bottom: 1px solid var(--rule); background: #EEEBE4; }
+.browser .bar i { width: 7px; height: 7px; border-radius: 50%; background: #CFCAC0; display: block; }
+.browser .bar span { margin-left: 10px; font: 500 7pt var(--f-sans); letter-spacing: 0.06em; color: var(--grey); }
+.browser img { display: block; width: 100%; height: auto; }
+.web-bottom { margin-top: 0.3in; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3in; align-items: center; }
+.web-bottom .browser img { height: 1.9in; object-fit: cover; object-position: top; }
+.cta { background: var(--night); color: var(--on-night); padding: 20px 22px; display: grid; gap: 10px; }
+.cta h2 { font-size: 21pt; line-height: 1.1; }
+.cta h2 em { font-family: var(--f-text); }
+.cta p { font-size: 9.5pt; color: rgba(242,240,235,.75); }
+.cta .addr { font: 600 7.5pt var(--f-sans); letter-spacing: 0.14em; border-top: 1px solid rgba(242,240,235,.3); padding-top: 9px; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<section class="page cover">
+  <div class="top">
+    <span class="wordmark">sage</span>
+    <span class="kicker">Case study · Getting found on Google</span>
+  </div>
+  <div class="big"><span class="from">79</span><span class="arrow">to</span><span>11</span></div>
+  <h1>A Minneapolis designer went from page eight of Google to <em>one spot from page one.</em></h1>
+  <div class="who"><span>Heather Peterson Design</span><span>Minneapolis, MN</span><span>Nine months</span></div>
+</section>
+
+<!-- ============ PAGE 2 ============ -->
+<section class="page">
+  <p class="kicker">Heather Peterson Design</p>
+  <div style="height:10px"></div>
+  <h2 style="font-size:40pt;">Before and after.</h2>
+
+  <div class="ba-head"><span>&nbsp;</span><span>March 2024</span><span>Dec 2024</span></div>
+
+  <div class="ba-row">
+    <p class="what">Her spot on Google<small>When someone searches “interior design Minneapolis”</small></p>
+    <span class="n before">#79</span><span class="n after">#11</span>
+  </div>
+  <div class="ba-row">
+    <p class="what">Visitors from Google<small>Each month</small></p>
+    <span class="n before">94</span><span class="n after">217</span>
+  </div>
+  <div class="ba-row">
+    <p class="what">Design searches she shows up in<small>Searches that lead to clients</small></p>
+    <span class="n before">12</span><span class="n after">25</span>
+  </div>
+
+  <div class="changed">
+    <p class="kicker" style="padding-top:5px;">What changed</p>
+    <ul>
+      <li>Her website was tuned behind the scenes so Google understands what she does and where.</li>
+      <li>Old blog posts that attracted the wrong visitors were cleaned up.</li>
+      <li>Her best blog posts, the ones people already loved, stayed.</li>
+    </ul>
+  </div>
+
+  <div class="honest">
+    <b>Full transparency</b>
+    This project was planned and completed by Duo Collective, our SEO strategy partner. It’s the same process Sage puts in place for our clients: Duo Collective builds the plan, and we do the work on your website.
+  </div>
+  <p class="src">Numbers from Google Search Console and Semrush, as reported by Duo Collective in December 2024.</p>
+
+  <div class="foot"><span>Sage</span><span>02</span></div>
+</section>
+
+<!-- ============ PAGE 3 ============ -->
+<section class="page">
+  <p class="kicker">Website design by Sage</p>
+  <div style="height:10px"></div>
+  <h2 style="font-size:40pt;">A site that looks like the work.</h2>
+  <div style="height:6px"></div>
+  <p style="font-size:11pt; color:var(--grey);">Design Collaborative · San Luis Obispo, CA and Eagle, ID</p>
+  <div style="height:0.28in"></div>
+
+  <div class="browser">
+    <div class="bar"><i></i><i></i><i></i><span>designcollaborative.design</span></div>
+    <img src="img/dc-home.jpg" alt="Design Collaborative homepage: a wood-ceilinged kitchen with a curved island, and the line Crafting inspired spaces for how you live, work, and gather.">
+  </div>
+
+  <div class="web-bottom">
+    <div class="browser">
+      <div class="bar"><i></i><i></i><i></i><span>Selected works</span></div>
+      <img src="img/dc-projects.jpg" alt="Design Collaborative project gallery: Bluff Estate, Gold Coast Spanish and El Hacón.">
+    </div>
+    <div class="cta">
+      <h2>Be found. <em>Then be remembered.</em></h2>
+      <p>Book a discovery call and we’ll show you where your site stands today.</p>
+      <p class="addr">SAGEINTERIORDESIGNMARKETING.COM</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>Sage</span><span>03</span></div>
+</section>
+
+</body>
+</html>
