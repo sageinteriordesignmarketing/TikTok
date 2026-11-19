@@ -74,7 +74,7 @@ HAILEY = {"name": "Hailey Holdahl", "clickup_id": "101382018",
 
 PODS = [
     {"name": "Bella/Campbell pod", "max_clients": 10, "members": [BELLA, CAMPBELL], "active": True},
-    {"name": "Hailey", "max_clients": 10, "members": [HAILEY], "active": True},  # cap TBC
+    {"name": "Hailey", "max_clients": 7, "members": [HAILEY], "active": True},
 ]
 ACCOUNT_MANAGERS = [m for pod in PODS for m in pod["members"]]
 

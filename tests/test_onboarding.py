@@ -121,7 +121,7 @@ class OnboardingTest(unittest.TestCase):
         slack = next(b for u, b in posts if "slack.com" in u)["text"]
         self.assertIn("Account manager: Hailey Holdahl", slack)
         self.assertIn("Bella/Campbell pod: 6/10 clients  (Bella 5, Campbell 2)", slack)
-        self.assertIn("Hailey: 2/10 clients", slack)
+        self.assertIn("Hailey: 2/7 clients", slack)
         self.assertNotIn("{{", slack)  # unfilled GHL merge field was dropped
 
     def test_dry_run_changes_nothing(self):
@@ -133,11 +133,11 @@ class OnboardingTest(unittest.TestCase):
         self.assertFalse(any(m == "POST" and "clickup" in u for m, u, _ in calls))
 
     def test_full_pod_is_skipped_and_lighter_member_chosen(self):
-        calls = run(FakeApis(hailey_clients=10), PAYLOAD)
+        calls = run(FakeApis(hailey_clients=7), PAYLOAD)
         task_body = next(b for m, u, b in calls if m == "POST" and u.endswith("/task"))
         self.assertEqual(task_body["assignees"], [89193155])  # Campbell (2) over Bella (5)
         slack = next(b for m, u, b in calls if "slack.com" in u)["text"]
-        self.assertIn("Hailey: 10/10 clients  ← full", slack)
+        self.assertIn("Hailey: 7/7 clients  ← full", slack)
 
     def test_everyone_full_still_assigns_and_warns(self):
         fake = FakeApis(hailey_clients=12)

@@ -26,7 +26,7 @@ It goes by **open clients only**. A client counts as open for someone while they
 
 Open `onboarding.py` and look at `PODS` near the top:
 
-- `max_clients`: the pod's cap on open clients (Bella/Campbell: 10; Hailey: 10 is a placeholder to confirm)
+- `max_clients`: the pod's cap on open clients (Bella/Campbell: 10; Hailey: 7)
 - `booking_link` (on each person above `PODS`): their GHL calendar link for the onboarding call
 - `active`: `False` stops a pod getting new clients
 
