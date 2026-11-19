@@ -2,7 +2,7 @@
 
 When a client pays a proposal in GoHighLevel, this runs on its own within about a minute:
 
-1. **Chooses the account manager.** It picks the AM with the most free capacity and posts the numbers it used.
+1. **Chooses the account manager** by open clients against each pod's cap, and posts the counts it used.
 2. **Builds the client's ClickUp folder** in **Agency Clients**. It copies every list and task in *Templates Hub → Sage Social Studio - Client Template*, adds a dated **Onboarding Timeline** (copied from *Client Onboarding Timeline*), and assigns all of it to the chosen AM.
 3. **Sends the client a welcome email from GHL.** It assigns the contact to the AM and fills in the AM's name, email and booking link. Then it adds the tag `onboarding - am assigned`, which starts your welcome-email workflow in GHL.
 4. **Posts to Slack:** the new client, who got them, and everyone's capacity at that moment.
@@ -11,28 +11,24 @@ If anything fails, Slack gets a 🚨 message with a link to the log, and GitHub 
 
 ### How the account manager is chosen
 
-For each AM listed in `ACCOUNT_MANAGERS` (top of `onboarding.py`):
+It goes by **open clients only**. A client counts as open for someone while they have at least one open task in that client's folder in Agency Clients.
 
-- **Hours booked per week:** their open ClickUp tasks in Agency Clients that are overdue or due in the next 14 days. A task counts at its **time estimate**, or 1 hour if it has none. The total is averaged over the two weeks.
-- **Active clients:** the number of client folders where they have open tasks.
-- **Time off:** anyone with a request in *HR → Time Off Requests* (task named after them) that covers today or the next 7 days is skipped, unless "Approved?" is **No**.
-
-AMs who are off, already at `max_clients`, or have fewer than 5 free hours a week are skipped. Among the rest, the client goes to the person with the **largest share of their week still free**, and fewer clients breaks a tie. If everyone is full, it still assigns the least-loaded person and flags it in Slack, so a client is never left without an owner.
-
-*The more of your recurring tasks have time estimates, the more accurate this gets.*
+- Account managers are grouped into **pods**, and each pod has a cap on open clients. **Bella + Campbell share one pod, capped at 10.** A client both of them work on counts once.
+- A new client goes to the pod with the **most open slots** (cap minus open clients).
+- Inside a pod, it goes to the member with **fewer open clients**. That person gets the ClickUp tasks and the GHL contact.
+- If every pod is at its cap, it still assigns the least-full pod and flags it in Slack, so a client is never left without an owner.
 
 ---
 
 ## One-time setup (about 30 minutes)
 
-### Step 1: Fill in your team's capacity
+### Step 1: Check the pods
 
-Open `onboarding.py` and edit `ACCOUNT_MANAGERS` near the top. For each AM, set:
+Open `onboarding.py` and look at `PODS` near the top:
 
-- `weekly_hours`: hours a week they have for client work (currently 30 for everyone, a placeholder)
-- `max_clients`: the most clients they should carry (currently 6, a placeholder)
-- `booking_link`: their GHL calendar link for the onboarding call
-- `active`: `False` stops someone getting new clients
+- `max_clients`: the pod's cap on open clients (Bella/Campbell: 10; Hailey: 10 is a placeholder to confirm)
+- `booking_link` (on each person above `PODS`): their GHL calendar link for the onboarding call
+- `active`: `False` stops a pod getting new clients
 
 ### Step 2: GHL contact fields
 
@@ -155,9 +151,7 @@ Everything is at the top of `onboarding.py`:
 
 | To change… | Edit |
 |---|---|
-| Who gets clients, their hours and client caps | `ACCOUNT_MANAGERS` |
-| How far ahead workload is counted, default task hours | `LOAD_WINDOW_DAYS`, `DEFAULT_TASK_HOURS` |
-| Minimum free hours needed for a new client | `NEW_CLIENT_WEEKLY_HOURS` |
+| Who's in which pod, and each pod's client cap | `PODS` |
 | Which template gets copied | `CLIENT_TEMPLATE_FOLDER`, `ONBOARDING_TIMELINE_LIST` |
 | The GHL tag that sends the welcome email | `GHL_TRIGGER_TAG` |
 
@@ -167,7 +161,8 @@ To change the folder structure, edit the template in **Templates Hub**. New clie
 
 ## Troubleshooting
 
-- **Slack says "everyone is at capacity":** the client still got an owner, but it's time to rebalance or hire.
+- **Slack says "every pod is at its client cap":** the client still got an owner, but it's time to rebalance or hire.
+- **Open-client counts look too high:** a finished client still has open tasks in its folder. Close or archive those tasks (or the folder) and they stop counting.
 - **The client got no welcome email:** check the GHL contact has the `onboarding - am assigned` tag and that workflow 2 is published. If the Slack post shows a ⚠️ about GHL, it says what failed.
 - **The run never started:** in GHL, open workflow 1's execution log. A 401 or 404 on the webhook usually means the GitHub token expired or is missing **Contents: Read and write**.
 - **A client paid but already had a folder:** nothing is copied twice. The folder is matched by name.

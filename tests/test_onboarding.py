@@ -25,10 +25,10 @@ def task(id_, name, assignee=None, folder="f1", due=SOON, est=None, parent=None,
 
 
 class FakeApis:
-    def __init__(self, existing_folders=(), time_off=()):
+    def __init__(self, existing_folders=(), hailey_clients=2):
         self.calls = []
         self.existing = list(existing_folders)
-        self.time_off = list(time_off)
+        self.hailey_clients = hailey_clients
         self.n = 0
 
     def __call__(self, method, url, headers, body=None, label="API"):
@@ -38,16 +38,15 @@ class FakeApis:
             who = url.split("assignees%5B%5D=")[1].split("&")[0]
             if "page=1" in url:
                 return {"tasks": [], "last_page": True}
-            if who == "95226766":   # Bella: 20 tasks of 1h due soon, 5 clients
+            if who == "95226766":   # Bella: 5 clients
                 tasks = [task(f"b{i}", "x", who, folder=f"c{i % 5}") for i in range(20)]
-            elif who == "89193155":  # Campbell: light, but on time off
-                tasks = [task("c1", "x", who)]
-            else:                    # Hailey: 2 tasks of 3h, 2 clients
-                tasks = [task("h1", "x", who, est=3 * 3_600_000, folder="a"),
-                         task("h2", "x", who, est=3 * 3_600_000, folder="b")]
+            elif who == "89193155":  # Campbell: 2 clients, one shared with Bella
+                tasks = [task("c1", "x", who, folder="c0"), task("c2", "x", who, folder="z")]
+            else:                    # Hailey
+                tasks = [task(f"h{i}", "x", who, folder=f"h{i}") for i in range(self.hailey_clients)]
+            tasks.append(task("done1", "x", who, folder="closed-client",
+                              status={"status": "complete", "type": "closed"}))
             return {"tasks": tasks, "last_page": True}
-        if method == "GET" and path.endswith(f"/list/{ob.TIME_OFF_LIST}/task"):
-            return {"tasks": self.time_off, "last_page": True}
         if method == "GET" and path.endswith("/folder") and "/space/" in path:
             return {"folders": self.existing}
         if method == "GET" and path.endswith(f"/folder/{ob.CLIENT_TEMPLATE_FOLDER}"):
@@ -89,14 +88,14 @@ def run(fake, payload, argv=()):
 
 PAYLOAD = {"contact_id": "abc", "first_name": "Jane", "last_name": "Doe",
            "company": "Doe Interiors", "package": "{{payment.product}}"}
-TIME_OFF = [{"name": "Campbell Fauber", "due_date": SOON, "start_date": None, "custom_fields": []}]
 
 
 class OnboardingTest(unittest.TestCase):
     def test_full_run(self):
-        calls = run(FakeApis(time_off=TIME_OFF), PAYLOAD)
+        calls = run(FakeApis(), PAYLOAD)
         posts = [(u, b) for m, u, b in calls if m in ("POST", "PUT")]
-        # Bella has 10h/week booked + 5 clients; Campbell is off -> Hailey (3h/week).
+        # Bella/Campbell pod: 6/10 open clients (shared one counted once);
+        # Hailey: 2/10 -> Hailey has more open slots.
         folder = next(b for u, b in posts if u.endswith(f"/space/{ob.AGENCY_CLIENTS_SPACE}/folder"))
         self.assertEqual(folder["name"], "Doe Interiors")
         new_tasks = [b for u, b in posts if u.endswith("/task") and "/list/" in u]
@@ -121,7 +120,8 @@ class OnboardingTest(unittest.TestCase):
         self.assertTrue(ghl_urls[-1].endswith("/contacts/abc/tags"))
         slack = next(b for u, b in posts if "slack.com" in u)["text"]
         self.assertIn("Account manager: Hailey Holdahl", slack)
-        self.assertIn("time off", slack)
+        self.assertIn("Bella/Campbell pod: 6/10 clients  (Bella 5, Campbell 2)", slack)
+        self.assertIn("Hailey: 2/10 clients", slack)
         self.assertNotIn("{{", slack)  # unfilled GHL merge field was dropped
 
     def test_dry_run_changes_nothing(self):
@@ -131,6 +131,20 @@ class OnboardingTest(unittest.TestCase):
     def test_existing_folder_is_not_copied_again(self):
         calls = run(FakeApis(existing_folders=[{"id": "F9", "name": "doe interiors"}]), PAYLOAD)
         self.assertFalse(any(m == "POST" and "clickup" in u for m, u, _ in calls))
+
+    def test_full_pod_is_skipped_and_lighter_member_chosen(self):
+        calls = run(FakeApis(hailey_clients=10), PAYLOAD)
+        task_body = next(b for m, u, b in calls if m == "POST" and u.endswith("/task"))
+        self.assertEqual(task_body["assignees"], [89193155])  # Campbell (2) over Bella (5)
+        slack = next(b for m, u, b in calls if "slack.com" in u)["text"]
+        self.assertIn("Hailey: 10/10 clients  ← full", slack)
+
+    def test_everyone_full_still_assigns_and_warns(self):
+        fake = FakeApis(hailey_clients=12)
+        with mock.patch.object(ob, "PODS", [dict(ob.PODS[0], max_clients=6), ob.PODS[1]]):
+            calls = run(fake, PAYLOAD)
+        slack = next(b for m, u, b in calls if "slack.com" in u)["text"]
+        self.assertIn("every pod is at its client cap", slack)
 
     def test_forced_am(self):
         calls = run(FakeApis(), {**PAYLOAD, "account_manager": "bella"})

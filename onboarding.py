@@ -2,8 +2,8 @@
 """New-client onboarding: GHL proposal paid -> ClickUp + GHL + Slack.
 
 GoHighLevel starts this (through GitHub) when a client pays a proposal. It:
-  1. Picks the account manager (AM) with the most free capacity, using their
-     open ClickUp work, their active clients and the Time Off Requests list.
+  1. Picks the account manager (AM): the pod with the most open client
+     slots, then the pod member with fewer open clients.
   2. Builds the client's ClickUp folder in Agency Clients by copying the
      "Sage Social Studio - Client Template" folder, plus a dated copy of the
      Client Onboarding Timeline, with every task assigned to the AM.
@@ -57,37 +57,26 @@ AGENCY_CLIENTS_SPACE = "90170894916"        # new client folders go here
 CLIENT_TEMPLATE_FOLDER = "90178513273"      # Templates Hub > Sage Social Studio - Client Template
 ONBOARDING_TIMELINE_LIST = "901718144560"   # Agency Clients > Client Onboarding Timeline
 TIMELINE_LIST_NAME = "Onboarding Timeline"  # name of the dated copy in the client folder
-TIME_OFF_LIST = "901702904077"              # Operations > HR > Time Off Requests
-TIME_OFF_APPROVED_FIELD = "860894a7-23be-48a4-82fd-da4bbd0c59c3"  # "Approved?" dropdown
 
-# Account managers who can be given new clients.
-#   weekly_hours  hours a week they have for client work
-#   max_clients   never give them more active clients than this
+# Account managers, grouped into pods. Each pod has a cap on OPEN clients:
+# a client counts as open for a pod while any pod member has an open task in
+# that client's folder in Agency Clients. A new client goes to the pod with
+# the most open slots; inside the pod, to the member with fewer open clients.
 #   booking_link  their GHL calendar link for the onboarding call (goes in
 #                 the welcome email)
-# Set "active": False to stop someone getting new clients without deleting them.
-ACCOUNT_MANAGERS = [
-    {"name": "Bella Gaston", "clickup_id": "95226766",
-     "email": "bella@sageinteriordesignmarketing.com",
-     "weekly_hours": 30, "max_clients": 6, "booking_link": "", "active": True},
-    {"name": "Campbell Fauber", "clickup_id": "89193155",
-     "email": "campbell@sageinteriordesignmarketing.com",
-     "weekly_hours": 30, "max_clients": 6, "booking_link": "", "active": True},
-    {"name": "Hailey Holdahl", "clickup_id": "101382018",
-     "email": "hailey@sageinteriordesignmarketing.com",
-     "weekly_hours": 30, "max_clients": 6, "booking_link": "", "active": True},
-]
+# Set "active": False on a pod to stop it getting new clients.
+BELLA = {"name": "Bella Gaston", "clickup_id": "95226766",
+         "email": "bella@sageinteriordesignmarketing.com", "booking_link": ""}
+CAMPBELL = {"name": "Campbell Fauber", "clickup_id": "89193155",
+            "email": "campbell@sageinteriordesignmarketing.com", "booking_link": ""}
+HAILEY = {"name": "Hailey Holdahl", "clickup_id": "101382018",
+          "email": "hailey@sageinteriordesignmarketing.com", "booking_link": ""}
 
-# How workload is measured: open tasks assigned to the AM in Agency Clients
-# that are overdue or due in the next LOAD_WINDOW_DAYS. A task's time estimate
-# is used when it has one, otherwise DEFAULT_TASK_HOURS.
-LOAD_WINDOW_DAYS = 14
-DEFAULT_TASK_HOURS = 1.0
-# Hours a brand-new client adds in their first weeks, used to make sure the
-# chosen AM can actually take them on.
-NEW_CLIENT_WEEKLY_HOURS = 5
-# Someone with approved time off starting within this many days is skipped.
-TIME_OFF_LOOKAHEAD_DAYS = 7
+PODS = [
+    {"name": "Bella/Campbell pod", "max_clients": 10, "members": [BELLA, CAMPBELL], "active": True},
+    {"name": "Hailey", "max_clients": 10, "members": [HAILEY], "active": True},  # cap TBC
+]
+ACCOUNT_MANAGERS = [m for pod in PODS for m in pod["members"]]
 
 # GHL: tag that starts the welcome-email workflow, plus extra tags.
 GHL_TRIGGER_TAG = "onboarding - am assigned"
@@ -184,8 +173,8 @@ def is_open(task):
     return (status.get("type") or "").lower() not in ("closed", "done")
 
 
-def workload(cu, am, now):
-    """(hours of work per week coming up, number of active clients)."""
+def open_clients(cu, am):
+    """IDs of client folders where this person has at least one open task."""
     tasks = cu.tasks(f"/team/{WORKSPACE_ID}/task", [
         ("assignees[]", am["clickup_id"]),
         ("space_ids[]", AGENCY_CLIENTS_SPACE),
@@ -193,42 +182,12 @@ def workload(cu, am, now):
         ("subtasks", "true"),
         ("archived", "false"),
     ])
-    window_end = ms(now + timedelta(days=LOAD_WINDOW_DAYS))
-    hours, clients = 0.0, set()
+    clients = set()
     for t in tasks:
-        if not is_open(t):
-            continue
         folder = t.get("folder") or {}
-        if folder.get("id") and not folder.get("hidden"):
+        if is_open(t) and folder.get("id") and not folder.get("hidden"):
             clients.add(folder["id"])
-        if t.get("due_date") and int(t["due_date"]) <= window_end:
-            est = t.get("time_estimate")
-            hours += int(est) / 3_600_000 if est else DEFAULT_TASK_HOURS
-    weekly = hours * 7 / LOAD_WINDOW_DAYS
-    return round(weekly, 1), len(clients)
-
-
-def time_off(cu, now):
-    """Names of people with approved time off now or in the next few days."""
-    tasks = cu.tasks(f"/list/{TIME_OFF_LIST}/task", [
-        ("include_closed", "true"), ("archived", "false")])
-    soon = ms(now + timedelta(days=TIME_OFF_LOOKAHEAD_DAYS))
-    today = ms(datetime.combine(now.date(), time.min, TIMEZONE))
-    away = set()
-    for t in tasks:
-        end = t.get("due_date")
-        start = t.get("start_date") or end
-        if not end or int(end) < today or int(start) > soon:
-            continue
-        approved = next((f for f in t.get("custom_fields") or []
-                         if f.get("id") == TIME_OFF_APPROVED_FIELD), {})
-        options = (approved.get("type_config") or {}).get("options") or []
-        chosen = next((o.get("name", "") for o in options
-                       if o.get("id") == approved.get("value") or o.get("orderindex") == approved.get("value")), "")
-        if chosen.strip().lower() == "no":
-            continue
-        away.add((t.get("name") or "").strip().lower())
-    return away
+    return clients
 
 
 def find_am(text):
@@ -238,41 +197,34 @@ def find_am(text):
     for am in ACCOUNT_MANAGERS:
         if text in (am["name"].lower(), am["email"].lower(), am["name"].split()[0].lower()):
             return am
-    sys.exit(f"account_manager '{text}' isn't in ACCOUNT_MANAGERS in onboarding.py.")
+    sys.exit(f"account_manager '{text}' isn't in PODS in onboarding.py.")
 
 
 def choose_am(cu, now, requested=None):
-    """Returns (chosen AM, table of everyone's numbers, note for Slack)."""
-    away = time_off(cu, now)
+    """Returns (chosen AM, one row per pod with its open clients, note for Slack)."""
     table = []
-    for am in ACCOUNT_MANAGERS:
-        if not am.get("active", True):
+    for pod in PODS:
+        if not pod.get("active", True):
             continue
-        weekly, clients = workload(cu, am, now)
-        free = am["weekly_hours"] - weekly
-        row = {"am": am, "weekly": weekly, "clients": clients, "free": round(free, 1),
-               "away": am["name"].lower() in away, "reason": ""}
-        if row["away"]:
-            row["reason"] = "time off"
-        elif clients >= am["max_clients"]:
-            row["reason"] = f"at max clients ({am['max_clients']})"
-        elif free < NEW_CLIENT_WEEKLY_HOURS:
-            row["reason"] = "not enough free hours"
-        table.append(row)
+        per_member = {m["clickup_id"]: open_clients(cu, m) for m in pod["members"]}
+        clients = set().union(*per_member.values())
+        table.append({"pod": pod, "clients": len(clients), "per_member": per_member,
+                      "slots": pod["max_clients"] - len(clients),
+                      "reason": "" if len(clients) < pod["max_clients"] else "full"})
     if not table:
-        sys.exit("No active account managers in ACCOUNT_MANAGERS.")
-    # Most free hours (as a share of their week) first; fewer clients breaks ties.
-    table.sort(key=lambda r: (-(r["free"] / r["am"]["weekly_hours"]), r["clients"]))
+        sys.exit("No active pods in PODS.")
+    table.sort(key=lambda r: (-r["slots"], r["clients"]))
+
+    def lightest_member(row):
+        return min(row["pod"]["members"], key=lambda m: len(row["per_member"][m["clickup_id"]]))
 
     forced = find_am(requested)
     if forced:
         return forced, table, f"chosen by hand ({requested})"
-    eligible = [r for r in table if not r["reason"]]
-    if eligible:
-        return eligible[0]["am"], table, "most free capacity"
+    if table[0]["slots"] > 0:
+        return lightest_member(table[0]), table, f"{table[0]['pod']['name']} has the most open slots"
     # Everyone is full: still assign, but flag it loudly.
-    present = [r for r in table if not r["away"]] or table
-    return present[0]["am"], table, "⚠️ everyone is at capacity, so this went to the least-loaded AM"
+    return lightest_member(table[0]), table, "⚠️ every pod is at its client cap, so this went to the least-full one"
 
 
 # --------------------------------------------------------------------------
@@ -402,13 +354,16 @@ def slack_text(client, client_name, am, why, table, folder_url, log, created):
         lines.append(f"ClickUp folder: <{folder_url}|{client_name}>  (all tasks assigned to {am['name'].split()[0]})")
     else:
         lines.append(f"ClickUp folder <{folder_url}|{client_name}> already existed, so nothing was copied again.")
-    lines.append("\n_Capacity when this was decided (hours/week booked of available · active clients):_")
+    lines.append("\n_Open clients when this was decided:_")
     for r in table:
-        a = r["am"]
+        pod = r["pod"]
+        mark = "👉 " if am in pod["members"] else "• "
         flag = f"  ← {r['reason']}" if r["reason"] else ""
-        mark = "👉 " if a is am else "• "
-        lines.append(f"{mark}{a['name']}: {r['weekly']}h of {a['weekly_hours']}h · "
-                     f"{r['clients']}/{a['max_clients']} clients{flag}")
+        detail = ""
+        if len(pod["members"]) > 1:
+            detail = "  (" + ", ".join(
+                f"{m['name'].split()[0]} {len(r['per_member'][m['clickup_id']])}" for m in pod["members"]) + ")"
+        lines.append(f"{mark}{pod['name']}: {r['clients']}/{pod['max_clients']} clients{detail}{flag}")
     warnings = [line.strip() for line in log if "⚠️" in line]
     if warnings:
         lines.append("\n" + "\n".join(warnings))
