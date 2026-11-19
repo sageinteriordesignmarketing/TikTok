@@ -94,6 +94,38 @@ em { font-style: italic; }
 .links .tag { font: 600 7pt var(--f-sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); }
 .links .t { font-size: 11pt; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
 .links .arr { color: var(--sage); }
+
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0.22in; }
+.duo figure { margin: 0; display: grid; gap: 6px; }
+.duo .tag { font: 600 7pt var(--f-sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey); }
+.duo .tag.after { color: var(--sage); }
+.duo img { aspect-ratio: 796 / 448; object-fit: cover; object-position: top; }
+.cmp-head, .cmp { display: grid; grid-template-columns: 1.05in 1fr 1.25fr; gap: 0 16px; }
+.cmp-head { border-bottom: 1px solid var(--ink); padding-bottom: 6px; }
+.cmp-head span { font: 600 7pt var(--f-sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey); }
+.cmp-head span:last-child { color: var(--sage); }
+.cmp { border-bottom: 1px solid var(--rule); padding: 7px 0; align-items: baseline; }
+.cmp .k { font: 600 7pt var(--f-sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--grey); }
+.cmp .b { font-size: 9.6pt; line-height: 1.4; color: #8C887F; }
+.cmp .a { font-size: 9.6pt; line-height: 1.4; color: var(--ink); }
+.links { grid-template-columns: 1.3in 1fr; row-gap: 8px; }
+.links .kicker { grid-row: span 2; align-self: start; }
+.links a { grid-column: 2; grid-template-columns: 0.75in auto auto; justify-content: start; }
+.links .tag2 { font: 600 7pt var(--f-sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); }
+.links .t { font-size: 10pt; }
+.pw { margin-top: 8px; margin-left: calc(1.3in + 18px); font-size: 9.6pt; color: var(--grey); }
+.pw b { color: var(--ink); font-family: var(--f-sans); font-weight: 600; letter-spacing: 0.04em; }
+.strips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.2in; }
+.strip { position: relative; border: 1px solid var(--rule); box-shadow: 0 14px 30px -20px rgba(0,0,0,.4); }
+.strip img { display: block; width: 100%; height: auto; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.3in; }
+.two-col li { padding-top: 8px; padding-bottom: 8px; font-size: 9.6pt; }
+.two-col li::before { top: 8px; }
+.two-col b { font-size: 11.5pt; }
+.cta.wide { grid-template-columns: 1fr auto; display: grid; align-items: center; padding: 14px 20px; }
+.cta.wide h2 { font-size: 17pt; }
+.cta.wide p { font-size: 9.6pt; }
+.addr2 { font: 600 7.5pt var(--f-sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-night); }
 .page > * { flex-shrink: 0; }
 </style>
 </head>
@@ -149,73 +181,73 @@ em { font-style: italic; }
   <div class="foot"><span>Sage</span><span>02</span></div>
 </section>
 
-<!-- ============ PAGE 3 · WEBSITE STORY ============ -->
+<!-- ============ PAGE 3 · WEBSITE BEFORE / AFTER ============ -->
 <section class="page">
   <p class="kicker">Website design by Sage</p>
   <div style="height:10px"></div>
-  <h2 style="font-size:40pt;">A site that looks like the work.</h2>
+  <h2 style="font-size:38pt;">Same studio. A new first impression.</h2>
   <div style="height:6px"></div>
-  <p style="font-size:11pt; color:var(--grey);">Design Collaborative · Interior design since 1991 · San Luis Obispo, CA and Eagle, ID</p>
-  <div style="height:0.3in"></div>
+  <p style="font-size:11pt; color:var(--grey);">Design Collaborative · Interior design since 1991 · San Luis Obispo, CA and the Boise area</p>
+  <div style="height:0.25in"></div>
 
-  <div class="story">
-    <div><span class="kicker">The challenge</span><p>Thirty years of commercial, hospitality and residential projects, and one website that had to hold all of it without feeling crowded.</p></div>
-    <div><span class="kicker">The goal</span><p>Let the photography lead. Say who they are in one line. Make the next step obvious.</p></div>
-    <div><span class="kicker">The result</span><p>A calm, image-led site where every scroll shows finished work and every section ends in a clear next step.</p></div>
+  <div class="duo">
+    <figure>
+      <span class="tag">Before</span>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>Current site</span></div><img src="img/dcold-hero.jpg" alt="The current Design Collaborative homepage: a kitchen photo with a small logo and menu."></div>
+    </figure>
+    <figure>
+      <span class="tag after">After</span>
+      <div class="browser"><div class="bar"><i></i><i></i><i></i><span>New homepage by Sage</span></div><img src="img/dcnew-hero.jpg" alt="The new Design Collaborative homepage: Luxury interior designers in San Luis Obispo and Boise, over a photo of a terrace above the ocean, with a credentials bar below."></div>
+    </figure>
   </div>
 
-  <div style="height:0.32in"></div>
-  <div class="browser">
-    <div class="bar"><i></i><i></i><i></i><span>designcollaborative.design</span></div>
-    <img src="img/dc-home.jpg" alt="Design Collaborative homepage: a wood-ceilinged kitchen with a curved island, and the line Crafting inspired spaces for how you live, work, and gather.">
-  </div>
+  <div style="height:0.25in"></div>
+  <div class="cmp-head"><span></span><span>Before</span><span>After</span></div>
+  <div class="cmp"><span class="k">First line</span><span class="b">“Crafting inspired spaces for how you live, work, and gather”</span><span class="a">“Luxury interior designers in San Luis Obispo and Boise”</span></div>
+  <div class="cmp"><span class="k">Feels current</span><span class="b">“In 2021, we are celebrating 30 years”</span><span class="a">“Since 1991”: always up to date</span></div>
+  <div class="cmp"><span class="k">Proof</span><span class="b">No credentials on the homepage</span><span class="a">NCIDQ-certified, IIDA member, NARI first place, featured in <em>Sunset</em>, <em>Food &amp; Wine</em> and <em>European Homes and Gardens</em></span></div>
+  <div class="cmp"><span class="k">Services</span><span class="b">One short paragraph</span><span class="a">Four services, each with its own page</span></div>
+  <div class="cmp"><span class="k">Next step</span><span class="b">“Ready to get started?”</span><span class="a">Three clear steps after you reach out, and a reply within two business days</span></div>
 
   <div class="links">
     <p class="kicker">See it for yourself</p>
-    <a href="https://web.archive.org/web/2023/https://designcollaborative.design/"><span class="tag">Before</span><span class="t">The old site (archived)</span><span class="arr">↗</span></a>
-    <a href="https://designcollaborative.design/"><span class="tag">After</span><span class="t">designcollaborative.design</span><span class="arr">↗</span></a>
+    <a href="https://designcollaborative.design/"><span class="tag2">Before</span><span class="t">designcollaborative.design</span><span class="arr">↗</span></a>
+    <a href="https://designcollaborative.design/home-v2"><span class="tag2">After</span><span class="t">designcollaborative.design/home-v2</span><span class="arr">↗</span></a>
   </div>
+  <p class="pw">The new homepage is a draft. Password: <b>__PASSWORD__</b></p>
 
   <div class="foot"><span>Sage</span><span>03</span></div>
 </section>
 
-<!-- ============ PAGE 4 · ANNOTATED SCROLL ============ -->
+<!-- ============ PAGE 4 · NEW HOMEPAGE ANNOTATED ============ -->
 <section class="page">
-  <p class="kicker">The homepage, top to bottom</p>
+  <p class="kicker">The new homepage, top to bottom</p>
   <div style="height:10px"></div>
-  <h2 style="font-size:40pt;">Every scroll, on purpose.</h2>
-  <div style="height:0.3in"></div>
+  <h2 style="font-size:38pt;">Every scroll, on purpose.</h2>
+  <div style="height:0.22in"></div>
 
-  <div class="scroll-row">
-    <div class="scroll">
-      <div class="browser">
-        <div class="bar"><i></i><i></i><i></i></div>
-        <div class="shot">
-          <img src="img/dc-fullpage.jpg" alt="The full Design Collaborative homepage, from hero photograph to footer.">
-          <span class="pin" style="top:8%">1</span>
-          <span class="pin" style="top:21%">2</span>
-          <span class="pin" style="top:34%">3</span>
-          <span class="pin" style="top:54%">4</span>
-          <span class="pin" style="top:82%">5</span>
-          <span class="pin" style="top:96%">6</span>
-        </div>
-      </div>
-    </div>
-    <div class="notes">
-      <ol class="callouts">
-        <li><b>Lead with the work.</b> A full-width project photo is the first thing a visitor sees.</li>
-        <li><b>One line of positioning.</b> “Crafting inspired spaces for how you live, work, and gather,” then a short paragraph.</li>
-        <li><b>Services, briefly.</b> One paragraph over photography, with a single link to learn more.</li>
-        <li><b>Three projects, not thirty.</b> A curated selection, with one button to the full portfolio.</li>
-        <li><b>One clear invitation.</b> “Ready to get started?” and a single button.</li>
-        <li><b>Easy to reach.</b> Both studio locations, phone numbers and social links in the footer.</li>
-      </ol>
-      <div class="cta">
-        <h2>Be found. <em>Then be remembered.</em></h2>
-        <p>Book a discovery call and we’ll show you where your site stands today.</p>
-        <p class="addr">SAGEINTERIORDESIGNMARKETING.COM</p>
-      </div>
-    </div>
+  <div class="strips">
+    <div class="strip"><img src="img/dcnew-strip1.jpg" alt="New homepage, top third: hero, credentials, introduction and services."><span class="pin" style="top:9%">1</span><span class="pin" style="top:26%">2</span><span class="pin" style="top:89%">3</span></div>
+    <div class="strip"><img src="img/dcnew-strip2.jpg" alt="New homepage, middle third: drawn and built, who it’s for, and city pages."><span class="pin" style="top:19%">4</span><span class="pin" style="top:47%">5</span><span class="pin" style="top:88%">6</span></div>
+    <div class="strip"><img src="img/dcnew-strip3.jpg" alt="New homepage, bottom third: next steps, recent projects and get in touch."><span class="pin" style="top:12%">7</span><span class="pin" style="top:69%">8</span></div>
+  </div>
+
+  <div style="height:0.22in"></div>
+  <ol class="callouts two-col">
+    <li><b>Says where, right away.</b> The cities clients actually search for.</li>
+    <li><b>Proof before the scroll.</b> Certifications, awards and press in one line.</li>
+    <li><b>Four clear services.</b> Each one leads to its own page.</li>
+    <li><b>What sets them apart.</b> The drawings, shown next to the finished room.</li>
+    <li><b>Who it’s for.</b> People building the space they’ve planned for years.</li>
+    <li><b>A page for each city.</b> Central Coast and Mountain West.</li>
+    <li><b>No guessing what’s next.</b> Three steps after you reach out.</li>
+    <li><b>One invitation.</b> A reply within two business days.</li>
+  </ol>
+
+  <div style="height:0.2in"></div>
+  <div class="cta wide">
+    <h2>Be found. <em>Then be remembered.</em></h2>
+    <p>Book a discovery call · <span class="addr2">sageinteriordesignmarketing.com</span></p>
   </div>
 
   <div class="foot"><span>Sage</span><span>04</span></div>
