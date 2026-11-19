@@ -15,7 +15,7 @@
   --espresso: #2A231E;
   --ink: #1B1714;
   --paper: #FFFDF9;
-  --f-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --f-display: "IvyPresto Display", "ivypresto-display", "IvyPresto Headline", "Bodoni Moda", "Didot", Georgia, serif;
   --f-sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
 @page { size: Letter; margin: 0; }
@@ -131,6 +131,34 @@ em { font-style: italic; }
 .heard .ans p { font-size: 9.3pt; line-height: 1.55; color: #4A413A; }
 .heard .pg { font: 600 6.5pt var(--f-sans); letter-spacing: 0.22em; text-transform: uppercase; color: var(--espresso); white-space: nowrap; background: var(--sand); padding: 4px 8px; border-radius: 2px; }
 .back .next { font-size: 10.5pt; line-height: 1.6; max-width: 34em; color: rgba(255,253,249,.88); }
+
+.intro .lead { font-family: var(--f-display); font-size: 19pt; line-height: 1.3; letter-spacing: -0.01em; max-width: 26em; }
+.facts { display: grid; border-top: 1px solid var(--ink); }
+.facts div { display: grid; grid-template-columns: 1.35in 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--sand-2); align-items: baseline; }
+.facts b { font-family: var(--f-display); font-weight: 400; font-size: 34pt; line-height: 1; letter-spacing: -0.03em; }
+.facts p { font-size: 10pt; line-height: 1.55; color: #4A413A; }
+.goal { background: var(--paper); border-radius: 3px; padding: 18px 20px; display: grid; grid-template-columns: 1.35in 1fr; gap: 18px; }
+.goal p:last-child { font-family: var(--f-display); font-size: 14pt; line-height: 1.35; }
+.steps3 { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+.steps3 div { padding: 14px 16px 0 0; display: grid; gap: 8px; align-content: start; }
+.steps3 div + div { padding-left: 16px; border-left: 1px solid var(--sand-2); }
+.steps3 .n { font-family: var(--f-display); font-size: 22pt; color: var(--taupe); line-height: 1; }
+.steps3 h3 { font-size: 14pt; line-height: 1.2; }
+.steps3 p { font-size: 9.3pt; line-height: 1.55; color: #4A413A; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.16in; }
+.card { background: var(--paper); border-radius: 3px; padding: 18px 20px; display: grid; gap: 10px; align-content: start; }
+.card p { font-size: 9.3pt; line-height: 1.55; color: #4A413A; }
+.card .label { color: var(--taupe); }
+.kw { display: flex; align-items: baseline; gap: 10px; }
+.kw .before { font-family: var(--f-display); font-size: 20pt; color: var(--sand-2); text-decoration: line-through; text-decoration-thickness: 1px; }
+.kw .arrow { color: var(--taupe); }
+.kw .after { font-family: var(--f-display); font-size: 40pt; line-height: 1; letter-spacing: -0.03em; }
+.posts { list-style: none; margin: 0; padding: 0; }
+.posts li { font-family: var(--f-display); font-style: italic; font-size: 13pt; padding: 7px 0; border-bottom: 1px solid var(--sand); }
+.posts li:last-child { border-bottom: 0; }
+.seo-photo.short { height: 2.3in; }
+.chart svg { display: block; width: 100%; height: auto; }
+.card.big .pct { font-family: var(--f-display); font-size: 40pt; line-height: 1; letter-spacing: -0.03em; color: var(--ink); }
 .gap-s { height: 0.14in; } .gap-m { height: 0.24in; } .gap-l { height: 0.34in; }
 </style>
 </head>
@@ -148,13 +176,84 @@ em { font-style: italic; }
   <div class="photo"><img src="brand/Sage-interior-design-marketing-agency.jpg" alt=""></div>
 </section>
 
-<!-- ============ 2 · SEO ============ -->
+<!-- ============ 2 · STARTING POINT ============ -->
 <section class="page">
   <img class="submark" src="brand/submark-espresso.png" alt="">
   <div class="head">
-    <p class="label">SEO results</p>
+    <p class="label">SEO results · 01 The starting point</p>
     <h2>Heather Peterson Design</h2>
     <p class="sub">Interior design · Minneapolis, MN · March to December 2024</p>
+  </div>
+  <div class="gap-l"></div>
+
+  <div class="intro">
+    <p class="lead">Heather Peterson Design pairs eclectic, colorful interiors with antique heritage pieces. People searching her name found her. People searching for a designer in Minneapolis did not.</p>
+  </div>
+  <div class="gap-l"></div>
+
+  <p class="label">Where things stood in March 2024</p>
+  <div style="height:8px"></div>
+  <div class="facts">
+    <div><b>#79</b><p>Her position on Google for “interior design Minneapolis.” That is page eight of the results.</p></div>
+    <div><b>94</b><p>Visitors from Google each month, and that number was down 10%.</p></div>
+    <div><b>964</b><p>Searches the site showed up for. Many came from older blog posts that attracted readers who were not looking for a designer.</p></div>
+    <div><b>12</b><p>Searches related to “interior design,” the kind that lead to new clients.</p></div>
+  </div>
+
+  <div class="gap-l"></div>
+  <div class="goal">
+    <p class="label">The goal</p>
+    <p>Show up when a homeowner in Minneapolis searches for an interior designer, and stop spending Google’s attention on searches that do not lead to projects.</p>
+  </div>
+
+  <div class="foot"><img src="brand/logo-ink.png" alt="Sage"><span>02</span></div>
+</section>
+
+<!-- ============ 3 · THE WORK ============ -->
+<section class="page">
+  <img class="submark" src="brand/submark-espresso.png" alt="">
+  <div class="head">
+    <p class="label">SEO results · 02 The work</p>
+    <h2>Fewer, better searches</h2>
+  </div>
+  <div class="gap-l"></div>
+
+  <div class="steps3">
+    <div><span class="n">I</span><h3>Her website was optimized</h3><p>Changes behind the scenes helped Google understand what she does and where she works. This work was finished at the end of May 2024.</p></div>
+    <div><span class="n">II</span><h3>Old blog posts were cleaned up</h3><p>Posts that ranked for searches unrelated to her business were cleaned up, so the site stopped attracting visitors who would never hire a designer.</p></div>
+    <div><span class="n">III</span><h3>Her best posts stayed</h3><p>Blog posts that were already bringing in steady traffic were kept as they were.</p></div>
+  </div>
+
+  <div class="gap-l"></div>
+  <div class="two">
+    <div class="card">
+      <p class="label">Why fewer searches was a good thing</p>
+      <div class="kw"><span class="before">964</span><span class="arrow">→</span><span class="after">778</span></div>
+      <p>The total number of searches the site showed up for went down. The ones that dropped were old blog posts ranking for things unrelated to interior design. The searches that matter more than doubled.</p>
+    </div>
+    <div class="card">
+      <p class="label">Blog posts still bringing in traffic</p>
+      <ul class="posts">
+        <li>How to hang and stack art</li>
+        <li>How to mix metals</li>
+        <li>Styling a pair of twin beds</li>
+        <li>Ghost chair cushions</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gap-l"></div>
+  <div class="seo-photo short"><img src="brand/KYRARAWS-442.jpg" alt=""></div>
+
+  <div class="foot"><img src="brand/logo-ink.png" alt="Sage"><span>03</span></div>
+</section>
+
+<!-- ============ 4 · RESULTS ============ -->
+<section class="page">
+  <img class="submark" src="brand/submark-espresso.png" alt="">
+  <div class="head">
+    <p class="label">SEO results · 03 The results</p>
+    <h2>Nine months later</h2>
   </div>
   <div class="gap-l"></div>
 
@@ -177,26 +276,44 @@ em { font-style: italic; }
   </div>
 
   <div class="gap-m"></div>
-  <div class="seo-photo"><img src="brand/KYRARAWS-442.jpg" alt=""></div>
-  <div class="gap-m"></div>
-
-  <div class="changed">
-    <p class="label" style="padding-top:4px;">What changed</p>
-    <ul>
-      <li>Fixes behind the scenes helped Google understand what she does and where she works.</li>
-      <li>Old blog posts that attracted the wrong visitors were cleaned up.</li>
-      <li>Her most popular blog posts stayed up.</li>
-    </ul>
+  <div class="card chart">
+    <p class="label">Her position on Google · lower is better</p>
+    <svg viewBox="0 0 640 120" role="img" aria-label="Her ranking moved from position 79 in March 2024 to position 11 in December 2024. Page one is positions 1 to 10.">
+      <!-- x = 30 + (position - 1) * 7.4 -->
+      <rect x="30" y="46" width="74" height="22" fill="#E8DFD3"/>
+      <text x="67" y="38" text-anchor="middle" font-family="Montserrat, Arial" font-size="9" font-weight="600" letter-spacing="2" fill="#9A8A78">PAGE ONE</text>
+      <line x1="30" y1="57" x2="614" y2="57" stroke="#1B1714" stroke-width="1"/>
+      <g font-family="Montserrat, Arial" font-size="10" fill="#9A8A78" text-anchor="middle">
+        <text x="30" y="84">1</text><text x="104" y="84">11</text><text x="178" y="84">21</text><text x="252" y="84">31</text><text x="326" y="84">41</text><text x="400" y="84">51</text><text x="474" y="84">61</text><text x="548" y="84">71</text>
+      </g>
+      <path d="M 600 57 C 500 8, 210 8, 112 52" fill="none" stroke="#1B1714" stroke-width="1" stroke-dasharray="3 3"/>
+      <circle cx="607" cy="57" r="6" fill="#FFFDF9" stroke="#1B1714" stroke-width="1.4"/>
+      <circle cx="104" cy="57" r="7" fill="#2A231E"/>
+      <text x="607" y="108" text-anchor="end" font-family="IvyPresto Display, ivypresto-display, Bodoni Moda, Georgia" font-size="13" fill="#9A8A78">March 2024: #79</text>
+      <text x="104" y="108" text-anchor="start" font-family="IvyPresto Display, ivypresto-display, Bodoni Moda, Georgia" font-size="13" fill="#1B1714">December 2024: #11</text>
+    </svg>
   </div>
 
   <div class="gap-m"></div>
-  <div class="who">
-    <p>These results come from work by our SEO specialist, who now leads SEO strategy for Sage clients.</p>
+  <div class="two">
+    <div class="card big">
+      <p class="label">Clicks from Google</p>
+      <p class="pct">50%+</p>
+      <p>more clicks in the last three months of 2024 than in the same period of 2023.</p>
+    </div>
+    <div class="card big">
+      <p class="label">Times she appeared in search</p>
+      <p class="pct">~40%</p>
+      <p>more often in the last three months of 2024 than in the same period of 2023.</p>
+    </div>
   </div>
+
+  <div class="gap-m"></div>
+  <div class="who"><p>These results come from work by our SEO specialist, who now leads SEO strategy for Sage clients.</p></div>
   <div class="gap-s"></div>
   <p class="src">Numbers from Google Search Console and Semrush, from the December 2024 SEO check-in.</p>
 
-  <div class="foot"><img src="brand/logo-ink.png" alt="Sage"><span>02</span></div>
+  <div class="foot"><img src="brand/logo-ink.png" alt="Sage"><span>04</span></div>
 </section>
 
 <!-- ============ BACK COVER ============ -->
