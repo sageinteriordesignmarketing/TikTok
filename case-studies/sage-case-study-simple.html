@@ -88,6 +88,12 @@ em { font-style: italic; }
 .callouts li::before { content: counter(c); position: absolute; left: 0; top: 11px; width: 22px; height: 22px; border-radius: 50%; background: var(--sage); color: #fff; font: 600 9pt/22px var(--f-sans); text-align: center; }
 .callouts b { font-family: var(--f-display); font-weight: 400; font-size: 13pt; display: block; margin-bottom: 2px; }
 .notes .cta { margin-top: 0.3in; }
+
+.links { margin-top: 0.22in; display: grid; grid-template-columns: 1.3in 1fr 1fr; gap: 0 18px; align-items: center; border-top: 1px solid var(--ink); padding-top: 12px; }
+.links a { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: baseline; text-decoration: none; color: var(--ink); }
+.links .tag { font: 600 7pt var(--f-sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); }
+.links .t { font-size: 11pt; text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+.links .arr { color: var(--sage); }
 .page > * { flex-shrink: 0; }
 </style>
 </head>
@@ -162,6 +168,12 @@ em { font-style: italic; }
   <div class="browser">
     <div class="bar"><i></i><i></i><i></i><span>designcollaborative.design</span></div>
     <img src="img/dc-home.jpg" alt="Design Collaborative homepage: a wood-ceilinged kitchen with a curved island, and the line Crafting inspired spaces for how you live, work, and gather.">
+  </div>
+
+  <div class="links">
+    <p class="kicker">See it for yourself</p>
+    <a href="https://web.archive.org/web/2023/https://designcollaborative.design/"><span class="tag">Before</span><span class="t">The old site (archived)</span><span class="arr">↗</span></a>
+    <a href="https://designcollaborative.design/"><span class="tag">After</span><span class="t">designcollaborative.design</span><span class="arr">↗</span></a>
   </div>
 
   <div class="foot"><span>Sage</span><span>03</span></div>
