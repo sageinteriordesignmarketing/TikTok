@@ -1,5 +1,7 @@
 # Daily Overdue-Task Report (ClickUp → Slack)
 
+> This repo also runs **new-client onboarding** (GHL proposal paid → ClickUp folder, account manager, welcome email). See [ONBOARDING.md](ONBOARDING.md).
+
 Every weekday at 8:00 AM Eastern, GitHub reads ClickUp and posts a summary of overdue work to a Slack channel. It runs on GitHub's servers, so your computer can be off.
 
 **What it covers:** the Agency Clients, Operations and Growth spaces. It leaves out Templates Hub, closed or completed tasks, and archived tasks.

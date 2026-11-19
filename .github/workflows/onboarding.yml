@@ -1,0 +1,90 @@
+name: New client onboarding
+
+on:
+  # GoHighLevel starts this when a client pays a proposal (the "Custom Webhook"
+  # step in the GHL workflow posts event_type "ghl-proposal-paid").
+  repository_dispatch:
+    types: [ghl-proposal-paid]
+
+  # Run by hand from the Actions tab: to test, or to onboard someone the
+  # webhook missed.
+  workflow_dispatch:
+    inputs:
+      contact_id:
+        description: "GHL contact ID (from the contact's URL in GHL)"
+        required: true
+      company:
+        description: "Business name (becomes the ClickUp folder name)"
+        required: false
+      first_name:
+        description: "First name"
+        required: false
+      last_name:
+        description: "Last name"
+        required: false
+      package:
+        description: "Package / proposal name"
+        required: false
+      account_manager:
+        description: "Force a specific AM (name or email). Leave blank to choose by capacity"
+        required: false
+      dry_run:
+        description: "Preview only (show the plan in the log, change nothing)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  # One onboarding at a time, so two clients paying at once can't both be
+  # given to the same AM based on stale numbers.
+  group: onboarding
+  cancel-in-progress: false
+
+jobs:
+  onboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Onboard the client
+        env:
+          CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
+          GHL_API_TOKEN: ${{ secrets.GHL_API_TOKEN }}
+          GHL_LOCATION_ID: ${{ secrets.GHL_LOCATION_ID }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+          ONBOARDING_SLACK_CHANNEL_ID: ${{ secrets.ONBOARDING_SLACK_CHANNEL_ID }}
+          CLIENT_PAYLOAD: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload) || toJSON(inputs) }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python onboarding.py --dry-run
+          else
+            python onboarding.py
+          fi
+
+      - name: Tell Slack if onboarding failed
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          CHANNEL: ${{ secrets.ONBOARDING_SLACK_CHANNEL_ID || secrets.SLACK_CHANNEL_ID }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          [ -n "$SLACK_BOT_TOKEN" ] && [ -n "$CHANNEL" ] || exit 0
+          python - <<'EOF'
+          import json, os, urllib.request
+          text = (":rotating_light: *New-client onboarding failed* — someone needs to finish it by hand. "
+                  f"<{os.environ['RUN_URL']}|Open the run log> (the last lines say what went wrong).")
+          req = urllib.request.Request("https://slack.com/api/chat.postMessage",
+              data=json.dumps({"channel": os.environ["CHANNEL"], "text": text}).encode(),
+              headers={"Content-Type": "application/json",
+                       "Authorization": "Bearer " + os.environ["SLACK_BOT_TOKEN"]})
+          urllib.request.urlopen(req, timeout=30)
+          EOF
