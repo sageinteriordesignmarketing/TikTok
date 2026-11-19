@@ -83,7 +83,7 @@ scoped = re.sub(r"(margin(?:-top|-bottom|-left|-right|-inline|-block)?:[^;{}!]+)
 
 squarespace_css = f"""
 /* ---- Squarespace integration (this page only) ---- */
-body:has({SCOPE}){{background:#EFEAE0}}
+body:has({SCOPE}){{background:#F8F5F2}}
 body:has({SCOPE}) #header,body:has({SCOPE}) header#header,body:has({SCOPE}) #footer-sections,body:has({SCOPE}) .sqs-announcement-bar-dropzone{{display:none!important}}
 .page-section:has({SCOPE}){{padding:0!important;min-height:0!important}}
 .page-section:has({SCOPE}) .content-wrapper,.page-section:has({SCOPE}) .content{{padding:0!important;max-width:none!important;width:100%!important}}
