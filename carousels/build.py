@@ -1,250 +1,221 @@
-"""Sage carousel templates v3: each series has its own textured editorial treatment. 1080x1350."""
-import random, urllib.parse
-
-random.seed(7)
+"""Sage carousel templates v4: type-led brand studio aesthetic. 1080x1350."""
+import urllib.parse
 
 def svg_uri(svg):
     return "url(\"data:image/svg+xml," + urllib.parse.quote(svg) + "\")"
 
-GRAIN = svg_uri("<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .45 0 0 0 0 .4 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>")
-PLASTER = svg_uri("<svg xmlns='http://www.w3.org/2000/svg' width='1080' height='1350'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='5' seed='3'/><feColorMatrix values='0 0 0 0 .55 0 0 0 0 .48 0 0 0 0 .4 0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(#p)'/></svg>")
-LINEN = svg_uri("<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='a'><feTurbulence type='fractalNoise' baseFrequency='.012 .9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .34 0 0 0 .5 0'/></filter><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.9 .012' numOctaves='2' seed='9'/><feColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .34 0 0 0 .45 0'/></filter><rect width='100%' height='100%' filter='url(#a)'/><rect width='100%' height='100%' filter='url(#b)'/></svg>")
-
-def deckle(w, h, j=7, step=14):
-    pts = []
-    for x in range(0, w + 1, step): pts.append((x, random.uniform(0, j)))
-    for y in range(0, h + 1, step): pts.append((w - random.uniform(0, j), y))
-    for x in range(w, -1, -step): pts.append((x, h - random.uniform(0, j)))
-    for y in range(h, -1, -step): pts.append((random.uniform(0, j), y))
-    return "polygon(" + ",".join(f"{x:.0f}px {y:.0f}px" for x, y in pts) + ")"
+GRAIN = svg_uri("<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .4 0 0 0 0 .37 0 0 0 0 .33 0 0 0 .32 0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>")
+FIBER = svg_uri("<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.02 .3' numOctaves='3' seed='5'/><feColorMatrix values='0 0 0 0 .45 0 0 0 0 .42 0 0 0 0 .38 0 0 0 .12 0'/></filter><rect width='100%' height='100%' filter='url(#f)'/></svg>")
 
 CSS = """
-:root { --linen:#F1EBE2; --paper:#FBF8F2; --sand:#E6DCCD; --plaster:#E9E1D5; --taupe:#8A7763; --espresso:#2A231E; --ink:#1B1714;
-  --serif:"Cormorant Garamond", Georgia, serif; --sans:"Montserrat", Arial, sans-serif; }
+:root { --paper:#EAE6DF; --cream:#F6F2EA; --ink:#1E1B18; --mute:#8C857C; --black:#0E0D0C;
+  --serif:"Cormorant Garamond", Georgia, serif; --script:"Italianno", "Pinyon Script", cursive; --sans:"Montserrat", Arial, sans-serif; }
 * { box-sizing:border-box; margin:0; padding:0; }
-body { background:#888; }
-.slide { width:1080px; height:1350px; position:relative; overflow:hidden; margin:20px; font-family:var(--sans); color:var(--ink); }
-.abs { position:absolute; inset:0; }
-.cover-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.grain::before { content:""; position:absolute; inset:0; background-image:GRAIN; opacity:.55; mix-blend-mode:multiply; z-index:5; pointer-events:none; }
-.grain.lt::before { mix-blend-mode:soft-light; opacity:.7; }
-.shade { position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(30,24,20,.38) 0%, rgba(30,24,20,.72) 100%); }
-.mark { position:absolute; top:70px; left:0; right:0; text-align:center; font:500 22px var(--sans); letter-spacing:.62em; padding-left:.62em; z-index:6; }
-.foot { position:absolute; left:90px; right:90px; bottom:62px; display:flex; justify-content:space-between; font:500 17px var(--sans); letter-spacing:.34em; text-transform:uppercase; opacity:.8; z-index:6; }
-.k { font:500 20px var(--sans); letter-spacing:.4em; text-transform:uppercase; }
-.it { font-family:var(--serif); font-style:italic; font-weight:500; letter-spacing:-.02em; line-height:.98; font-variant-numeric:lining-nums; text-wrap:balance; }
-.rm { font-family:var(--serif); font-weight:500; letter-spacing:-.015em; line-height:1.04; font-variant-numeric:lining-nums; text-wrap:balance; }
-.rm em, .it em { color:var(--taupe); }
-.body { font:400 31px/1.6 var(--sans); }
-.pill { display:inline-block; border:1.5px solid currentColor; border-radius:999px; padding:18px 40px; font:500 18px var(--sans); letter-spacing:.3em; text-transform:uppercase; }
-.fill { color:var(--taupe); }
-.light-text { color:#FBF8F2; } .light-text .rm em, .light-text .it em { color:#D9C6AC; }
-
-/* T0 myth vs truth: plaster wall, inset frame */
-.plaster { background-color:var(--plaster); background-image:PLASTER; }
-.frame { position:absolute; inset:44px; border:1px solid rgba(27,23,20,.35); z-index:4; pointer-events:none; }
-.frame.lt { border-color:rgba(251,248,242,.45); }
-.mv { position:absolute; left:110px; right:110px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; gap:34px; z-index:6; }
-.mv .tag { font-family:var(--serif); font-style:italic; font-size:150px; line-height:.85; color:var(--taupe); }
-.quote { font-family:var(--serif); font-size:360px; line-height:.5; color:var(--taupe); opacity:.5; height:120px; }
-.struck { position:relative; display:inline; background-image:linear-gradient(transparent 52%, rgba(138,119,99,.9) 52%, rgba(138,119,99,.9) 55%, transparent 55%); }
-
-/* T1 case study: arch */
-.linenbg { background-color:var(--linen); background-image:LINEN; }
-.arch { overflow:hidden; border-radius:999px 999px 0 0; }
-.arch img { width:100%; height:100%; object-fit:cover; display:block; }
-.archline { border:1.5px solid var(--taupe); border-radius:999px 999px 0 0; }
-
-/* T2 big stat: double rule frame */
-.dbl { position:absolute; inset:40px; border:1px solid rgba(251,248,242,.55); z-index:4; }
-.dbl::after { content:""; position:absolute; inset:10px; border:1px solid rgba(251,248,242,.35); }
-.stat { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:34px; text-align:center; z-index:6; color:#FBF8F2; padding:0 120px; }
-.big { font-family:var(--serif); font-style:italic; font-weight:500; font-size:420px; line-height:.8; letter-spacing:-.04em; font-variant-numeric:lining-nums; }
-.big small { font-size:.42em; }
-
-/* T3 mistakes: espresso, outline numerals */
-.esp { background:var(--espresso); color:#F1EBE2; }
-.outline { font-family:var(--serif); font-style:italic; font-weight:500; font-size:520px; line-height:.75; color:transparent; -webkit-text-stroke:2px rgba(217,198,172,.55); letter-spacing:-.04em; font-variant-numeric:lining-nums; }
-.sq { position:absolute; overflow:hidden; } .sq img { width:100%; height:100%; object-fit:cover; display:block; }
-
-/* T4 brand breakdown: magazine spread */
-.spread { position:absolute; inset:0; display:grid; grid-template-columns:44% 56%; }
-.spread .ph { position:relative; overflow:hidden; } .spread .ph img { width:100%; height:100%; object-fit:cover; display:block; }
-.spread .tx { background-color:var(--paper); background-image:GRAIN; position:relative; padding:200px 70px 160px 64px; display:flex; flex-direction:column; gap:28px; }
-.runhead { font:500 16px var(--sans); letter-spacing:.34em; text-transform:uppercase; color:var(--taupe); border-bottom:1px solid var(--ink); padding-bottom:14px; }
-.drop::first-letter { font-family:var(--serif); font-size:112px; float:left; line-height:.82; padding:6px 12px 0 0; color:var(--taupe); }
-.band { position:absolute; left:0; right:0; bottom:0; background-color:var(--paper); background-image:GRAIN; padding:56px 90px 120px; z-index:6; }
-
-/* T5 checklist: index card on linen */
-.card { justify-content:center; position:absolute; left:120px; right:120px; top:230px; bottom:230px; background-color:var(--paper); background-image:repeating-linear-gradient(transparent 0 63px, rgba(138,119,99,.18) 63px 64px); box-shadow:0 26px 50px -24px rgba(42,35,30,.5); padding:70px 70px; display:flex; flex-direction:column; gap:30px; z-index:6; }
-.card .no { font-family:var(--serif); font-style:italic; font-size:44px; color:var(--taupe); }
-.box { width:58px; height:58px; border:2px solid var(--ink); position:relative; }
-.box::after { content:""; position:absolute; left:16px; top:4px; width:16px; height:32px; border-right:3px solid var(--taupe); border-bottom:3px solid var(--taupe); transform:rotate(45deg); }
-
-/* T6 split comparison */
-.split { position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr; }
-.split .side { position:relative; overflow:hidden; }
-.split .side img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.split .side.them img { filter:grayscale(1) brightness(.75) contrast(.9); }
-.split .side .ov { position:absolute; inset:0; background:linear-gradient(180deg, rgba(27,23,20,.35), rgba(27,23,20,.78)); }
-.split .side .txt { position:absolute; left:56px; right:50px; bottom:190px; color:#FBF8F2; display:flex; flex-direction:column; gap:22px; }
-.vs { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:118px; height:118px; border-radius:50%; background:var(--paper); color:var(--ink); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-style:italic; font-size:44px; z-index:7; }
-.split::after { content:""; position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(251,248,242,.6); }
-
-/* T7 solution selling: deckle-edged letter on plaster */
-.letter { position:absolute; left:110px; right:110px; top:200px; bottom:190px; background-color:var(--paper); background-image:GRAIN; padding:86px 80px; display:flex; flex-direction:column; gap:30px; z-index:6; filter:drop-shadow(0 20px 26px rgba(42,35,30,.28)); }
-.sig { font-family:var(--serif); font-style:italic; font-size:40px; color:var(--taupe); margin-top:auto; }
+body { background:#999; }
+.slide { width:1080px; height:1350px; position:relative; overflow:hidden; margin:20px; color:var(--ink); font-family:var(--sans); }
+.paper { background-color:var(--paper); background-image:GRAIN, FIBER; }
+.black { background:var(--black); color:var(--cream); }
+.img { position:absolute; overflow:hidden; } .img img { width:100%; height:100%; object-fit:cover; display:block; }
+.folio { position:absolute; left:80px; right:80px; display:flex; justify-content:space-between; font:500 15px var(--sans); letter-spacing:.42em; text-transform:uppercase; z-index:9; }
+.folio.t { top:64px; } .folio.b { bottom:60px; justify-content:center; letter-spacing:.3em; }
+.poster { position:absolute; left:80px; right:80px; top:0; bottom:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:5; }
+.ln { display:flex; align-items:baseline; justify-content:center; gap:16px; flex-wrap:wrap; line-height:1; }
+.sc { font:500 19px var(--sans); letter-spacing:.32em; text-transform:uppercase; }
+.rc { font-family:var(--serif); font-weight:300; text-transform:uppercase; letter-spacing:.02em; font-size:92px; line-height:1; font-variant-numeric:lining-nums; }
+.rl { font-family:var(--serif); font-weight:400; font-size:80px; line-height:1.05; letter-spacing:-.01em; font-variant-numeric:lining-nums; }
+.scr { font-family:var(--script); font-size:120px; line-height:.8; font-weight:400; }
+.giant { position:absolute; font-family:var(--serif); font-weight:300; text-transform:uppercase; line-height:.8; letter-spacing:-.02em; white-space:nowrap; z-index:2; font-variant-numeric:lining-nums; }
+.body { font:400 27px/1.65 var(--sans); max-width:30ch; }
+.mute { color:var(--mute); }
+.card { position:absolute; background-color:var(--cream); background-image:GRAIN; color:var(--ink); box-shadow:0 30px 60px -30px rgba(0,0,0,.8); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; z-index:5; }
+.rule { width:90px; height:1px; background:currentColor; opacity:.45; }
+.phone { position:absolute; width:440px; height:900px; border-radius:66px; background:#111; padding:16px; box-shadow:0 40px 70px -30px rgba(0,0,0,.7); z-index:5; }
+.phone .scr2 { width:100%; height:100%; border-radius:52px; background:var(--cream); overflow:hidden; display:flex; flex-direction:column; }
+.phone .notch { width:120px; height:30px; border-radius:20px; background:#111; margin:14px auto 0; }
+.phone .hdr { padding:26px 28px 14px; display:flex; flex-direction:column; gap:6px; }
+.phone .hdr b { font:600 17px var(--sans); letter-spacing:.06em; }
+.phone .hdr span { font:400 13px var(--sans); color:var(--mute); }
+.phone .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; padding:0 0 0; }
+.phone .grid img { width:100%; aspect-ratio:4/5; object-fit:cover; display:block; }
+.strike { text-decoration:line-through; text-decoration-thickness:1.5px; }
+.fill { color:var(--mute); }
 """
-CSS = CSS.replace("GRAIN", GRAIN).replace("PLASTER", PLASTER).replace("LINEN", LINEN)
+CSS = CSS.replace("GRAIN", GRAIN).replace("FIBER", FIBER)
 
 slides = []
-def add(tid, n, total, series, inner, cls="", tone="dark", col_left=None):
-    col = "#FBF8F2" if tone == "light" else "#1B1714"
-    swipe = "Swipe" if n < total else "@sageinteriordesignmarketing"
-    pos = f"left:{col_left}px;right:70px;text-align:left;padding-left:0;" if col_left else ""
-    fpos = f"left:{col_left}px;right:70px;" if col_left else ""
-    slides.append(f'''<section class="slide {cls}" id="{tid}-{n:02d}">{inner}
-<div class="mark" style="color:{col};{pos}">SAGE</div>
-<div class="foot" style="color:{col};{fpos}"><span>No. {n:02d}</span><span>{series}</span><span>{swipe}</span></div></section>''')
+def add(tid, n, total, series, inner, bg="paper", tone="ink"):
+    col = "var(--cream)" if tone == "light" else "var(--ink)"
+    slides.append(f'''<section class="slide {bg}" id="{tid}-{n:02d}">{inner}
+<div class="folio t" style="color:{col}"><span>Sage</span><span>{series}</span></div>
+<div class="folio b" style="color:{col}"><span>{n:02d} / {total:02d}</span></div></section>''')
 
-def photo_cover(tid, total, series, photo, kicker, title, pill, extra=""):
-    add(tid, 1, total, series, f'''<img class="cover-img" src="{photo}" alt=""><div class="shade"></div>{extra}
-<div class="stat light-text"><p class="k">{kicker}</p><h1 class="it" style="font-size:124px">{title}</h1><span class="pill">{pill}</span></div>''', "grain lt", "light")
+def poster(lines, extra=""):
+    return f'<div class="poster" style="gap:26px">{"".join(f"<div class=ln>{l}</div>" for l in lines)}{extra}</div>'
 
-# ============ T0 MYTH VS TRUTH: plaster wall ============
+def sc(t, c=""): return f'<span class="sc {c}">{t}</span>'
+def rc(t, s=92, c=""): return f'<span class="rc {c}" style="font-size:{s}px">{t}</span>'
+def rl(t, s=80, c=""): return f'<span class="rl {c}" style="font-size:{s}px">{t}</span>'
+def scr(t, s=120, c=""): return f'<span class="scr {c}" style="font-size:{s}px">{t}</span>'
+
+def phone(left, top, photos, name="yourstudio"):
+    imgs = "".join(f'<img src="{p}" alt="">' for p in photos)
+    return f'''<div class="phone" style="left:{left}px;top:{top}px"><div class="scr2"><div class="notch"></div>
+<div class="hdr"><b>{name}</b><span>Interior design studio</span></div><div class="grid">{imgs}</div></div></div>'''
+
+GRID = ["living.jpg", "dining.jpg", "bedroom.jpg", "kitchen.jpg", "library.jpg", "bath.jpg", "stair.jpg", "powder.jpg", "stilllife.jpg", "terrace.jpg", "house.jpg", "dining.jpg", "bedroom.jpg", "living.jpg", "kitchen.jpg"]
+
+# ============ 0 MYTH VS TRUTH: giant cropped word + type posters ============
 T, S, N = "0-myth-vs-truth", "Myth vs. Truth", 5
-add(T, 1, N, S, '''<div class="frame"></div><div class="mv"><p class="k" style="color:var(--taupe)">The myth</p>
-<div class="quote">“</div><h1 class="rm" style="font-size:112px"><span class="struck">High-end clients don’t come from Instagram.</span></h1>
-<p class="k" style="color:var(--taupe)">Half true. Swipe</p></div>''', "plaster grain")
-for n, (tag, h, b) in enumerate([
-    ("Half true.", "Most luxury clients won’t find you by <em>scrolling.</em>", "That part is real. Your best clients still arrive through people they trust."),
-    ("Actually,", "almost every referral checks your Instagram <em>before they call.</em>", "Your page is where a warm introduction becomes a booked consultation, or quietly goes cold."),
-    ("Instead,", "post the projects you want <em>more of.</em>", "Then make booking a call one tap from your bio, so a referral never has to search for the next step."),
-], start=2):
-    add(T, n, N, S, f'''<div class="frame"></div><div class="mv"><p class="tag">{tag}</p><h2 class="rm" style="font-size:90px">{h}</h2>
-<div style="width:110px;height:1px;background:var(--ink);opacity:.5"></div><p class="body" style="max-width:27ch">{b}</p></div>''', "plaster grain")
-add(T, 5, N, S, '''<img class="cover-img" src="KYRARAWS-429.jpg" alt=""><div class="shade"></div><div class="frame lt"></div>
-<div class="stat"><p class="k">Before your next referral looks you up</p><h1 class="it" style="font-size:112px">Look at your grid like a stranger would.</h1><span class="pill">Save this</span></div>''', "grain lt", "light")
+add(T, 1, N, S, f'''<div class="giant" style="left:-40px;top:150px;font-size:430px;opacity:.9">Myth</div>
+<div class="poster" style="top:560px;gap:22px">
+<div class="ln">{sc("the myth")}</div>
+<div class="ln">{rl("“High-end clients", 84)}</div>
+<div class="ln">{rl("don’t come from", 84)}{scr("Instagram.”", 140)}</div></div>''')
+add(T, 2, N, S, poster([
+    sc("it’s") + scr("half true", 150),
+    rc("Most luxury clients", 84),
+    sc("won’t find you by") + scr("scrolling.", 130),
+], f'<div class="rule" style="margin-top:30px"></div><p class="body mute" style="margin-top:18px">Your best clients still arrive through people they trust.</p>'))
+add(T, 3, N, S, poster([
+    sc("what’s") + scr("actually", 140) + sc("true"),
+    rc("Almost every referral", 80),
+    rl("checks your Instagram", 76),
+    scr("before they call.", 150),
+], f'<p class="body mute" style="margin-top:34px">Your page is where a warm introduction becomes a booked consultation, or goes cold.</p>'), "paper")
+add(T, 4, N, S, f'''<div class="img" style="left:0;right:0;top:0;height:760px"><img src="stilllife.jpg" alt=""></div>
+<div class="poster" style="top:760px;gap:22px">
+<div class="ln">{sc("what to do instead")}</div>
+<div class="ln">{rl("Post the projects you want", 64)}</div><div class="ln">{scr("more of.", 140)}</div></div>''', "paper", "light")
+add(T, 5, N, S, f'''<div class="card" style="left:150px;right:150px;top:300px;bottom:300px;gap:26px;padding:60px">
+{sc("before your next referral looks you up")}<div class="rule"></div>
+<div class="rl" style="font-size:72px">Look at your grid</div><div class="scr" style="font-size:110px">like a stranger would.</div>
+<div class="rule"></div>{sc("save this")}</div>''', "black", "light")
 
-# ============ T1 CASE STUDY: arches on linen ============
+# ============ 1 CASE STUDY: cream card on black, photo pages ============
 T, S, N = "1-case-study", "Case Study", 5
-add(T, 1, N, S, '''<div class="arch" style="position:absolute;left:190px;right:190px;top:150px;height:760px"><img src="dining.jpg" alt=""></div>
-<div style="position:absolute;left:90px;right:90px;top:950px;text-align:center;display:flex;flex-direction:column;gap:22px;align-items:center;z-index:6">
-<p class="k" style="color:var(--taupe)">Client case study</p><h1 class="it" style="font-size:100px"><span class="fill">[Studio name]</span></h1></div>''', "linenbg grain")
+add(T, 1, N, S, f'''<div class="card" style="left:230px;right:230px;top:260px;bottom:260px;gap:30px">
+{sc("client case study")}<div class="rc fill" style="font-size:74px">[Studio Name]</div>
+<div class="scr" style="font-size:110px">the story</div><div class="rule"></div>{sc("sage interior design marketing")}</div>''', "black", "light")
 for n, (photo, k, h, b) in enumerate([
-    ("bedroom.jpg", "Where she started", "[One line on her situation]", "[Two sentences in her words from the discovery call.]"),
-    ("kitchen.jpg", "What we did", "[The one change that mattered most]", "[Two sentences on the strategy, not a list of deliverables.]"),
+    ("bedroom.jpg", "where she started", "[One line on her situation]", "[Two sentences in her words from the discovery call.]"),
+    ("kitchen.jpg", "what we did", "[The one change that mattered most]", "[Two sentences on the strategy, not a list of deliverables.]"),
 ], start=2):
-    add(T, n, N, S, f'''<div class="arch" style="position:absolute;right:90px;top:170px;width:390px;height:620px"><img src="{photo}" alt=""></div>
-<div style="position:absolute;left:90px;width:470px;top:240px;display:flex;flex-direction:column;gap:30px;z-index:6">
-<p class="k" style="color:var(--taupe)">{k}</p><h2 class="rm" style="font-size:80px"><span class="fill">{h}</span></h2></div>
-<div style="position:absolute;left:90px;right:90px;top:870px;border-top:1px solid var(--ink);padding-top:34px;z-index:6"><p class="body fill">{b}</p></div>''', "linenbg grain")
-add(T, 4, N, S, '''<div class="archline" style="position:absolute;left:170px;right:170px;top:170px;bottom:230px"></div>
-<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;text-align:center;z-index:6;padding:0 220px">
-<p class="k" style="color:var(--taupe)">The result</p><div class="big fill" style="font-size:300px">[00]</div><p class="rm fill" style="font-size:48px;font-weight:400">[What the number means, over what time frame]</p></div>''', "linenbg grain")
-add(T, 5, N, S, '''<img class="cover-img" src="terrace.jpg" alt=""><div class="shade"></div>
-<div class="stat"><p class="k">Shared with her permission</p><h1 class="it" style="font-size:118px">Want this for your studio?</h1><span class="pill">Book a discovery call</span></div>''', "grain lt", "light")
+    add(T, n, N, S, f'''<div class="img" style="left:80px;top:150px;width:440px;height:600px"><img src="{photo}" alt=""></div>
+<div style="position:absolute;left:580px;right:80px;top:170px;display:flex;flex-direction:column;gap:24px;z-index:5">
+{sc(k, "mute")}<div class="rl fill" style="font-size:64px">{h}</div></div>
+<div style="position:absolute;left:80px;right:80px;top:830px;border-top:1px solid var(--ink);padding-top:30px;z-index:5"><p class="body fill" style="max-width:40ch;font-size:32px">{b}</p></div>''')
+add(T, 4, N, S, poster([sc("the result"), f'<span class="rc fill" style="font-size:300px;font-weight:300">[00]</span>', scr("[what it means]", 120, "fill"), sc("[time frame]", "mute")]))
+add(T, 5, N, S, f'''<div class="img" style="left:0;right:0;top:0;height:800px"><img src="terrace.jpg" alt=""></div>
+<div class="poster" style="top:800px;gap:20px"><div class="ln">{sc("want this for")}{scr("your studio?", 130)}</div>
+<div class="ln">{sc("book a discovery call · link in bio", "mute")}</div></div>''')
 
-# ============ T2 BIG STAT: full-bleed photo, double rule ============
+# ============ 2 BIG STAT: thin numerals, script word ============
 T, S, N = "2-big-stat", "Three Months", 6
-def stat_slide(n, photo, inner):
-    add(T, n, N, S, f'<img class="cover-img" src="{photo}" alt=""><div class="shade"></div><div class="dbl"></div><div class="stat">{inner}</div>', "grain lt", "light")
-stat_slide(1, "bedroom.jpg", '<p class="k">One Atlanta designer</p><h1 class="it" style="font-size:132px">Three months of Instagram</h1><span class="pill">Here’s what changed</span>')
-for n, (photo, num, line) in enumerate([
-    ("living.jpg", "+534<small>%</small>", "more people reached in her first three months"),
-    ("library.jpg", "+539<small>%</small>", "more engagement from people who stopped to look"),
-    ("dining.jpg", "+610", "new followers in her market"),
-    ("bath.jpg", "3", "new leads, after years of relying on referrals alone"),
+add(T, 1, N, S, f'''<div class="img" style="left:0;right:0;top:0;height:800px"><img src="bedroom.jpg" alt=""></div>
+<div class="poster" style="top:800px;gap:18px"><div class="ln">{sc("one atlanta designer")}</div>
+<div class="ln">{rc("Three months", 96)}</div><div class="ln">{scr("of Instagram", 130)}</div></div>''')
+for n, (num, word, line) in enumerate([
+    ("+534%", "reach", "in her first three months"),
+    ("+539%", "engagement", "from people who stopped to look"),
+    ("+610", "followers", "new, in her market"),
+    ("3", "new leads", "after years of relying on referrals alone"),
 ], start=2):
-    stat_slide(n, photo, f'<div class="big">{num}</div><div style="width:1px;height:90px;background:#FBF8F2;opacity:.6"></div><p class="rm" style="font-size:54px;font-weight:400;max-width:18ch">{line}</p>')
-stat_slide(6, "powder.jpg", '<p class="k">Your work is already good enough</p><h1 class="it" style="font-size:112px">Your Instagram should prove it.</h1><span class="pill">Book a discovery call</span>')
+    bg, tone = ("black", "light") if n % 2 else ("paper", "ink")
+    add(T, n, N, S, poster([sc("three months with sage", "mute"),
+        f'<span class="rc" style="font-size:{340 if len(num)>3 else 520}px;font-weight:300;letter-spacing:-.03em">{num}</span>',
+        scr(word, 160), sc(line)]), bg, tone)
+add(T, 6, N, S, poster([sc("your work is already"), scr("good enough", 150), rc("Your Instagram", 84), rl("should prove it.", 80)],
+    f'<div class="rule" style="margin-top:30px"></div><p class="sc mute" style="margin-top:20px">book a discovery call · link in bio</p>'))
 
-# ============ T3 MISTAKES: espresso, outline numerals, photo inset ============
+# ============ 3 MISTAKES: phone mockup ============
 T, S, N = "3-mistakes", "Mistakes", 6
-add(T, 1, N, S, '''<div class="outline" style="position:absolute;left:40px;top:150px">4</div>
-<div class="sq" style="right:90px;top:200px;width:430px;height:560px"><img src="powder.jpg" alt=""></div>
-<div style="position:absolute;left:90px;right:90px;bottom:200px;display:flex;flex-direction:column;gap:26px;z-index:6">
-<p class="k" style="color:#D9C6AC">Instagram for interior designers</p><h1 class="it" style="font-size:118px">Four mistakes keeping your page from booking projects.</h1></div>''', "esp grain lt", "light")
-for n, (photo, h, b) in enumerate([
-    ("stilllife.jpg", "You’re posting only when you feel <em>inspired.</em>", "Your future clients reward consistency. Inspiration shows up on its own schedule."),
-    ("bedroom.jpg", "You’re only showing <em>finished rooms.</em>", "Clients hire a process, not a photo. Without it, you look like every other portfolio."),
-    ("kitchen.jpg", "Your captions describe <em>the room.</em>", "They can see the room. Tell them what the homeowner was struggling with and what changed."),
-    ("library.jpg", "Your bio sends people to a menu of <em>six links.</em>", "Every extra choice is a chance to leave. Give them one next step."),
+add(T, 1, N, S, f'''<div class="giant" style="right:-30px;top:120px;font-size:900px;color:#DAD4CB">4</div>
+{phone(110, 230, GRID)}
+<div style="position:absolute;left:600px;right:80px;top:470px;display:flex;flex-direction:column;gap:22px;z-index:5">
+{sc("four mistakes")}<div class="rl" style="font-size:66px">keeping your page from</div><div class="scr" style="font-size:120px">booking projects</div></div>''')
+for n, (h1, h2, b) in enumerate([
+    ("Posting only when you feel", "inspired.", "Future clients reward consistency. Inspiration shows up on its own schedule."),
+    ("Showing only", "finished rooms.", "Clients hire a process, not a photo. Show how you get there."),
+    ("Captions that", "describe the room.", "They can see the room. Tell them what changed for the homeowner."),
+    ("A bio with", "a menu of six links.", "Every extra choice is a chance to leave. Give them one next step."),
 ], start=2):
-    add(T, n, N, S, f'''<div class="outline" style="position:absolute;left:50px;top:140px">0{n-1}</div>
-<div class="sq" style="right:90px;top:190px;width:300px;height:380px"><img src="{photo}" alt=""></div>
-<div style="position:absolute;left:90px;right:90px;top:700px;display:flex;flex-direction:column;gap:30px;z-index:6">
-<p class="k" style="color:#D9C6AC">Mistake No. 0{n-1}</p><h2 class="rm light-text" style="font-size:84px">{h}</h2>
-<p class="body" style="color:rgba(241,235,226,.85);max-width:30ch">{b}</p></div>''', "esp grain lt", "light")
-add(T, 6, N, S, '''<img class="cover-img" src="terrace.jpg" alt=""><div class="shade"></div>
-<div class="stat"><p class="k">What to do instead</p><h1 class="it" style="font-size:118px">Plan ahead and keep one next step.</h1><span class="pill">Save for your next content day</span></div>''', "grain lt", "light")
+    bg, tone = ("black", "light") if n % 2 else ("paper", "ink")
+    add(T, n, N, S, f'''{phone(600, 220, GRID[n-2:] + GRID[:n-2])}
+<div style="position:absolute;left:80px;width:490px;top:330px;display:flex;flex-direction:column;gap:24px;z-index:5">
+<div class="rc" style="font-size:180px;font-weight:300;line-height:.8">0{n-1}</div>{sc("you’re")}
+<div class="rl" style="font-size:62px">{h1}</div><div class="scr" style="font-size:118px">{h2}</div>
+<p class="body" style="font-size:25px;opacity:.75">{b}</p></div>''', bg, tone)
+add(T, 6, N, S, poster([sc("what to do"), scr("instead", 150), rc("Plan ahead", 88), rl("and keep one next step.", 68)],
+    f'<div class="rule" style="margin-top:30px"></div><p class="sc mute" style="margin-top:20px">save for your next content day</p>'))
 
-# ============ T4 BRAND BREAKDOWN: magazine spread ============
+# ============ 4 BRAND BREAKDOWN: giant cropped wordmark ============
 T, S, N = "4-brand-breakdown", "Brand Insights", 5
-add(T, 1, N, S, '''<img class="cover-img" src="stair.jpg" alt="">
-<div class="band"><p class="runhead">Brand insights · A marketing breakdown</p>
-<h1 class="it" style="font-size:108px;margin-top:26px">Why <span class="fill">[Designer]</span>’s Instagram works</h1></div>''', "grain", "dark")
+add(T, 1, N, S, f'''<div class="giant fill" style="left:-30px;top:200px;font-size:250px">[Designer]</div>
+<div class="img" style="left:80px;right:80px;top:520px;height:560px"><img src="stair.jpg" alt=""></div>
+<div class="poster" style="top:1080px;bottom:110px;gap:10px"><div class="ln">{sc("brand insights")}{scr("why it works", 110)}</div></div>''')
 for n, (photo, k, h, b) in enumerate([
-    ("living.jpg", "Who they are", "[Studio, city, the work they’re known for]", "[One sentence on why your audience already knows the name.]"),
-    ("dining.jpg", "What they do on Instagram", "[The pattern in their last twelve posts]", "[Formats, who is on camera, how often, what the captions do.]"),
-    ("library.jpg", "Why it works", "[The strategy underneath it]", "[Tie it to a business result: who it attracts and what it signals to a buyer.]"),
+    ("living.jpg", "who they are", "[Studio, city, the work they’re known for]", "[One sentence on why your audience already knows the name.]"),
+    ("dining.jpg", "what they do on instagram", "[The pattern in their last twelve posts]", "[Formats, who is on camera, how often, what the captions do.]"),
+    ("library.jpg", "why it works", "[The strategy underneath it]", "[Tie it to a business result: who it attracts and what it signals.]"),
 ], start=2):
-    add(T, n, N, S, f'''<div class="spread"><div class="ph"><img src="{photo}" alt=""></div>
-<div class="tx"><p class="runhead">{k}</p><h2 class="rm" style="font-size:72px"><span class="fill">{h}</span></h2>
-<p class="body fill" style="font-size:30px">{b}</p></div></div>''', "", "dark", col_left=539)
-add(T, 5, N, S, '''<img class="cover-img" src="house.jpg" alt="">
-<div class="band"><p class="runhead">What it means for you</p>
-<h1 class="it" style="font-size:96px;margin-top:26px"><span class="fill">[The one move you can copy this month]</span></h1></div>''', "grain", "dark")
+    add(T, n, N, S, f'''<div style="position:absolute;left:80px;width:540px;top:0;bottom:0;justify-content:center;display:flex;flex-direction:column;gap:30px;z-index:5">
+<div class="sc mute">{k}</div><div class="rl fill" style="font-size:76px">{h}</div><p class="body fill">{b}</p></div>
+<div class="img" style="right:0;top:0;bottom:0;width:390px"><img src="{photo}" alt=""></div>''')
+add(T, 5, N, S, poster([sc("what it means for"), scr("your studio", 150), f'<span class="rl fill" style="font-size:68px">[The one move you can copy this month]</span>']))
 
-# ============ T5 CHECKLIST: index card on linen ============
+# ============ 5 CHECKLIST: thin numerals and hairlines ============
 T, S, N = "5-checklist", "The Audit", 7
-add(T, 1, N, S, '''<div class="card" style="justify-content:center;text-align:center;align-items:center"><p class="k" style="color:var(--taupe)">Instagram audit</p>
-<h1 class="it" style="font-size:118px">Five things I check first</h1><p class="k" style="color:var(--taupe)">On a designer’s Instagram</p></div>''', "linenbg grain")
-for n, (h, b) in enumerate([
-    ("Your bio says who you serve and <em>where.</em>", "If a stranger can’t tell in three seconds, they won’t keep scrolling."),
-    ("Your last nine posts match the work you <em>want.</em>", "Your grid is a sales pitch. It should sell the projects you want more of."),
-    ("A real person shows up <em>on camera.</em>", "Clients hire you, not a mood board. Let them hear you before the first call."),
-    ("Your captions give a reason to <em>reach out.</em>", "Every post should leave a client knowing what working with you feels like."),
-    ("One link, one <em>next step.</em>", "Send people straight to booking. Don’t make them choose."),
+add(T, 1, N, S, poster([sc("the"), rc("Five things", 110), sc("i check first on a designer’s"), scr("Instagram", 170)]))
+for n, (h1, h2, b) in enumerate([
+    ("Your bio says who you serve", "and where.", "If a stranger can’t tell in three seconds, they won’t keep scrolling."),
+    ("Your last nine posts match", "the work you want.", "Your grid is a sales pitch for the projects you want more of."),
+    ("A real person shows up", "on camera.", "Clients hire you, not a mood board. Let them hear you first."),
+    ("Your captions give a reason", "to reach out.", "Leave them knowing what working with you feels like."),
+    ("One link,", "one next step.", "Send people straight to booking. Don’t make them choose."),
 ], start=2):
-    add(T, n, N, S, f'''<div class="card" style="justify-content:flex-start;padding-top:80px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:auto"><span class="no">No. 0{n-1} of 05</span><div class="box"></div></div>
-<h2 class="rm" style="font-size:96px;margin-top:30px">{h}</h2><p class="body" style="color:#3A322C;font-size:34px;margin-bottom:auto">{b}</p></div>''', "linenbg grain")
-add(T, 7, N, S, '''<div class="card" style="justify-content:center;text-align:center;align-items:center">
-<svg width="64" height="84" viewBox="0 0 64 84"><path d="M2 2h60v80L32 60 2 82z" fill="none" stroke="#1B1714" stroke-width="3"/></svg>
-<h1 class="it" style="font-size:120px">Save this.</h1><p class="body" style="color:#3A322C">Run it on your own page this week, and share it with a designer friend.</p></div>''', "linenbg grain")
+    add(T, n, N, S, f'''<div class="rc" style="position:absolute;left:70px;top:150px;font-size:420px;font-weight:300;line-height:.8;color:#B9AFA2">{n-1}</div>
+<div style="position:absolute;left:80px;right:80px;top:640px;border-top:1px solid var(--ink);padding-top:44px;display:flex;flex-direction:column;gap:18px;z-index:5">
+{sc(f"no. {n-1} of 5", "mute")}<div class="rl" style="font-size:72px">{h1}</div><div class="scr" style="font-size:130px">{h2}</div>
+<p class="body" style="margin-top:14px;max-width:36ch">{b}</p></div>''')
+add(T, 7, N, S, f'''<div class="card" style="left:230px;right:230px;top:300px;bottom:300px;gap:24px">
+{sc("run it on your own page")}<div class="scr" style="font-size:170px">save this</div><div class="rule"></div>{sc("and send it to a designer friend", "mute")}</div>''', "black", "light")
 
-# ============ T6 SAGE VS AGENCY: split screen ============
+# ============ 6 SAGE VS AGENCY: two columns, struck-through ============
 T, S, N = "6-sage-vs-agency", "Sage vs. Agency", 6
-photo_cover(T, N, S, "library.jpg", "Before you hire anyone", "What a typical agency does", "And what Sage does instead")
-for n, (photo, t, u) in enumerate([
-    ("stilllife.jpg", "Posts for you", "Runs a strategy built around the projects you want"),
-    ("bedroom.jpg", "Reports followers and likes", "Tracks inquiries and booked projects"),
-    ("living.jpg", "Works with any industry", "Only works with interior designers"),
-    ("dining.jpg", "Hands you a template", "Starts from a discovery call about your studio"),
+add(T, 1, N, S, poster([sc("what a"), rc("Typical agency", 100), sc("does, and what"), scr("Sage does instead", 140)]))
+for n, (t, u) in enumerate([
+    ("Posts for you", "Runs a strategy built around the projects you want"),
+    ("Reports followers and likes", "Tracks inquiries and booked projects"),
+    ("Works with any industry", "Only works with interior designers"),
+    ("Hands you a template", "Starts from a discovery call about your studio"),
 ], start=2):
-    add(T, n, N, S, f'''<div class="split"><div class="side them"><img src="{photo}" alt="" style="object-position:left center"><div class="ov"></div>
-<div class="txt"><p class="k" style="font-size:17px;opacity:.75">A typical agency</p><p class="rm" style="font-size:62px;opacity:.75">{t}</p></div></div>
-<div class="side"><img src="{photo}" alt="" style="object-position:right center"><div class="ov"></div>
-<div class="txt"><p class="k" style="font-size:17px;color:#D9C6AC">Sage</p><p class="it" style="font-size:66px;line-height:1.02">{u}</p></div></div></div><div class="vs">vs.</div>''', "grain lt", "light")
-add(T, 6, N, S, '''<img class="cover-img" src="Sage-interior-design-marketing-agency.jpg" alt=""><div class="shade"></div>
-<div class="stat"><p class="k">Booked projects, not likes</p><h1 class="it" style="font-size:108px">See what a strategy built for your studio looks like.</h1><span class="pill">Book a discovery call</span></div>''', "grain lt", "light")
+    bg, tone = ("black", "light") if n % 2 else ("paper", "ink")
+    add(T, n, N, S, f'''<div style="position:absolute;left:80px;right:80px;top:300px;bottom:260px;display:grid;grid-template-columns:1fr 1fr;align-items:center;z-index:5">
+<div style="padding-right:40px;display:flex;flex-direction:column;gap:28px">{sc("a typical agency")}<div class="rl strike" style="font-size:78px;opacity:.45">{t}</div></div>
+<div style="padding-left:40px;border-left:1px solid currentColor;display:flex;flex-direction:column;gap:28px">{scr("Sage", 140)}<div class="rl" style="font-size:78px">{u}</div></div></div>''', bg, tone)
+add(T, 6, N, S, f'''<div class="img" style="left:0;right:0;top:0;height:780px"><img src="Sage-interior-design-marketing-agency.jpg" alt=""></div>
+<div class="poster" style="top:780px;gap:18px"><div class="ln">{sc("booked projects,")}{scr("not likes", 130)}</div>
+<div class="ln">{sc("book a discovery call · link in bio", "mute")}</div></div>''')
 
-# ============ T7 SOLUTION SELLING: deckle letter on plaster ============
+# ============ 7 SOLUTION SELLING: letter-style posters ============
 T, S, N = "7-solution-selling", "For Designers", 5
-photo_cover(T, N, S, "house.jpg", "If this sounds familiar", "Your referrals are slowing down", "And nothing is replacing them")
-for n, (k, h, b) in enumerate([
-    ("The problem", "You can’t control when the next referral <em>comes in.</em>", "A great year can turn into a quiet quarter, and you only find out once the calendar is empty."),
-    ("Why your current approach won’t fix it", "Posting when you have time won’t build a <em>pipeline.</em>", "Clients who don’t know you yet need to see you consistently, long before they’re ready to call."),
-    ("How Sage fixes it", "A strategy built around the projects you want <em>more of.</em>", "Your account manager plans and posts every week. You approve everything, and we report on inquiries, not followers."),
+add(T, 1, N, S, f'''<div class="img" style="left:0;right:0;top:0;height:780px"><img src="house.jpg" alt=""></div>
+<div class="poster" style="top:780px;gap:16px"><div class="ln">{sc("if your")}{scr("referrals", 130)}</div>
+<div class="ln">{rc("are slowing down", 72)}</div></div>''')
+for n, (k, a, b2, body) in enumerate([
+    ("the problem", "You can’t control when", "the next referral comes in.", "A great year can turn into a quiet quarter, and you only find out once the calendar is empty."),
+    ("why your current approach won’t fix it", "Posting when you have time", "won’t build a pipeline.", "Clients who don’t know you yet need to see you consistently, long before they’re ready to call."),
+    ("how sage fixes it", "A strategy built around", "the projects you want more of.", "Your account manager plans and posts every week. You approve everything, and we report on inquiries, not followers."),
 ], start=2):
-    clip = deckle(860, 960)
-    add(T, n, N, S, f'''<div class="letter" style="clip-path:{clip}"><p class="k" style="color:var(--taupe);font-size:18px">{k}</p>
-<h2 class="rm" style="font-size:92px;margin-top:40px">{h}</h2><p class="body" style="color:#3A322C;font-size:34px">{b}</p><p class="sig">Kyra, founder of Sage</p></div>''', "plaster grain")
-add(T, 5, N, S, '''<img class="cover-img" src="terrace.jpg" alt=""><div class="shade"></div>
-<div class="stat"><p class="k">Ready for a steadier pipeline?</p><h1 class="it" style="font-size:118px">Let’s talk about your studio.</h1><span class="pill">Book a discovery call</span></div>''', "grain lt", "light")
+    bg, tone = ("black", "light") if n == 3 else ("paper", "ink")
+    add(T, n, N, S, f'''<div style="position:absolute;left:110px;right:110px;top:250px;bottom:200px;display:flex;flex-direction:column;gap:26px;z-index:5">
+{sc(k, "mute")}<div class="rl" style="font-size:78px;margin-top:20px">{a}</div><div class="scr" style="font-size:112px">{b2}</div>
+<p class="body" style="max-width:34ch;margin-top:10px">{body}</p><div class="scr" style="font-size:70px;margin-top:auto;opacity:.7">Kyra</div></div>''', bg, tone)
+add(T, 5, N, S, poster([sc("ready for a"), scr("steadier pipeline?", 140), rc("Let’s talk", 96), rl("about your studio.", 72)],
+    f'<div class="rule" style="margin-top:30px"></div><p class="sc mute" style="margin-top:20px">book a discovery call · link in bio</p>'))
 
 head = f'''<!doctype html><html><head><meta charset="utf-8"><title>Sage carousel templates</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Montserrat:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Italianno&family=Montserrat:wght@400;500;600&display=swap">
 <style>{CSS}</style></head><body>'''
 open("carousels.html", "w").write(head + "\n".join(slides) + "</body></html>")
 print(len(slides), "slides")
